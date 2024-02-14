@@ -1,11 +1,14 @@
-import React from 'react';
-import {Text, View} from 'react-native';
 
+import React from 'react';
+import { ThemeProvider } from "styled-components/native";
+import {theme} from './src/theme/index';
+import { Navigation } from './src/components/Navigation';
 function App(): React.JSX.Element {
   return (
-    <View>
-      <Text>Text</Text>
-    </View>
+    <ThemeProvider theme={theme}>
+      <Navigation />
+    </ThemeProvider>
+
   );
 }
 
