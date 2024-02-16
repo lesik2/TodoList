@@ -7,6 +7,7 @@ import { DrawerNavigation } from '../DrawerNavigation';
 
 
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -14,14 +15,14 @@ const Stack = createNativeStackNavigator();
 export  function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StartScreen">
-        <Stack.Screen name="StartScreen" component={StartScreen} />
-        <Stack.Screen
-          name="DrawerNavigation"
-          component={DrawerNavigation}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+        <Stack.Navigator initialRouteName="StartScreen" screenOptions={{headerShown: false}}>
+          <Stack.Screen name="StartScreen" component={StartScreen} />
+          <Stack.Screen
+            name="DrawerNavigation"
+            component={DrawerNavigation}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
     </NavigationContainer>
   )
 }

@@ -6,12 +6,17 @@ export interface ITheme{
     secondaryTins: string,
     white: string,
     black: string,
+    gray: string;
   }
   fonts: {
     Roboto: string,
     Jost: string,
     Signika: string
   };
-  fontWeight: {};
+  fontWeight: {
+    bold: number;
+    default: number;
+    medium: number;
+  };
   zIndex: {};
 }

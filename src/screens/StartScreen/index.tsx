@@ -1,20 +1,28 @@
-import { Button, View } from "react-native";
+
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {RootStackParamList} from '@customTypes/navigation'
-import { StyledText } from "./styled";
-
+import { ButtonText, StartScreenView, StyleButton, StyledImage, Subtitle, Title } from "./styled";
+import { config } from "./config";
 export interface IStartScreen{
   navigation: NativeStackNavigationProp<RootStackParamList, 'StartScreen'>;
 }
 
 export function StartScreen({navigation}:IStartScreen) {
+
+  const {title, subtitle, button} = config;
+
+  const handlePress = () => {
+    navigation.navigate('DrawerNavigation');
+  }
+
   return (
-    <View>
-      <StyledText>Start screen</StyledText>
-      <Button
-        title="Go to mainPage"
-        onPress={() => navigation.navigate('DrawerNavigation')}
-      />
-    </View>
+    <StartScreenView>
+      <StyledImage  source={require('@assets/images/startScreenImage.png')}/>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+      <StyleButton onPress={handlePress} underlayColor={'#646FD4'}>
+        <ButtonText>{button}</ButtonText>
+      </StyleButton>
+    </StartScreenView>
   )
 }

@@ -8,6 +8,7 @@ export const theme:ITheme = {
     secondaryTins: '#DBDFFD',
     white: '#FFFFFF',
     black: '#000000',
+    gray: '#8D93AB',
   },
   fonts: {
     Roboto: 'Roboto-Regular',
@@ -16,7 +17,9 @@ export const theme:ITheme = {
 
   },
   fontWeight: {
-
+    bold: 900,
+    default: 500,
+    medium: 700,
   },
   zIndex: {
 

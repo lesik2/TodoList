@@ -12,6 +12,7 @@
       "@customTypes/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@screens/*": ["src/screens/*"],
+      "@ui/*": ["src/ui/*"],
     },
   },
   "include": ["src/**/*"]

@@ -11,11 +11,11 @@ const Drawer = createDrawerNavigator();
 
 export function DrawerNavigation() {
   return (
-        <Drawer.Navigator>
+        <Drawer.Navigator >
           <Drawer.Screen name="ImportantTasksScreen" component={ImportantTasksScreen} />
           <Drawer.Screen name="DoneTasksScreen" component={DoneTasksScreen} />
           <Drawer.Screen name="DailyTasksScreen" component={DailyTasksScreen} />
-          <Drawer.Screen name="MainScreen" component={MainScreen} />
+          <Drawer.Screen name="MainScreen" component={MainScreen}/>
         </Drawer.Navigator>
       )
 }
