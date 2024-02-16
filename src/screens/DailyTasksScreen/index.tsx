@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
 
 
-export function MainPage() {
+export function DailyTasksScreen() {
   return (
     <View>
-      <Text>Main Page</Text>
+      <Text>Daily tasks screen</Text>
     </View>
   )
 }

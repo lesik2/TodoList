@@ -2,8 +2,10 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { MainPage } from '@screens/MainPage/index';
-import { StartPage } from '@screens/StartPage/index';
+import { StartScreen } from '@screens/StartScreen/index';
+import { DrawerNavigation } from '../DrawerNavigation';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -12,11 +14,14 @@ const Stack = createNativeStackNavigator();
 export  function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StartPage"  screenOptions={{headerShown: false}}>
-        <Stack.Screen name="StartPage" component={StartPage} />
-        <Stack.Screen name="MainPage" component={MainPage} />
+      <Stack.Navigator initialRouteName="StartScreen">
+        <Stack.Screen name="StartScreen" component={StartScreen} />
+        <Stack.Screen
+          name="DrawerNavigation"
+          component={DrawerNavigation}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
-
     </NavigationContainer>
   )
 }

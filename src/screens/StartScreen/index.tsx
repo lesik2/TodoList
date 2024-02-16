@@ -3,17 +3,17 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {RootStackParamList} from '@customTypes/navigation'
 import { StyledText } from "./styled";
 
-export interface IStartPage{
-  navigation: NativeStackNavigationProp<RootStackParamList, 'StartPage'>;
+export interface IStartScreen{
+  navigation: NativeStackNavigationProp<RootStackParamList, 'StartScreen'>;
 }
 
-export function StartPage({navigation}:IStartPage) {
+export function StartScreen({navigation}:IStartScreen) {
   return (
     <View>
-      <StyledText>I hope it works</StyledText>
+      <StyledText>Start screen</StyledText>
       <Button
         title="Go to mainPage"
-        onPress={() => navigation.navigate('MainPage')}
+        onPress={() => navigation.navigate('DrawerNavigation')}
       />
     </View>
   )
