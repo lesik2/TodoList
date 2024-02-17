@@ -1,12 +1,14 @@
 export interface ITheme{
   colors: {
-    primary: string,
-    secondary: string,
-    secondaryShades: string,
-    secondaryTins: string,
-    white: string,
-    black: string,
+    primary: string;
+    secondary: string;
+    secondaryShades: string;
+    secondaryTins: string;
+    white: string;
+    black: string;
     gray: string;
+    drawerBack: string;
+    iconColor: string;
   }
   fonts: {
     Roboto: string,

@@ -9,6 +9,8 @@ export const theme:ITheme = {
     white: '#FFFFFF',
     black: '#000000',
     gray: '#8D93AB',
+    drawerBack: '#F6F6F6',
+    iconColor: '#888888',
   },
   fonts: {
     Roboto: 'Roboto-Regular',
