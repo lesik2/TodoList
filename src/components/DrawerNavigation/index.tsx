@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator();
 export function DrawerNavigation() {
 
   return (
-        <Drawer.Navigator initialRouteName='MainScreen' screenOptions={{}} drawerContent={(props) => <DrawerMenu {...props} />}>
+        <Drawer.Navigator initialRouteName='MainScreen' screenOptions={{headerShown: false}} drawerContent={(props) => <DrawerMenu {...props} />}>
           <Drawer.Screen name="ImportantTasksScreen" component={ImportantTasksScreen}/>
           <Drawer.Screen name="DoneTasksScreen" component={DoneTasksScreen}/>
           <Drawer.Screen name="DailyTasksScreen" component={DailyTasksScreen}/>

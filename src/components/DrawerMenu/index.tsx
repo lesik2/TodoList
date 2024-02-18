@@ -1,6 +1,6 @@
 
 import { menuData } from "./config";
-import { FlatList } from "react-native";
+import { FlatList, Vibration } from "react-native";
 import { CustomDrawerItem } from "../CustomDrawerItem";
 import { DrawerMenuView,StyledImage } from "./styled";
 import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript/src/types";
@@ -15,6 +15,7 @@ export interface IDrawerMenu{
 export function DrawerMenu ({navigation}:IDrawerMenu) {
 
     const handlePress = () => {
+      Vibration.vibrate(70);
       navigation.closeDrawer();
     } 
 

@@ -21,6 +21,7 @@ export const theme:ITheme = {
   fontWeight: {
     bold: 900,
     default: 500,
+    easy: 600,
     medium: 700,
   },
   zIndex: {

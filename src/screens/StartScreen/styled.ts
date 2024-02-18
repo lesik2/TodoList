@@ -6,7 +6,6 @@ export const StartScreenView = styled.View`
       display: flex;
       flex-direction: column;
       align-items: center;
-
       width: 100%;
       padding: 44px 0px 32px 0px;
       background-color: ${theme.colors.white};

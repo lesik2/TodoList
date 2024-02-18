@@ -18,6 +18,7 @@ export interface ITheme{
   fontWeight: {
     bold: number;
     default: number;
+    easy: number;
     medium: number;
   };
   zIndex: {};

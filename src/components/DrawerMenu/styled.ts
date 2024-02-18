@@ -17,6 +17,6 @@ export const StyledImage = styled(SVGImg)`
     ${({theme})=>css`
         color: ${theme.colors.secondary};
         width: 100%;
-        height: 27px;
+        height: 25px;
     `}
 `
