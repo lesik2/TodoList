@@ -1,5 +1,4 @@
-import { DailyTasks, StyledView, SubTitle, Title } from "./styled";
-
+import {DailyTasks, StyledView, SubTitle, Title} from './styled';
 
 export function CurrentDay() {
   return (
@@ -7,9 +6,7 @@ export function CurrentDay() {
       <Title>
         you have <DailyTasks>5 tasks</DailyTasks> today!
       </Title>
-      <SubTitle>
-        Saturday,september 10,2022
-      </SubTitle>
+      <SubTitle>Saturday,september 10,2022</SubTitle>
     </StyledView>
-  )
+  );
 }

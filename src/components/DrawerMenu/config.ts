@@ -1,30 +1,29 @@
-import { RootStackParamList } from "@customTypes/navigation";
+import {RootStackParamList} from '@customTypes/navigation';
 
-export interface IMenuData{
+export interface IMenuData {
   icon: string;
   name: string;
   screenName: keyof RootStackParamList;
   id: number;
 }
 
-
-export const menuData:IMenuData[] = [
+export const menuData: IMenuData[] = [
   {
-    icon: "calendar",
-    name: "Daily tasks",
-    screenName: "DailyTasksScreen",
-    id: 1
-  },
-  { 
-    icon: "star",
-    name: "Important tasks",
-    screenName: "ImportantTasksScreen",
-    id: 2
+    icon: 'calendar',
+    name: 'Daily tasks',
+    screenName: 'DailyTasksScreen',
+    id: 1,
   },
   {
-    icon: "check",
-    name: "Done tasks",
-    screenName: "DoneTasksScreen",
-    id: 3
-  }
+    icon: 'star',
+    name: 'Important tasks',
+    screenName: 'ImportantTasksScreen',
+    id: 2,
+  },
+  {
+    icon: 'check',
+    name: 'Done tasks',
+    screenName: 'DoneTasksScreen',
+    id: 3,
+  },
 ];

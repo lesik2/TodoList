@@ -1,4 +1,4 @@
-export interface ITheme{
+export interface ITheme {
   colors: {
     primary: string;
     secondary: string;
@@ -9,11 +9,12 @@ export interface ITheme{
     gray: string;
     drawerBack: string;
     iconColor: string;
-  }
+    purple: string;
+  };
   fonts: {
-    Roboto: string,
-    Jost: string,
-    Signika: string
+    Roboto: string;
+    Jost: string;
+    Signika: string;
   };
   fontWeight: {
     bold: number;

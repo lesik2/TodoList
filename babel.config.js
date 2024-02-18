@@ -7,15 +7,16 @@ module.exports = {
         root: ['./src'],
         extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
-          "@components": "./src/components",
-          "@screens": "./src/screens",
-          "@hooks": "./src/hooks",
-          "@types": "./src/types",
-          "@assets": "./src/assets",
-          "@ui": "./src/ui"
-        }
-      }
+          '@components': './src/components',
+          '@screens': './src/screens',
+          '@hooks': './src/hooks',
+          '@types': './src/types',
+          '@assets': './src/assets',
+          '@ui': './src/ui',
+          '@utils': './src/utils',
+        },
+      },
     ],
     'react-native-reanimated/plugin',
-  ]
+  ],
 };

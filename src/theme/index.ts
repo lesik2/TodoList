@@ -1,6 +1,6 @@
 import {ITheme} from '../types/theme';
 
-export const theme:ITheme = {
+export const theme: ITheme = {
   colors: {
     primary: '#242F9B',
     secondary: '#646FD4',
@@ -11,12 +11,12 @@ export const theme:ITheme = {
     gray: '#8D93AB',
     drawerBack: '#F6F6F6',
     iconColor: '#888888',
+    purple: '#D25EB0',
   },
   fonts: {
     Roboto: 'Roboto-Regular',
     Jost: 'Jost-Regular',
-    Signika: 'SignikaNegative-Regular'
-
+    Signika: 'SignikaNegative-Regular',
   },
   fontWeight: {
     bold: 900,
@@ -24,9 +24,5 @@ export const theme:ITheme = {
     easy: 600,
     medium: 700,
   },
-  zIndex: {
-
-  },
-
+  zIndex: {},
 };
-

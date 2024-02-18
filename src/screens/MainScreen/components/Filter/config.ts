@@ -1,5 +1,1 @@
-export const filters = [
-  'Today',
-  'Week',
-  'Month'
-]
+export const filters = ['Today', 'Week', 'Month'];
