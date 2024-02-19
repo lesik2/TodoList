@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-
-
 export const AllNotesView = styled.View`
   ${({theme}) => css`
     flex-direction: column;

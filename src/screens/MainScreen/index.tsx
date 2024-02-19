@@ -14,7 +14,7 @@ export interface IMainScreen {
 export function MainScreen({navigation}: IMainScreen) {
   return (
     <MainView>
-      <BackStyle />
+      <BackStyle type='circle'/>
       <LayoutView>
         <Header />
         <CurrentDay />
