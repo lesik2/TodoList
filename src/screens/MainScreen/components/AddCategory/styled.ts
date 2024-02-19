@@ -1,16 +1,6 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-export const StyledButton = styled.TouchableHighlight`
-  ${({theme}) => css`
-    background-color: ${theme.colors.white};
-    border-width: 2px;
-    border-color: ${theme.colors.purple};
-    border-radius: 16px;
-    padding: 30px;
-    width: 31%;
-  `}
-`;
 export const CenteredView = styled.View`
   flex-direction: row;
   height: 100%;

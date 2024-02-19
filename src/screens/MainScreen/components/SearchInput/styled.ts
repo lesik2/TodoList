@@ -3,7 +3,7 @@ import {css} from 'styled-components';
 
 export const InputView = styled.View`
   ${({theme}) => css`
-    margin-top: 12%;
+    margin-top: 10%;
     flex-direction: row;
     align-items: center;
     gap: 12px;
@@ -12,8 +12,6 @@ export const InputView = styled.View`
     height: 9%;
     width: 92%;
     padding: 12px 15px 12px 15px;
-    elevation: 10;
-    shadow-color: ${theme.colors.black};
   `}
 `;
 export const StyledButton = styled.TouchableOpacity`

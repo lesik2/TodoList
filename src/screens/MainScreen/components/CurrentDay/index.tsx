@@ -1,3 +1,4 @@
+import { getDateInfo } from '@utils/getCurrentDate';
 import {DailyTasks, StyledView, SubTitle, Title} from './styled';
 
 export function CurrentDay() {
@@ -6,7 +7,7 @@ export function CurrentDay() {
       <Title>
         you have <DailyTasks>5 tasks</DailyTasks> today!
       </Title>
-      <SubTitle>Saturday,september 10,2022</SubTitle>
+      <SubTitle>{getDateInfo()}</SubTitle>
     </StyledView>
   );
 }

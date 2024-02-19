@@ -8,25 +8,39 @@ import {generateRandomColor} from '../../../../utils/generateRandomColor';
 
 export function Categories() {
   const [categories, setCategories] = useState(defaultCategories);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalVisible(true);
+  };
+
+
   const addNewCategory = (nameOfCategory: string) => {
     const newCategory: IDefaultCategories = {
-      id: categories[categories.length - 1].id + 1,
+      id: (categories[categories.length - 2].id + 1).toString(),
       name: nameOfCategory,
       iconName: 'user',
       numberOfNotes: 0,
       backgroundColor: generateRandomColor(),
     };
-    setCategories([...categories, newCategory]);
+    setCategories([...categories.slice(0,categories.length-1), newCategory, categories[categories.length-1]]);
   };
+
+
+
   return (
     <Wrapper>
       <FlatList
         numColumns={3}
         data={categories}
-        ListFooterComponent={<AddCategory addNewCategory={addNewCategory} />}
-        renderItem={({item, index}) => <Category key={item.id} {...item} />}
+        renderItem={({item}) => <Category key={item.id} {...item} handleOpenModal={handleOpenModal} />}
         contentContainerStyle={{gap: 16}}
         columnWrapperStyle={{gap: 10}}
+      />
+      <AddCategory
+        addNewCategory={addNewCategory}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
     </Wrapper>
   );

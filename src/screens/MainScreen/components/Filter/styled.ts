@@ -7,7 +7,7 @@ export const Wrapper = styled.View`
     align-items: center;
     justify-content: space-between;
     width: 89%;
-    margin-top: 18%;
+    margin-top: 12%;
   `}
 `;
 
@@ -23,13 +23,11 @@ export const StyledButton = styled.TouchableOpacity<{$selected?: boolean}>`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    elevation: 7;
-    shadow-color: ${theme.colors.primary};
   `}
 `;
-export const StyledText = styled.Text`
-  ${({theme}) => css`
-    color: ${theme.colors.black};
+export const StyledText = styled.Text<{$selected?: boolean}>`
+  ${({theme, $selected}) => css`
+    color: ${$selected ? theme.colors.white : theme.colors.black};
     font-size: 20px;
     font-family: ${theme.fonts.Jost};
     font-weight: ${theme.fontWeight.easy};

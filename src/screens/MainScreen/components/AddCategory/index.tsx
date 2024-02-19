@@ -4,18 +4,19 @@ import {
   DecisionText,
   DecisionWrapper,
   ModalView,
-  StyledButton,
   Title,
   StyledInput,
 } from './styled';
 import {useState} from 'react';
-import SVGImg from '@assets/icons/plus.svg';
+
 
 export interface IAddCategory {
   addNewCategory: (nameOfCategory: string) => void;
+  modalVisible: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
-export function AddCategory({addNewCategory}: IAddCategory) {
-  const [modalVisible, setModalVisible] = useState(false);
+export function AddCategory({addNewCategory,modalVisible, setModalVisible}: IAddCategory) {
+
   const [input, setInput] = useState('');
 
   const handleTextInput = (text: string) => {
@@ -26,9 +27,7 @@ export function AddCategory({addNewCategory}: IAddCategory) {
     setModalVisible(false);
   };
 
-  const handleOpenModal = () => {
-    setModalVisible(true);
-  };
+
   const handleSuccessCloseModal = (nameOfCategory: string) => () => {
     addNewCategory(nameOfCategory);
     handleCloseModal();
@@ -62,9 +61,6 @@ export function AddCategory({addNewCategory}: IAddCategory) {
           </ModalView>
         </CenteredView>
       </Modal>
-      <StyledButton onPress={handleOpenModal} underlayColor={'#f4d7eb'}>
-        <SVGImg />
-      </StyledButton>
     </>
   );
 }

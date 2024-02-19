@@ -3,5 +3,5 @@ import {css} from 'styled-components';
 
 export const Wrapper = styled.View`
   margin-top: 12%;
-  height: 33%;
+  height: 34%;
 `;
