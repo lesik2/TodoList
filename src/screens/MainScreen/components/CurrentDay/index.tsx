@@ -1,4 +1,4 @@
-import { getDateInfo } from '@utils/getCurrentDate';
+import {getDateInfo} from '@utils/getCurrentDate';
 import {DailyTasks, StyledView, SubTitle, Title} from './styled';
 
 export function CurrentDay() {

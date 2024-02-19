@@ -30,6 +30,6 @@ export const StyledText = styled.Text<{$selected?: boolean}>`
     color: ${$selected ? theme.colors.white : theme.colors.black};
     font-size: 20px;
     font-family: ${theme.fonts.Jost};
-    font-weight: ${theme.fontWeight.easy};
+    font-weight: ${theme.fontWeight.medium};
   `}
 `;

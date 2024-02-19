@@ -29,6 +29,10 @@ export function Filter() {
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#242F9B',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
     shadowOpacity: 0.3,
     shadowRadius: 1,
     elevation: 4,

@@ -1,19 +1,11 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-export const CenteredView = styled.View`
-  flex-direction: row;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-`;
 export const ModalView = styled.View`
   ${({theme}) => css`
     background-color: ${theme.colors.white};
     border-radius: 20px;
     padding: 20px;
-    shadow-color: ${theme.colors.black};
-    elevation: 15;
     flex-direction: column;
     align-items: start;
     justify-content: start;

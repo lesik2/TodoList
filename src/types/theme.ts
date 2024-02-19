@@ -10,6 +10,7 @@ export interface ITheme {
     drawerBack: string;
     iconColor: string;
     purple: string;
+    border: string;
   };
   fonts: {
     Roboto: string;
