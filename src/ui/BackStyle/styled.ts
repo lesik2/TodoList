@@ -16,7 +16,7 @@ export const WrapperCircles = styled.View`
 `;
 export const SmallCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
   ${({$isCircle}) => css`
-    width: 90%;
+    width: 85%;
     height: 40%;
     border-radius: 200px;
     position: absolute;
