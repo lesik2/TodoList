@@ -1,9 +1,16 @@
-import {Text, View} from 'react-native';
+import {LayoutView, MainView} from './styled';
+import { BackStyle } from '@ui/BackStyle';
+import { Header } from '@components/Header';
 
 export function ImportantTasksScreen() {
   return (
-    <View>
-      <Text>Important tasks screen</Text>
-    </View>
+    <MainView>
+    <BackStyle type='apple'/>
+    <LayoutView>
+      <Header 
+        title='Important tasks'
+      />
+    </LayoutView>
+  </MainView>
   );
 }

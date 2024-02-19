@@ -3,7 +3,7 @@ import {css} from 'styled-components';
 
 export const InputView = styled.View`
   ${({theme}) => css`
-    margin-top: 10%;
+    margin-top: 12%;
     flex-direction: row;
     align-items: center;
     gap: 12px;

@@ -28,9 +28,9 @@ export function SearchInput() {
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.7,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.8,
     shadowRadius: 3,
-    elevation: 7,
+    elevation: 8,
   },
 });

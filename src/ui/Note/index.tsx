@@ -70,7 +70,7 @@ export function Note({
             </TimeWrapper>
             <MainWrapper>
               <CheckBox onPress={handleCheck} activeOpacity={1}>
-                {checked && <Icon name="check" size={28} color="#8785F6" />}
+                {checked && <Icon name="check" size={27} color="#8785F6" />}
               </CheckBox>
               <InfoWrapper>
                 <Title>{title}</Title>
@@ -89,7 +89,7 @@ export function Note({
           {subTasks.map(task => (
             <SubTaskInfoWrapper>
               <CheckBox onPress={handleCheck} activeOpacity={1} $subTask={true}>
-                {checked && <Icon name="check" size={25} color="#8785F6" />}
+                {checked && <Icon name="check" size={23} color="#8785F6" />}
               </CheckBox>
               <Title $subTask={true}>{task}</Title>
             </SubTaskInfoWrapper>

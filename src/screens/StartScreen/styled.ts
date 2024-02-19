@@ -31,7 +31,7 @@ export const StyleButton = styled.TouchableHighlight`
     justify-content: center;
     flex-direction: row;
     width: 80%;
-    padding: 11px 0px 11px 0px;
+    padding: 13px 0px 13px 0px;
     margin-top: 32px;
     background-color: ${theme.colors.secondaryShades};
     border-radius: 15px;
@@ -41,9 +41,8 @@ export const ButtonText = styled.Text`
   ${({theme}) => css`
     text-align: center;
     color: ${theme.colors.white};
-
     font-weight: ${theme.fontWeight.medium};
-    font-size: 16px;
+    font-size: 18px;
   `}
 `;
 export const Subtitle = styled.Text`

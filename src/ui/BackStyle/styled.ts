@@ -16,8 +16,8 @@ export const WrapperCircles = styled.View`
 `;
 export const SmallCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
   ${({$isCircle}) => css`
-    width: 85%;
-    height: 45%;
+    width: 90%;
+    height: 40%;
     border-radius: 200px;
     position: absolute;
     left: -23%;
@@ -33,10 +33,10 @@ export const LargeCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
     top: ${$isCircle?'-5%':'-10%'};
     border-radius: 200px;
     width: 97%;
-    height: ${$isCircle?'47%':'90%'};
+    height: ${$isCircle?'47%':'85%'};
     z-index: ${$isCircle?1:3};
     opacity: ${$isCircle?1:0.6};
-    border-top-left-radius: ${$isCircle ? '200px' : '250px'};
+    border-top-left-radius: ${$isCircle ? '200px' : '400px'};
     border-bottom-left-radius: ${$isCircle ? '200px' : '500px'};
   `}
 `;

@@ -7,7 +7,7 @@ export const Wrapper = styled.View`
     align-items: center;
     justify-content: space-between;
     width: 89%;
-    margin-top: 12%;
+    margin-top: 15%;
   `}
 `;
 
@@ -30,6 +30,6 @@ export const StyledText = styled.Text<{$selected?: boolean}>`
     color: ${$selected ? theme.colors.white : theme.colors.black};
     font-size: 20px;
     font-family: ${theme.fonts.Jost};
-    font-weight: ${theme.fontWeight.medium};
+    font-weight: ${theme.fontWeight.easy};
   `}
 `;

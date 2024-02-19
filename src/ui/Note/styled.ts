@@ -7,6 +7,7 @@ export const AllNotesView = styled.View`
     align-items: flex-start;
     background-color: ${theme.colors.white};
     border-radius: 20px;
+    z-index: 5;
   `}
 `;
 
@@ -77,8 +78,8 @@ export const CheckBox = styled.TouchableOpacity<{$subTask?: boolean}>`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-width: ${$subTask ? '35px' : '40px'};
-    min-height: ${$subTask ? '35px' : '40px'};
+    min-width: ${$subTask ? '33px' : '38px'};
+    min-height: ${$subTask ? '33px' : '38px'};
     border-radius: 20px;
     border-width: 2px;
     border-color: ${theme.colors.border};
@@ -96,11 +97,11 @@ export const SubTaskWrapper = styled.View`
   flex-direction: column;
   justify-content: center;
   gap: 16px;
-  align-items: center;
+  align-items: flex-start;
 `;
 export const SubTaskInfoWrapper = styled.View`
   flex-direction: row;
   gap: 5px;
   align-items: center;
-  margin-left: 20%;
+  margin-left: 28%;
 `;
