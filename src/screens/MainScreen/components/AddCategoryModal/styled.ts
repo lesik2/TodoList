@@ -1,20 +1,16 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-export const ModalView = styled.View`
-  ${({theme}) => css`
-    background-color: ${theme.colors.white};
-    border-radius: 20px;
-    padding: 20px;
+
+export const ContentView = styled.View`
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 40px;
-    width: 80%;
-    min-height: 33%;
-    position: relative;
-  `}
+    width: 100%;
+    height: 100%;
 `;
+
 export const StyledInput = styled.TextInput`
   ${({theme}) => css`
     color: ${theme.colors.black};
@@ -40,20 +36,4 @@ export const Title = styled.Text`
   `}
 `;
 
-export const DecisionWrapper = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  gap: 24px;
-  right: 16px;
-  bottom: 16px;
-`;
-export const DecisionText = styled.Text`
-  ${({theme}) => css`
-    font-size: 18px;
-    color: ${theme.colors.primary};
-    font-family: ${theme.fonts.Roboto};
-    font-weight: ${theme.fontWeight.default};
-  `}
-`;
+

@@ -1,10 +1,8 @@
-import {StyleSheet, TouchableOpacity} from 'react-native';
+
 import {
-  DecisionText,
-  DecisionWrapper,
-  ModalView,
   Title,
   StyledInput,
+  ContentView,
 } from './styled';
 import {useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
@@ -29,42 +27,30 @@ export function AddCategory({
     setModalVisible(false);
   };
 
-  const handleSuccessCloseModal = (nameOfCategory: string) => () => {
-    addNewCategory(nameOfCategory);
+  const handleSuccessCloseModal = () => {
+    addNewCategory(input);
     handleCloseModal();
     setInput('');
   };
 
   return (
-    <CustomModal modalVisible={modalVisible} onRequestClose={handleCloseModal}>
-      <ModalView style={styles.boxShadow}>
+    <CustomModal
+      modalVisible={modalVisible}
+      onRequestClose={handleCloseModal}
+      leftButtonText='Cancel'
+      rightButtonText='Ok'
+      leftOnHandleClick={handleCloseModal}
+      rightOnHandleClick={handleSuccessCloseModal}
+    >
+      <ContentView>
         <Title>Add new category</Title>
         <StyledInput
           placeholder="New category"
           value={input}
           onChangeText={handleTextInput}
         />
-        <DecisionWrapper>
-          <TouchableOpacity onPress={handleCloseModal}>
-            <DecisionText>Cancel</DecisionText>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleSuccessCloseModal(input)}>
-            <DecisionText>Ok</DecisionText>
-          </TouchableOpacity>
-        </DecisionWrapper>
-      </ModalView>
+      </ContentView>
     </CustomModal>
   );
 }
-const styles = StyleSheet.create({
-  boxShadow: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-});
+
