@@ -11,13 +11,22 @@ export const ContentView = styled.View`
     height: 100%;
 `;
 
-export const WrapperInput = styled.View`
-  width: 90%;
-  height: 7%;
-
-  border-radius: 20px;
-`
-
+export const StyledInput = styled.TextInput`
+  ${({theme}) => css`
+    color: ${theme.colors.black};
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 21px;
+    border-bottom-width: 2px;
+    border-bottom-color: ${({theme}) => theme.colors.black};
+    font-family: ${theme.fonts.Jost};
+    font-weight: ${theme.fontWeight.default};
+    &::placeholder {
+      color: ${theme.colors.iconColor};
+    }
+  `}
+`;
 export const Title = styled.Text`
   ${({theme}) => css`
     font-size: 25px;

@@ -1,12 +1,13 @@
 
 import {
   Title,
-  StyledInput,
   ContentView,
+  WrapperInput,
 } from './styled';
 import {useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
-
+import { StyleSheet, View } from 'react-native';
+import { CustomInput } from '@ui/CustomInput/styled';
 export interface IAddCategory {
   addNewCategory: (nameOfCategory: string) => void;
   modalVisible: boolean;
@@ -44,7 +45,8 @@ export function AddCategory({
     >
       <ContentView>
         <Title>Add new category</Title>
-        <StyledInput
+        <CustomInput
+         style={styles.boxShadow}
           placeholder="New category"
           value={input}
           onChangeText={handleTextInput}
@@ -54,3 +56,12 @@ export function AddCategory({
   );
 }
 
+const styles = StyleSheet.create({
+  boxShadow: {
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 6,
+  },
+});

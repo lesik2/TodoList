@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
+import SVGImg from '@assets/icons/plus.svg';
 
 export const CategoryView = styled.View`
   ${({theme}) => css`
@@ -53,3 +54,10 @@ export const AddButton = styled.TouchableHighlight`
     width: 31%;
   `}
 `;
+export const StyledIcon = styled(SVGImg)`
+  ${({theme}) => css`
+    width: 36px;
+    height: 36px;
+    color: ${theme.colors.purple};
+  `}
+`

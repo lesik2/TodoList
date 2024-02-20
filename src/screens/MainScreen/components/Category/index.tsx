@@ -6,9 +6,10 @@ import {
   ContentWrapper,
   CategoryView,
   AddButton,
+  StyledIcon,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SVGImg from '@assets/icons/plus.svg';
+
 export interface ICategory {
   iconName: string;
   name?: string;
@@ -41,7 +42,7 @@ export function Category({
         </CategoryView>
       ) : (
         <AddButton onPress={handleOpenModal} underlayColor={'#f4d7eb'}>
-          <SVGImg />
+          <StyledIcon />
         </AddButton>
       )}
     </>
