@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components/native';
 import SVGImg from '@assets/icons/plus.svg';
 
-export const StyledButton = styled.TouchableOpacity`
-  ${({theme})=>css`
+export const StyledButton = styled.TouchableOpacity<{$isBig?: boolean}>`
+  ${({theme, $isBig})=>css`
     background-color: ${theme.colors.secondary};
-    width: 60px;
-    height: 60px;
+    width: ${$isBig?'60px': '40px'};
+    height: ${$isBig?'60px': '40px'};
     align-items: center;
     justify-content: center;
     border-radius: 30px;
@@ -13,10 +13,10 @@ export const StyledButton = styled.TouchableOpacity`
   `}
 
 `
-export const StyledIcon = styled(SVGImg)`
-  ${({theme}) => css`
-    width: 25px;
-    height: 25px;
+export const StyledIcon = styled(SVGImg)<{$isBig?: boolean}>`
+  ${({theme, $isBig}) => css`
+    width: ${$isBig?'25px': '20px'};
+    height: ${$isBig?'25px': '20px'};
     color: ${theme.colors.white};
   `}
 `
