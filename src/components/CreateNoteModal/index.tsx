@@ -41,6 +41,17 @@ export function CreateNoteModal({visible, setVisible}:ICreateNoteModal){
 
   const handleRightPressModal = () =>{
     if(currentModal === AMOUNT_OF_MODALS-1){
+
+
+
+      
+      setTitle('');
+      setText('');
+      setSubtasks([]);
+      setImportance(false);
+      setStartTime(new Date());
+      setEndTime(new Date());
+      setDate(new Date());
       handleCloseModal();
       setCurrentModal(0);
     }else{

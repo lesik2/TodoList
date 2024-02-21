@@ -12,10 +12,9 @@ export interface INote{
   title: string;
   text: string;
   subNotes: ISubNote[];
-  startTime: string;
-  endTime: string;
-  startDate: string;
-  endDate: string;
+  startTime: Date;
+  endTime: Date;
+  date: Date;
   checked: boolean;
   category: string;
   importance: boolean;

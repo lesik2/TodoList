@@ -57,7 +57,7 @@ export const ChooseDateWrapper = styled.View`
 export const DateTitle = styled.Text`
   ${({theme}) => css`
     font-size: 18px;
-    color: ${theme.colors.iconColor};
+    color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.default};
   `}
