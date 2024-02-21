@@ -6,35 +6,26 @@ import { ChooseCategory } from "@ui/ChooseCategory";
 
 
 export interface IBasicInfoNote{
-  visible: boolean;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  text: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function BasicInfoNote({visible, setVisible}:IBasicInfoNote) {
+export function BasicInfoNote({title, text, setText, setTitle}:IBasicInfoNote) {
 
-  const [title, setTitle] = useState('');
-  const [textArea, setTextArea]= useState('')
+
 
   const handleInputTitle = (text: string) =>{
     setTitle(text);
   } 
 
   const handleInputTextArea = (text: string) =>{
-    setTextArea(text);
+    setText(text);
   } 
-  const handleCloseModal = () => {
-    setVisible(false);
-  }
+ 
 
   return (
-    <CustomModal
-      modalVisible={visible}
-      onRequestClose={handleCloseModal}
-      leftButtonText='Cancel'
-      rightButtonText='Next'
-      leftOnHandleClick={handleCloseModal}
-      rightOnHandleClick={()=>console.log('hi')}
-    >
       <ContentView>
         <Title>Create new note</Title>
         <InputsWrapper>
@@ -49,14 +40,13 @@ export function BasicInfoNote({visible, setVisible}:IBasicInfoNote) {
             placeholder="Text"
             multiline
             numberOfLines={2}
-            value={textArea}
+            value={text}
             onChangeText={handleInputTextArea}
           />
           <ChooseCategory />
         </InputsWrapper>
 
       </ContentView>
-    </CustomModal>
   )
 }
 

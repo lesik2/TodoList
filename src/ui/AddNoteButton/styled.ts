@@ -3,13 +3,13 @@ import SVGImg from '@assets/icons/plus.svg';
 
 export const StyledButton = styled.TouchableOpacity<{$isBig?: boolean}>`
   ${({theme, $isBig})=>css`
-    background-color: ${theme.colors.secondary};
+    background-color: ${$isBig?theme.colors.secondary: theme.colors.secondaryShades};
     width: ${$isBig?'60px': '40px'};
     height: ${$isBig?'60px': '40px'};
     align-items: center;
     justify-content: center;
+    align-self: center;
     border-radius: 30px;
-    margin-top: 50%;
   `}
 
 `

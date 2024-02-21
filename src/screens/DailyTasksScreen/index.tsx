@@ -5,7 +5,8 @@ import { BackStyle } from '@ui/BackStyle';
 import { Header } from '@components/Header';
 import { AddNoteButton } from '@ui/AddNoteButton';
 import { useState } from 'react';
-import { BasicInfoNote } from '@components/CreateNoteModal/components/BasicInfoNote';
+import { CreateNoteModal } from '@components/CreateNoteModal';
+
 
 
 
@@ -25,7 +26,7 @@ export function DailyTasksScreen() {
           title='Today’s task'
         />
         <AddNoteButton  handlePress={handleOpenModal}/>
-        <BasicInfoNote visible={visible} setVisible={setVisible}/>
+        <CreateNoteModal visible={visible} setVisible={setVisible}/>
       </LayoutView>
     </MainView>
 

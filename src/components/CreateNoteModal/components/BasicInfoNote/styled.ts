@@ -37,7 +37,7 @@ export const InputText = styled(CustomInput)`
 
 export const Title = styled.Text`
   ${({theme}) => css`
-    font-size: 25px;
+    font-size: 22px;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.default};

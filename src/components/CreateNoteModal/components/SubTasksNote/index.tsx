@@ -1,62 +1,63 @@
-import { CustomModal } from "@ui/CustomModal";
-import { ContentView, InputText, InputTitle, InputsWrapper, Title } from "./styled";
-import { StyleSheet } from "react-native";
-import { useState } from "react";
-import { ChooseCategory } from "@ui/ChooseCategory";
+import { ContentView,InfoWrapper, SubTasksWrapper, SubTitle, Title } from "./styled";
+import { ScrollView, StyleSheet } from "react-native";
+
+import { ISubNote } from "@customTypes/note";
+import { AddNoteButton } from "@ui/AddNoteButton";
+import { SubTask } from "@ui/SubTask";
 
 
 export interface ISubTasksNote{
-  visible: boolean;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  text: string;
+  setSubtasks: React.Dispatch<React.SetStateAction<ISubNote[]>>;
+  subtasks: ISubNote[];
+  
 }
 
-export function SubTasksNote({visible, setVisible}:ISubTasksNote) {
+export function SubTasksNote({title, text, setSubtasks,subtasks }:ISubTasksNote) {
 
-  const [title, setTitle] = useState('');
-  const [textArea, setTextArea]= useState('')
 
-  const handleInputTitle = (text: string) =>{
-    setTitle(text);
-  } 
-
-  const handleInputTextArea = (text: string) =>{
-    setTextArea(text);
-  } 
-  const handleCloseModal = () => {
-    setVisible(false);
+  const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
+    setSubtasks(subtasks.map((subtask)=>{
+      if(subtask.id === updatedSubtask.id){
+        return updatedSubtask;
+      }
+      return subtask;
+    }))
   }
 
+  const handleAddSubtask = () => {
+    const newSubTask:ISubNote = {
+      id: subtasks.length === 0?1: subtasks[subtasks.length-1].id+1,
+      checked: false,
+      text: ''
+    }
+    setSubtasks([...subtasks, newSubTask])
+  }
+  
   return (
-    <CustomModal
-      modalVisible={visible}
-      onRequestClose={handleCloseModal}
-      leftButtonText='Cancel'
-      rightButtonText='Next'
-      leftOnHandleClick={handleCloseModal}
-      rightOnHandleClick={()=>console.log('hi')}
-    >
       <ContentView>
-        <Title>Create new note</Title>
-        <InputsWrapper>
-          <InputTitle
-            style={styles.boxShadow}
-            placeholder="Title"
-            value={title}
-            onChangeText={handleInputTitle}
-          />
-          <InputText
-            style={styles.boxShadow}
-            placeholder="Text"
-            multiline
-            numberOfLines={2}
-            value={textArea}
-            onChangeText={handleInputTextArea}
-          />
-          <ChooseCategory />
-        </InputsWrapper>
-
+        <InfoWrapper>
+          <Title>{title}</Title>
+          <SubTitle>{text}</SubTitle>
+        </InfoWrapper>
+        <SubTasksWrapper>
+          <ScrollView contentContainerStyle={styles.scrollStyle}>
+            {subtasks.length>0 && subtasks.map((subtask)=>(
+              <SubTask
+                mode="edit"
+                id={subtask.id} 
+                key={subtask.id} 
+                name={subtask.text}
+                checked={subtask.checked}
+                handleUpdate={handleChangeSubtasks}
+              />
+            ))}
+          </ScrollView>
+         
+        </SubTasksWrapper>
+        <AddNoteButton handlePress={handleAddSubtask} size="small"/>
       </ContentView>
-    </CustomModal>
   )
 }
 
@@ -69,4 +70,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 6,
   },
+  scrollStyle:{
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  }
 });

@@ -7,38 +7,40 @@ export const ContentView = styled.View`
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    gap: 30px;
+    gap: 16px;
     width: 100%;
     height: 100%;
     margin-bottom: 20%;
 `;
 
-export const InputsWrapper = styled.View`
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap:20px;
-    width: 100%;
+
+export const InfoWrapper = styled.View`
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 80%;
+
 `
-export const InputTitle = styled(CustomInput)`
-  ${({theme}) => css`
-
-  `}
-`;
-
-export const InputText = styled(CustomInput)`
-  ${({theme}) => css`
-      height: 80px;
-      color: ${theme.colors.iconColor};
-      font-size: 16px;
-  `}
+export const SubTasksWrapper = styled.View`
+  margin-left: 5%;
+  max-height: 105px;
+  width: 85%;
 
 `
 
 export const Title = styled.Text`
   ${({theme}) => css`
-    font-size: 25px;
-    color: ${theme.colors.primary};
+    font-size: 20px;
+    color: ${theme.colors.black};
+    font-family: ${theme.fonts.Signika};
+    font-weight: ${theme.fontWeight.default};
+  `}
+`;
+
+export const SubTitle = styled.Text`
+  ${({theme}) => css`
+    font-size: 15px;
+    color: ${theme.colors.iconColor};
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.default};
   `}

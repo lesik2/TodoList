@@ -1,12 +1,14 @@
 
-export type IStatus = 'completed'|'in-progress';
+
 
 export interface ISubNote{
+  id:number;
   text: string;
-  status: IStatus;
+  checked: boolean;
 }
 
 export interface INote{
+  id: number;
   title: string;
   text: string;
   subNotes: ISubNote[];
@@ -14,7 +16,7 @@ export interface INote{
   endTime: string;
   startDate: string;
   endDate: string;
-  status: IStatus;
+  checked: boolean;
   category: string;
   importance: boolean;
 }
