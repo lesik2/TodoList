@@ -24,7 +24,6 @@ export const ChooseTime = styled.View`
     height: 45px;
     background-color: ${theme.colors.white};
     border-radius: 15px;
-    align-items: center;
     justify-content: center;
     gap: 16px;
   `}

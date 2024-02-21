@@ -1,13 +1,12 @@
 
-import {
-  ContentView,
-} from './styled';
+
 import {useState} from 'react';
 import { ISubNote } from '@customTypes/note';
 import { BasicInfoNote } from './components/BasicInfoNote';
 import { SubTasksNote } from './components/SubTasksNote';
 import { CustomModal } from '@ui/CustomModal';
 import { TimeNote } from './components/TimeNote';
+import { DateNote } from './components/DateNote';
 
 
 
@@ -26,6 +25,7 @@ export function CreateNoteModal({visible, setVisible}:ICreateNoteModal){
   const [currentModal, setCurrentModal] = useState(0);
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
   const leftButtonText = currentModal === 0?'Cancel':'Back';
   const rightButtonText = currentModal === AMOUNT_OF_MODALS-1?'Ok':'Next';
@@ -67,6 +67,13 @@ export function CreateNoteModal({visible, setVisible}:ICreateNoteModal){
       setSubtasks={setSubtasks}
       subtasks={subtasks}
     />,
+    <DateNote 
+      title={title}
+      text={text}
+      date={date}
+      setDate={setDate}
+
+    />,
     <TimeNote 
       startTime={startTime}
       setStartTime={setStartTime}
@@ -92,4 +99,5 @@ export function CreateNoteModal({visible, setVisible}:ICreateNoteModal){
   </CustomModal>
   );
 }
+
 

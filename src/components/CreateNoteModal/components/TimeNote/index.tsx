@@ -34,10 +34,6 @@ export function TimeNote(
   const iconName = importance?'star':'star-o';
   const iconColor = importance?'#FFD952':'#CCCCCC';
 
-  
-
-
-
   return (
       <ContentView>
         <InfoWrapper>
@@ -49,20 +45,18 @@ export function TimeNote(
             title="from"
             time={startTime}
             setTime={setStartTime}
-          
+
           />
           <TimePicker 
             title="till"
             time={endTime}
             setTime={setEndTime}
           />
-          
         </TimeWrapper>
         <StyledButton onPress={handleCheckedPress}>
           <Icon name={iconName} size={45} color={iconColor}/>
         </StyledButton>
 
-       
       </ContentView>
   )
 }
