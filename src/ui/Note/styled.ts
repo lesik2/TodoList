@@ -99,9 +99,3 @@ export const SubTaskWrapper = styled.View`
   gap: 16px;
   align-items: flex-start;
 `;
-export const SubTaskInfoWrapper = styled.View`
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
-  margin-left: 28%;
-`;
