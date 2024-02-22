@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-
 export const CustomInput = styled.TextInput`
   ${({theme}) => css`
     color: ${theme.colors.black};

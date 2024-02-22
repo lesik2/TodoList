@@ -8,6 +8,7 @@ export const AllNotesView = styled.View`
     background-color: ${theme.colors.white};
     border-radius: 20px;
     z-index: 5;
+ 
   `}
 `;
 
@@ -16,9 +17,10 @@ export const NoteView = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
-    width: 100%;
+    padding: 15px;
     position: relative;
+    min-height: 90px;
+    width: 100%;
   `}
 `;
 
@@ -27,7 +29,7 @@ export const TimeWrapper = styled.View`
   align-items: flex-start;
   gap: 3px;
   justify-content: center;
-  width: 20%;
+
 `;
 
 export const TimeText = styled.Text`
@@ -42,24 +44,25 @@ export const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  max-width: 90%;
+
 `;
 export const MainWrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 5px;
-  max-width: 75%;
+
 `;
 export const InfoWrapper = styled.View`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  max-width: 180px;
 `;
 export const Title = styled.Text<{$subTask?: boolean}>`
   ${({theme, $subTask}) => css`
     color: ${theme.colors.black};
-    font-size: ${$subTask ? '16px' : '18px'};
+    font-size: ${$subTask ? '14px' : '16px'};
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.easy};
   `}
@@ -67,7 +70,7 @@ export const Title = styled.Text<{$subTask?: boolean}>`
 export const SubTitle = styled.Text`
   ${({theme}) => css`
     color: ${theme.colors.iconColor};
-    font-size: 14px;
+    font-size: 12px;
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.default};
   `}
@@ -78,8 +81,8 @@ export const CheckBox = styled.TouchableOpacity<{$subTask?: boolean}>`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-width: ${$subTask ? '33px' : '38px'};
-    min-height: ${$subTask ? '33px' : '38px'};
+    min-width: ${$subTask ? '30px' : '35px'};
+    min-height: ${$subTask ? '30px' : '35px'};
     border-radius: 20px;
     border-width: 2px;
     border-color: ${theme.colors.border};
@@ -87,20 +90,17 @@ export const CheckBox = styled.TouchableOpacity<{$subTask?: boolean}>`
   `}
 `;
 export const OptionButton = styled.TouchableOpacity`
-  width: 20px;
-  height: 40px;
+  width: 15px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  
 `;
 export const SubTaskWrapper = styled.View`
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
+  margin-left: 23%;
+  padding-bottom: 10px;
   align-items: flex-start;
-`;
-export const SubTaskInfoWrapper = styled.View`
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
 `;

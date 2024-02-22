@@ -10,7 +10,6 @@ import {
   MainWrapper,
   NoteView,
   OptionButton,
-  SubTaskInfoWrapper,
   SubTaskWrapper,
   SubTitle,
   TimeText,
@@ -21,31 +20,26 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useState} from 'react';
 import {Menu} from './components/Menu';
-import {Pressable} from 'react-native';
-
-export interface INote {
-  startTime: string;
-  endTime: string;
-  title: string;
-  text: string;
-  status: 'completed' | 'in-progress';
-  subTasks?: string[];
-}
+import {Pressable, StyleSheet} from 'react-native';
+import {INote, ISubNote} from '@customTypes/note';
+import {getTime} from '@utils/getTime';
+import { SubTask } from '../SubTask';
 
 export function Note({
   startTime,
   endTime,
   title,
   text,
-  status,
-  subTasks = [],
+  checked,
+  subNotes,
 }: INote) {
-  const [checked, setChecked] = useState(false);
+  const [checkedValue, setCheckedValue] = useState(false);
   const [visible, setVisible] = useState(false);
   const [showSubTasks, setShowSubTasks] = useState(false);
+  const [subtasks, setSubtasks] = useState<ISubNote[]>(subNotes);
 
   const handleCheck = () => {
-    setChecked(!checked);
+    setCheckedValue(!checkedValue);
   };
 
   const handleOpenMenu = () => {
@@ -59,18 +53,32 @@ export function Note({
     setShowSubTasks(!showSubTasks);
   };
 
+
+  const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
+    setSubtasks(
+      subtasks.map(subtask => {
+        if (subtask.id === updatedSubtask.id) {
+          return updatedSubtask;
+        }
+        return subtask;
+      }),
+    );
+  };
+
   return (
-    <AllNotesView>
+    <AllNotesView style={styles.boxShadow}>
       <Pressable onPress={handlePressShowSubTasks}>
         <NoteView>
           <Wrapper>
             <TimeWrapper>
-              <TimeText>{startTime}</TimeText>
-              <TimeText>{endTime}</TimeText>
+              <TimeText>{getTime(new Date(startTime))}</TimeText>
+              <TimeText>{getTime(new Date(endTime))}</TimeText>
             </TimeWrapper>
             <MainWrapper>
               <CheckBox onPress={handleCheck} activeOpacity={1}>
-                {checked && <Icon name="check" size={27} color="#8785F6" />}
+                {checkedValue && (
+                  <Icon name="check" size={27} color="#8785F6" />
+                )}
               </CheckBox>
               <InfoWrapper>
                 <Title>{title}</Title>
@@ -79,23 +87,34 @@ export function Note({
             </MainWrapper>
           </Wrapper>
           <OptionButton onPress={handleOpenMenu}>
-            <Icon name="ellipsis-v" size={28} color="#CCCCCC" />
+            <Icon name="ellipsis-v" size={26} color="#CCCCCC" />
           </OptionButton>
           <Menu visible={visible} handleCloseMenu={handleCloseMenu} />
         </NoteView>
       </Pressable>
-      {showSubTasks && subTasks.length > 0 && (
+      {showSubTasks && subNotes.length > 0 && (
         <SubTaskWrapper>
-          {subTasks.map(task => (
-            <SubTaskInfoWrapper>
-              <CheckBox onPress={handleCheck} activeOpacity={1} $subTask={true}>
-                {checked && <Icon name="check" size={23} color="#8785F6" />}
-              </CheckBox>
-              <Title $subTask={true}>{task}</Title>
-            </SubTaskInfoWrapper>
+          {subtasks.map(subtask => (
+            <SubTask 
+              name={subtask.text}
+              id={subtask.id}
+              key={subtask.id}
+              checked={subtask.checked}
+              handleUpdate={handleChangeSubtasks}
+            />
           ))}
         </SubTaskWrapper>
       )}
     </AllNotesView>
   );
 }
+const styles = StyleSheet.create({
+  boxShadow: {
+    shadowColor: '#646FD4',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+
+});

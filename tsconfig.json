@@ -12,7 +12,9 @@
       "@customTypes/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@screens/*": ["src/screens/*"],
-      "@ui/*": ["src/ui/*"]
+      "@ui/*": ["src/ui/*"],
+      "@api/*": ["src/api/*"],
+      "@context/*": ["src/context/*"]
     }
   },
   "include": ["src/**/*"]

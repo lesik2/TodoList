@@ -1,16 +1,15 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-
 export const ContentView = styled.View`
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 20%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20%;
 `;
 export const Title = styled.Text`
   ${({theme}) => css`
@@ -34,14 +33,13 @@ export const InfoWrapper = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   max-width: 80%;
-
-`
+`;
 
 export const DateWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 10px;
-`
+`;
 
 export const ChooseDateWrapper = styled.View`
   ${({theme}) => css`
@@ -53,7 +51,7 @@ export const ChooseDateWrapper = styled.View`
     border-radius: 15px;
     justify-content: center;
   `}
-`
+`;
 export const DateTitle = styled.Text`
   ${({theme}) => css`
     font-size: 18px;
@@ -61,4 +59,4 @@ export const DateTitle = styled.Text`
     font-family: ${theme.fonts.Signika};
     font-weight: ${theme.fontWeight.default};
   `}
-`
+`;

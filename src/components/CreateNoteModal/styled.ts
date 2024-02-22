@@ -1,14 +1,13 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-
 export const ContentView = styled.View`
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 40px;
-    width: 100%;
-    height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledInput = styled.TextInput`
@@ -35,5 +34,3 @@ export const Title = styled.Text`
     font-weight: ${theme.fontWeight.default};
   `}
 `;
-
-

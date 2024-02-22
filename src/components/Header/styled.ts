@@ -22,10 +22,10 @@ export const Title = styled.Text`
   `}
 `;
 export const StyledButton = styled.TouchableOpacity`
-    position: absolute;
-    left: 10px;
-    bottom: 15px;
-`
+  position: absolute;
+  left: 10px;
+  bottom: 15px;
+`;
 export const StyledImage = styled(SVGImg)`
   ${({theme}) => css`
     color: ${theme.colors.white};

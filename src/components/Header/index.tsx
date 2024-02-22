@@ -3,12 +3,11 @@ import {HeaderView, StyledImage, Title, StyledButton} from './styled';
 import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
 import {Vibration} from 'react-native';
 
-
-export interface IHeader{
+export interface IHeader {
   title: string;
 }
 
-export function Header({title}:IHeader) {
+export function Header({title}: IHeader) {
   const navigation = useNavigation<DrawerNavigationHelpers>();
 
   const handlePress = () => {
@@ -18,7 +17,7 @@ export function Header({title}:IHeader) {
 
   return (
     <HeaderView>
-      <StyledButton onPress={handlePress} >
+      <StyledButton onPress={handlePress}>
         <StyledImage />
       </StyledButton>
       <Title>{title}</Title>

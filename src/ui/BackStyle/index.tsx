@@ -1,10 +1,10 @@
 import {LargeCircle, SmallCircle, WrapperCircles, WrapperView} from './styled';
 
-export interface IBackStyle{
-  type: 'circle'|'apple'
+export interface IBackStyle {
+  type: 'circle' | 'apple';
 }
 
-export function BackStyle({type}:IBackStyle) {
+export function BackStyle({type}: IBackStyle) {
   return (
     <WrapperView>
       <WrapperCircles>

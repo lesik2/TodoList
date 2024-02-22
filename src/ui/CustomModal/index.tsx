@@ -6,10 +6,10 @@ export interface ICustomModal {
   onRequestClose: () => void;
   children: React.ReactNode;
   animationType?: 'slide' | 'fade' | 'none';
-  leftButtonText: string
+  leftButtonText: string;
   rightButtonText: string;
-  leftOnHandleClick: ()=>void;
-  rightOnHandleClick: ()=>void;
+  leftOnHandleClick: () => void;
+  rightOnHandleClick: () => void;
 }
 export function CustomModal({
   modalVisible,
@@ -19,7 +19,7 @@ export function CustomModal({
   leftButtonText,
   rightButtonText,
   leftOnHandleClick,
-  rightOnHandleClick
+  rightOnHandleClick,
 }: ICustomModal) {
   return (
     <Modal
@@ -29,17 +29,17 @@ export function CustomModal({
       visible={modalVisible}
       onRequestClose={onRequestClose}>
       <CenteredView>
-      <ModalView style={styles.boxShadow}>
-        {children}
-        <DecisionWrapper>
-          <TouchableOpacity onPress={leftOnHandleClick}>
-            <DecisionText>{leftButtonText}</DecisionText>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={rightOnHandleClick}>
-            <DecisionText>{rightButtonText}</DecisionText>
-          </TouchableOpacity>
-        </DecisionWrapper>
-      </ModalView>
+        <ModalView style={styles.boxShadow}>
+          {children}
+          <DecisionWrapper>
+            <TouchableOpacity onPress={leftOnHandleClick}>
+              <DecisionText>{leftButtonText}</DecisionText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={rightOnHandleClick}>
+              <DecisionText>{rightButtonText}</DecisionText>
+            </TouchableOpacity>
+          </DecisionWrapper>
+        </ModalView>
       </CenteredView>
     </Modal>
   );

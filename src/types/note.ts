@@ -1,20 +1,17 @@
-
-
-
-export interface ISubNote{
-  id:number;
+export interface ISubNote {
+  id: number;
   text: string;
   checked: boolean;
 }
 
-export interface INote{
-  id: number;
+export interface INote {
+  id: string;
   title: string;
   text: string;
   subNotes: ISubNote[];
-  startTime: Date;
-  endTime: Date;
-  date: Date;
+  startTime: string;
+  endTime: string;
+  date: string;
   checked: boolean;
   category: string;
   importance: boolean;

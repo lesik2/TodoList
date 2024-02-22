@@ -60,4 +60,4 @@ export const StyledIcon = styled(SVGImg)`
     height: 36px;
     color: ${theme.colors.purple};
   `}
-`
+`;

@@ -19,3 +19,16 @@ export const LayoutView = styled.View`
     align-items: center;
   `}
 `;
+export const WrapperNotes = styled.View`
+  height: 54%;
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+`;
+export const WrapperButton = styled.View`
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+`;
