@@ -22,7 +22,7 @@ export const InfoWrapper = styled.View`
 export const SubTasksWrapper = styled.View`
   margin-left: 5%;
   max-height: 105px;
-  width: 85%;
+  width: 90%;
 `;
 
 export const Title = styled.Text`
