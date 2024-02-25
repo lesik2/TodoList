@@ -20,7 +20,7 @@ import {Pressable, StyleSheet} from 'react-native';
 import {INote, ISubNote} from '@customTypes/note';
 import {getTime} from '@utils/getTime';
 import { SubTask } from '../SubTask';
-import { NotesDispatchContext } from '@context/note';
+import { NotesDispatchContext } from '@context/contextProvider';
 import { actionUpdateStatusNote, actionUpdateStatusSubnoteNote } from '@context/actionCreatorsNotes';
 
 export function Note({

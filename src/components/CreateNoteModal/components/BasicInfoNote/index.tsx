@@ -44,7 +44,7 @@ export function BasicInfoNote({
           value={text}
           onChangeText={handleInputTextArea}
         />
-        <ChooseCategory />
+        <ChooseCategory newNote={newNote} setNewNote={setNewNote}/>
       </InputsWrapper>
     </ContentView>
   );

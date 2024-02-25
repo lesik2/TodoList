@@ -5,8 +5,11 @@ import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/s
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Vibration} from 'react-native';
 
+
 export function Header() {
   const navigation = useNavigation<DrawerNavigationHelpers>();
+
+  
 
   const handlePress = () => {
     Vibration.vibrate(70);

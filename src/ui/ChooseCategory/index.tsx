@@ -8,7 +8,7 @@ import {
   Wrapper,
   WrapperButton,
 } from './styled';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {
   Gesture,
   GestureDetector,
@@ -20,8 +20,17 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import SvgArrow from '@assets/icons/arrow-option.svg';
-export function ChooseCategory() {
-  const categories = ['School', 'Work', 'Shop', 'Read', 'Work out'];
+import { CategoriesContext } from '@context/contextProvider';
+import { INote } from '@customTypes/note';
+
+
+export interface IChooseCategory {
+  newNote: INote;
+  setNewNote: React.Dispatch<React.SetStateAction<INote>>
+}
+
+export function ChooseCategory({newNote, setNewNote}:IChooseCategory) {
+  const categories = useContext(CategoriesContext)
   const [chooseCategory, setChooseCategory] = useState('Choose category');
   const [visibleList, setVisibleList] = useState(false);
 
@@ -31,6 +40,7 @@ export function ChooseCategory() {
 
   const handleChooseCategory = (category: string) => () => {
     setChooseCategory(category);
+    setNewNote({...newNote, category: category});
     setVisibleList(false);
   };
 
@@ -64,13 +74,18 @@ export function ChooseCategory() {
           <ScrollView
             style={styles.scroll}
             contentContainerStyle={{flexGrow: 1}}>
-            {categories.map((category, index) => (
-              <CategoryItem
-                key={index}
-                onPress={handleChooseCategory(category)}>
-                <CategoryText>{category}</CategoryText>
-              </CategoryItem>
-            ))}
+            {categories.map((category, index) => {
+              const {name} = category;
+              if(name){
+                return (
+                  <CategoryItem
+                    key={index}
+                    onPress={handleChooseCategory(name)}>
+                    <CategoryText>{name}</CategoryText>
+                  </CategoryItem>
+                )
+              }
+            })}
           </ScrollView>
         </CategoriesWrapper>
       )}

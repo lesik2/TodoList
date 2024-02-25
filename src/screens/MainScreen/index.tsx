@@ -1,4 +1,4 @@
-import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
+
 import {LayoutView, MainView} from './styled';
 import {Header} from './components/Header';
 import {BackStyle} from '@ui/BackStyle';
@@ -6,8 +6,8 @@ import {CurrentDay} from './components/CurrentDay';
 import {SearchInput} from './components/SearchInput';
 import {Filter} from './components/Filter';
 import {Categories} from './components/Categories';
-import {NotesContext, NotesDispatchContext, NotesProvider} from '@context/note';
-import {useContext, useEffect} from 'react';
+import {NotesContext, NotesDispatchContext, NotesProvider} from '@context/contextProvider';
+import {useContext, useEffect, useState} from 'react';
 import {getNoteById, removeData, saveNote} from '../../api/notes';
 import { actionSetNotes } from '@context/actionCreatorsNotes';
 
@@ -15,7 +15,7 @@ import { actionSetNotes } from '@context/actionCreatorsNotes';
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
   const notes = useContext(NotesContext);
-
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +36,6 @@ export function MainScreen() {
         console.log(error);
       }
     };
-    console.log(notes);
     saveNotes();
   }, [notes]);
 
@@ -47,8 +46,8 @@ export function MainScreen() {
         <Header />
         <CurrentDay />
         <SearchInput />
-        <Filter />
-        <Categories />
+        <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
+        <Categories  selectedFilter={selectedFilter}/>
       </LayoutView>
     </MainView>
   );

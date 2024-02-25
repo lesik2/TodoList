@@ -1,30 +1,7 @@
-import {createContext, useReducer} from 'react';
-import {INote} from '../types/note';
-import {INoteAction, NotesActionTypes} from '../types/actionsNotes';
+import { INoteAction, NotesActionTypes } from "../types/actionsNotes";
+import { INote } from "../types/note";
 
-const initialNotes: INote[] = [];
-
-export const NotesContext = createContext(initialNotes);
-export const NotesDispatchContext =
-  createContext<React.Dispatch<INoteAction> | null>(null);
-
-export interface INotesProvider {
-  children: React.ReactNode;
-}
-
-export function NotesProvider({children}: INotesProvider) {
-  const [notes, dispatch] = useReducer(notesReducer, initialNotes);
-
-  return (
-    <NotesContext.Provider value={notes}>
-      <NotesDispatchContext.Provider value={dispatch}>
-        {children}
-      </NotesDispatchContext.Provider>
-    </NotesContext.Provider>
-  );
-}
-
-function notesReducer(notes: INote[], action: INoteAction) {
+export function notesReducer(notes: INote[], action: INoteAction) {
   switch (action.type) {
     case NotesActionTypes.ADD_NOTE: {
       return [...notes, action.payload];

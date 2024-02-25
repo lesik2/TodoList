@@ -5,7 +5,7 @@ import {DoneTasksScreen} from '@screens/DoneTasksScreen';
 import {ImportantTasksScreen} from '@screens/ImportantTasksScreen';
 import {DrawerMenu} from '../DrawerMenu';
 
-import {NotesProvider} from '@context/note';
+import {NotesProvider} from '@context/contextProvider';
 
 const Drawer = createDrawerNavigator();
 

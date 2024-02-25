@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import {
   NumberOfNotesText,
   Title,
@@ -9,8 +9,12 @@ import {
   StyledIcon,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useContext } from 'react';
+import { CategoriesDispatchContext } from '@context/contextProvider';
+import { actionDeleteCategory } from '@context/actionCreatorsCategories';
 
-export interface ICategory {
+export interface ICategoryComponent {
+  id: string;
   iconName: string;
   name?: string;
   numberOfNotes?: number;
@@ -18,19 +22,31 @@ export interface ICategory {
   handleOpenModal: () => void;
 }
 export function Category({
+  id,
   iconName,
   name,
   numberOfNotes,
   backgroundColor,
   handleOpenModal,
-}: ICategory) {
+}: ICategoryComponent) {
+
+  const dispatch = useContext(CategoriesDispatchContext);
+
+  const handleDeleteCategory = ()=> {
+    if(dispatch){
+      dispatch(actionDeleteCategory(id));
+    }
+  }
+
+
   return (
     <>
       {name ? (
         <CategoryView style={styles.boxShadow}>
           <StyledButton
             $background={backgroundColor}
-            onPress={() => console.log('hi')}
+            onLongPress={handleDeleteCategory}
+            onPress={()=>console.log('hi!')}
             underlayColor="#DBDFFD"
             activeOpacity={1}>
             <ContentWrapper>

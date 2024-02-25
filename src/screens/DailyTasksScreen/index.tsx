@@ -7,7 +7,7 @@ import {CreateNoteModal} from '@components/CreateNoteModal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {Note} from '@ui/Note';
-import {NotesContext} from '@context/note';
+import {NotesContext} from '@context/contextProvider';
 import {StyleSheet} from 'react-native';
 
 export function DailyTasksScreen() {

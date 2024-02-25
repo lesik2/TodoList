@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import {MenuItemText, MenuItems, MenuOption} from './styled';
 import {Pressable, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import { NotesDispatchContext } from '@context/note';
+import { NotesDispatchContext } from '@context/contextProvider';
 import { actionDeleteNote } from '@context/actionCreatorsNotes';
 import { CreateNoteModal } from '@components/CreateNoteModal';
 

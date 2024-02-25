@@ -7,7 +7,7 @@ import {TimeNote} from './components/TimeNote';
 import {DateNote} from './components/DateNote';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
-import {NotesContext, NotesDispatchContext} from '@context/note';
+import {NotesContext, NotesDispatchContext} from '@context/contextProvider';
 import {actionAddNote, actionUpdateNote} from '@context/actionCreatorsNotes';
 
 export interface ICreateNoteModal {
