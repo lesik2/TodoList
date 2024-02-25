@@ -8,7 +8,6 @@ export const AllNotesView = styled.View`
     background-color: ${theme.colors.white};
     border-radius: 20px;
     z-index: 5;
- 
   `}
 `;
 
@@ -29,7 +28,6 @@ export const TimeWrapper = styled.View`
   align-items: flex-start;
   gap: 3px;
   justify-content: center;
-
 `;
 
 export const TimeText = styled.Text`
@@ -44,14 +42,12 @@ export const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 10px;
-
 `;
 export const MainWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
-
 `;
 export const InfoWrapper = styled.View`
   flex-direction: column;
@@ -94,7 +90,6 @@ export const OptionButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  
 `;
 export const SubTaskWrapper = styled.View`
   flex-direction: column;

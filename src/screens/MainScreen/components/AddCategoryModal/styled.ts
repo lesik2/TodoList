@@ -8,6 +8,7 @@ export const ContentView = styled.View`
   gap: 40px;
   width: 100%;
   height: 100%;
+  margin-bottom: 20%;
 `;
 
 export const WrapperInput = styled.View`

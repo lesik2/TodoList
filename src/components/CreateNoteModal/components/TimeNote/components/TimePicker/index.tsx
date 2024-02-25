@@ -10,15 +10,13 @@ import {
   TimeTitle,
 } from './styled';
 import {useState} from 'react';
+import { ITimePicker } from '@components/CreateNoteModal/types';
 
-export interface ITimePicker {
-  title: string;
-  time: Date;
-  setTime: React.Dispatch<React.SetStateAction<Date>>;
-}
 
-export function TimePicker({title, time, setTime}: ITimePicker) {
+
+export function TimePicker({title, newNote, setNewNote }: ITimePicker) {
   const [open, setOpen] = useState(false);
+  const time  = title === 'from' ? new Date(newNote.startTime): new Date(newNote.endTime);
 
   const handleCloseModal = () => {
     setOpen(false);
@@ -28,8 +26,10 @@ export function TimePicker({title, time, setTime}: ITimePicker) {
   };
 
   const handleChooseTime = (date: Date) => {
-    setTime(date);
+    const property = title === 'from' ? 'startTime': 'endTime';
+    setNewNote({...newNote, [property]: date.toISOString()});
     handleCloseModal();
+
   };
 
   return (

@@ -7,14 +7,9 @@ import {DrawerMenu} from '../DrawerMenu';
 
 import {NotesProvider} from '@context/note';
 
-
 const Drawer = createDrawerNavigator();
 
 export function DrawerNavigation() {
-
- 
-
-
   return (
     <NotesProvider>
       <Drawer.Navigator

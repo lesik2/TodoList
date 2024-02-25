@@ -7,28 +7,23 @@ import {
   Title,
 } from './styled';
 import {StyleSheet} from 'react-native';
-import {useState} from 'react';
-import {ChooseCategory} from '@ui/ChooseCategory';
 
-export interface IBasicInfoNote {
-  title: string;
-  text: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  setText: React.Dispatch<React.SetStateAction<string>>;
-}
+import {ChooseCategory} from '@ui/ChooseCategory';
+import { INoteModal } from '../../types';
+
 
 export function BasicInfoNote({
-  title,
-  text,
-  setText,
-  setTitle,
-}: IBasicInfoNote) {
+  newNote,
+  setNewNote
+}: INoteModal) {
+
+  const {title, text} = newNote;
   const handleInputTitle = (text: string) => {
-    setTitle(text);
+    setNewNote({...newNote, title: text});
   };
 
   const handleInputTextArea = (text: string) => {
-    setText(text);
+    setNewNote({...newNote, text: text});
   };
 
   return (

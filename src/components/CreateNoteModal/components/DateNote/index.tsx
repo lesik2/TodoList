@@ -11,15 +11,14 @@ import {
 import {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 import {Pressable, StyleSheet} from 'react-native';
+import { INoteModal } from '../../types';
 
-export interface IDateNote {
-  title: string;
-  text: string;
-  date: Date;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
-}
 
-export function DateNote({title, text, date, setDate}: IDateNote) {
+
+export function DateNote({newNote, setNewNote}: INoteModal) {
+
+  const {title, text, date} = newNote;
+  const dateObj = new Date(date);
   const [open, setOpen] = useState(false);
 
   const handleCloseModal = () => {
@@ -30,7 +29,7 @@ export function DateNote({title, text, date, setDate}: IDateNote) {
   };
 
   const handleChooseDate = (date: Date) => {
-    setDate(date);
+    setNewNote({...newNote, date: date.toISOString()});
     handleCloseModal();
   };
 
@@ -45,9 +44,9 @@ export function DateNote({title, text, date, setDate}: IDateNote) {
         <Pressable onPress={handleOpenModal}>
           <ChooseDateWrapper style={styles.boxShadow}>
             <DateTitle>
-              {`${date.toLocaleDateString('en-US', {
+              {`${dateObj.toLocaleDateString('en-US', {
                 month: 'long',
-              })}/${date.getDate()}/${date.getFullYear()}`}
+              })}/${dateObj.getDate()}/${dateObj.getFullYear()}`}
             </DateTitle>
           </ChooseDateWrapper>
         </Pressable>
@@ -57,7 +56,7 @@ export function DateNote({title, text, date, setDate}: IDateNote) {
         mode="date"
         modal
         open={open}
-        date={date}
+        date={dateObj}
         confirmText="Ok"
         onConfirm={handleChooseDate}
         onCancel={handleCloseModal}

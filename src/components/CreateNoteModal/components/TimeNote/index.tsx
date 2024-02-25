@@ -9,34 +9,25 @@ import {
 } from './styled';
 
 import {TimePicker} from './components/TimePicker';
+import { INoteModal } from '../../types';
 
-export interface ITimeNote {
-  title: string;
-  text: string;
-  setImportance: React.Dispatch<React.SetStateAction<boolean>>;
-  importance: boolean;
-  startTime: Date;
-  setStartTime: React.Dispatch<React.SetStateAction<Date>>;
-  endTime: Date;
-  setEndTime: React.Dispatch<React.SetStateAction<Date>>;
-}
+
 
 export function TimeNote({
-  title,
-  text,
-  importance,
-  setImportance,
-  startTime,
-  setStartTime,
-  endTime,
-  setEndTime,
-}: ITimeNote) {
+  newNote,
+  setNewNote
+}: INoteModal) {
+
+  const {title, text, importance, startTime, endTime} = newNote;
+
   const handleCheckedPress = () => {
-    setImportance(!importance);
+    setNewNote({...newNote, importance: !importance});
   };
 
   const iconName = importance ? 'star' : 'star-o';
   const iconColor = importance ? '#FFD952' : '#CCCCCC';
+
+  
 
   return (
     <ContentView>
@@ -45,8 +36,8 @@ export function TimeNote({
         <SubTitle>{text}</SubTitle>
       </InfoWrapper>
       <TimeWrapper>
-        <TimePicker title="from" time={startTime} setTime={setStartTime} />
-        <TimePicker title="till" time={endTime} setTime={setEndTime} />
+        <TimePicker title="from"  newNote={newNote} setNewNote={setNewNote}/>
+        <TimePicker title="till" newNote={newNote} setNewNote={setNewNote} />
       </TimeWrapper>
       <StyledButton onPress={handleCheckedPress}>
         <Icon name={iconName} size={45} color={iconColor} />

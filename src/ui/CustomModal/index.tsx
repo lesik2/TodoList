@@ -25,7 +25,7 @@ export function CustomModal({
     <Modal
       animationType={animationType}
       transparent={true}
-      statusBarTranslucent={true}
+ 
       visible={modalVisible}
       onRequestClose={onRequestClose}>
       <CenteredView>

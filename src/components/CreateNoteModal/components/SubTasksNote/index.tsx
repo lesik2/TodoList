@@ -10,38 +10,35 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {ISubNote} from '@customTypes/note';
 import {AddNoteButton} from '@ui/AddNoteButton';
 import {SubTask} from '@ui/SubTask';
+import { INoteModal } from '../../types';
 
-export interface ISubTasksNote {
-  title: string;
-  text: string;
-  setSubtasks: React.Dispatch<React.SetStateAction<ISubNote[]>>;
-  subtasks: ISubNote[];
-}
+
 
 export function SubTasksNote({
-  title,
-  text,
-  setSubtasks,
-  subtasks,
-}: ISubTasksNote) {
+  newNote,
+  setNewNote
+}: INoteModal) {
+
+  const {title, text, subNotes} = newNote;
+
   const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
-    setSubtasks(
-      subtasks.map(subtask => {
-        if (subtask.id === updatedSubtask.id) {
-          return updatedSubtask;
-        }
-        return subtask;
-      }),
-    );
+
+    setNewNote({...newNote,
+      subNotes: subNotes.map(subtask => {
+      if (subtask.id === updatedSubtask.id) {
+        return updatedSubtask;
+      }
+      return subtask;
+    })});
   };
 
   const handleAddSubtask = () => {
     const newSubTask: ISubNote = {
-      id: subtasks.length === 0 ? 1 : subtasks[subtasks.length - 1].id + 1,
+      id: subNotes.length === 0 ? 1 : subNotes[subNotes.length - 1].id + 1,
       checked: false,
       text: '',
     };
-    setSubtasks([...subtasks, newSubTask]);
+    setNewNote({...newNote, subNotes: [...subNotes,  newSubTask]});
   };
 
   return (
@@ -52,8 +49,8 @@ export function SubTasksNote({
       </InfoWrapper>
       <SubTasksWrapper>
         <ScrollView contentContainerStyle={styles.scrollStyle}>
-          {subtasks.length > 0 &&
-            subtasks.map(subtask => (
+          {subNotes.length > 0 &&
+            subNotes.map(subtask => (
               <SubTask
                 mode="edit"
                 id={subtask.id}
@@ -83,3 +80,5 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
+
+

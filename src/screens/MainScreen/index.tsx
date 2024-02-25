@@ -6,30 +6,39 @@ import {CurrentDay} from './components/CurrentDay';
 import {SearchInput} from './components/SearchInput';
 import {Filter} from './components/Filter';
 import {Categories} from './components/Categories';
-import {NotesDispatchContext, NotesProvider} from '@context/note';
-import { useContext, useEffect } from 'react';
-import { getAllNotes } from '../../api/notes';
-import { NotesActionTypes } from '../../types/actionsNotes';
-export interface IMainScreen {
-  navigation: DrawerNavigationHelpers;
-}
-
-export function MainScreen({navigation}: IMainScreen) {
+import {NotesContext, NotesDispatchContext, NotesProvider} from '@context/note';
+import {useContext, useEffect} from 'react';
+import {getNoteById, removeData, saveNote} from '../../api/notes';
+import { actionSetNotes } from '@context/actionCreatorsNotes';
 
 
+export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
+  const notes = useContext(NotesContext);
 
-  useEffect(()=>{
-    getAllNotes().then((notes)=>{
-      if(dispatch){
-        dispatch({
-          type: NotesActionTypes.SET_NOTES,
-          payload: notes,
-        })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedNotes = await getNoteById();
+      if (dispatch) {
+        dispatch(actionSetNotes(fetchedNotes));
       }
-  })
-  }, [])
+    };
+    fetchData();
+  }, []);
 
+  useEffect(() => {
+    const saveNotes = async () => {
+      try {
+
+        await saveNote(notes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    console.log(notes);
+    saveNotes();
+  }, [notes]);
 
   return (
     <MainView>

@@ -1,8 +1,4 @@
-import {
-  Gesture,
-  GestureDetector,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+
 import {
   AllNotesView,
   CheckBox,
@@ -18,14 +14,17 @@ import {
   Wrapper,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {Menu} from './components/Menu';
 import {Pressable, StyleSheet} from 'react-native';
 import {INote, ISubNote} from '@customTypes/note';
 import {getTime} from '@utils/getTime';
 import { SubTask } from '../SubTask';
+import { NotesDispatchContext } from '@context/note';
+import { actionUpdateStatusNote, actionUpdateStatusSubnoteNote } from '@context/actionCreatorsNotes';
 
 export function Note({
+  id,
   startTime,
   endTime,
   title,
@@ -33,13 +32,14 @@ export function Note({
   checked,
   subNotes,
 }: INote) {
-  const [checkedValue, setCheckedValue] = useState(false);
+  const dispatch = useContext(NotesDispatchContext);
   const [visible, setVisible] = useState(false);
   const [showSubTasks, setShowSubTasks] = useState(false);
-  const [subtasks, setSubtasks] = useState<ISubNote[]>(subNotes);
 
   const handleCheck = () => {
-    setCheckedValue(!checkedValue);
+    if(dispatch){
+      dispatch(actionUpdateStatusNote(id))
+    }
   };
 
   const handleOpenMenu = () => {
@@ -55,14 +55,14 @@ export function Note({
 
 
   const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
-    setSubtasks(
-      subtasks.map(subtask => {
-        if (subtask.id === updatedSubtask.id) {
-          return updatedSubtask;
-        }
-        return subtask;
-      }),
-    );
+
+    if(dispatch){
+      dispatch(actionUpdateStatusSubnoteNote({
+          idNote: id,
+          subnote: updatedSubtask
+      }))
+    }
+
   };
 
   return (
@@ -76,7 +76,7 @@ export function Note({
             </TimeWrapper>
             <MainWrapper>
               <CheckBox onPress={handleCheck} activeOpacity={1}>
-                {checkedValue && (
+                {checked && (
                   <Icon name="check" size={27} color="#8785F6" />
                 )}
               </CheckBox>
@@ -89,12 +89,12 @@ export function Note({
           <OptionButton onPress={handleOpenMenu}>
             <Icon name="ellipsis-v" size={26} color="#CCCCCC" />
           </OptionButton>
-          <Menu visible={visible} handleCloseMenu={handleCloseMenu} />
+          <Menu visible={visible} handleCloseMenu={handleCloseMenu} idNote={id} />
         </NoteView>
       </Pressable>
       {showSubTasks && subNotes.length > 0 && (
         <SubTaskWrapper>
-          {subtasks.map(subtask => (
+          {subNotes.map(subtask => (
             <SubTask 
               name={subtask.text}
               id={subtask.id}

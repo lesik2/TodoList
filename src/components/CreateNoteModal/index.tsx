@@ -1,5 +1,5 @@
-import {useContext, useState} from 'react';
-import {INote, ISubNote} from '@customTypes/note';
+import {useContext, useEffect, useState} from 'react';
+import {INote} from '@customTypes/note';
 import {BasicInfoNote} from './components/BasicInfoNote';
 import {SubTasksNote} from './components/SubTasksNote';
 import {CustomModal} from '@ui/CustomModal';
@@ -7,31 +7,57 @@ import {TimeNote} from './components/TimeNote';
 import {DateNote} from './components/DateNote';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
-import {saveNote} from '../../api/notes';
-import { NotesDispatchContext } from '@context/note';
-import { NotesActionTypes } from '../../types/actionsNotes';
+import {NotesContext, NotesDispatchContext} from '@context/note';
+import {actionAddNote, actionUpdateNote} from '@context/actionCreatorsNotes';
 
 export interface ICreateNoteModal {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  idNote?: string;
 }
 
-export function CreateNoteModal({visible, setVisible}: ICreateNoteModal) {
-  
+
+
+export function CreateNoteModal({visible, setVisible, idNote}: ICreateNoteModal) {
+
+
+
+  const emptyNote:INote = {
+    id: '',
+    title: '',
+    text: '',
+    subNotes: [],
+    importance:false,
+    startTime: new Date().toISOString(),
+    endTime: new Date().toISOString(),
+    date: new Date ().toISOString(),
+    checked: false,
+    category: '',
+  }
   const dispatch = useContext(NotesDispatchContext);
-  
+
+  const notes = useContext(NotesContext);
+
+
   const AMOUNT_OF_MODALS = 4;
 
 
-
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [subtasks, setSubtasks] = useState<ISubNote[]>([]);
-  const [importance, setImportance] = useState(false);
+  const [newNote, setNewNote] = useState<INote>(emptyNote);
   const [currentModal, setCurrentModal] = useState(0);
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-  const [date, setDate] = useState(new Date());
+
+  useEffect(()=>{
+    if(!visible) return;
+    if(idNote===undefined){
+      const id = uuidv4();
+      setNewNote({...emptyNote, id: id});
+    }
+    if(idNote!==undefined){
+      const note = notes.find((note)=>note.id === idNote);
+      setNewNote(note!);
+    }
+  },[visible, idNote])
+
+
 
   const leftButtonText = currentModal === 0 ? 'Cancel' : 'Back';
   const rightButtonText = currentModal === AMOUNT_OF_MODALS - 1 ? 'Ok' : 'Next';
@@ -46,37 +72,20 @@ export function CreateNoteModal({visible, setVisible}: ICreateNoteModal) {
 
   const handleRightPressModal = async () => {
     if (currentModal === AMOUNT_OF_MODALS - 1) {
-      const newNote: INote = {
-        id: uuidv4(),
-        title,
-        text,
-        startTime: startTime.toISOString(),
-        endTime: endTime.toISOString(),
-        date: date.toISOString(),
-        importance,
-        subNotes: subtasks,
-        checked: false,
-        category: '',
-      };
 
-      await saveNote(newNote);
-
-      setTitle('');
-      setText('');
-      setSubtasks([]);
-      setImportance(false);
-      setStartTime(new Date());
-      setEndTime(new Date());
-      setDate(new Date());
       handleCloseModal();
       setCurrentModal(0);
 
-      if(dispatch){
-        dispatch({
-          type: NotesActionTypes.ADD_NOTE,
-          payload: newNote
-        })
-      }
+        if(!dispatch) return;
+        if(idNote!==undefined){
+          console.log('should update');
+          dispatch(actionUpdateNote(newNote));
+        }else{
+          dispatch(actionAddNote(newNote));
+        }
+
+        setNewNote(emptyNote);
+
     } else {
       setCurrentModal(currentModal + 1);
     }
@@ -88,27 +97,20 @@ export function CreateNoteModal({visible, setVisible}: ICreateNoteModal) {
 
   const modals = [
     <BasicInfoNote
-      title={title}
-      text={text}
-      setTitle={setTitle}
-      setText={setText}
+      newNote={newNote}
+      setNewNote={setNewNote}
     />,
     <SubTasksNote
-      title={title}
-      text={text}
-      setSubtasks={setSubtasks}
-      subtasks={subtasks}
+    newNote={newNote}
+    setNewNote={setNewNote}
     />,
-    <DateNote title={title} text={text} date={date} setDate={setDate} />,
+    <DateNote
+      newNote={newNote}
+      setNewNote={setNewNote}
+    />,
     <TimeNote
-      startTime={startTime}
-      setStartTime={setStartTime}
-      endTime={endTime}
-      setEndTime={setEndTime}
-      title={title}
-      text={text}
-      importance={importance}
-      setImportance={setImportance}
+      newNote={newNote}
+      setNewNote={setNewNote}
     />,
   ];
 
