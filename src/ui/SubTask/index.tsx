@@ -5,7 +5,7 @@ import {useState} from 'react';
 import {ISubNote} from '@customTypes/note';
 
 export interface ISubTask {
-  id: number;
+  id: string;
   name: string;
   checked: boolean;
   handleUpdate: (subtask: ISubNote) => void;

@@ -61,3 +61,14 @@ export const StyledIcon = styled(SVGImg)`
     color: ${theme.colors.purple};
   `}
 `;
+export const DeleteIconWrapper = styled.TouchableOpacity`
+  position: absolute;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+`

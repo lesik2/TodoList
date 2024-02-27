@@ -11,7 +11,8 @@ import {ISubNote} from '@customTypes/note';
 import {AddNoteButton} from '@ui/AddNoteButton';
 import {SubTask} from '@ui/SubTask';
 import { INoteModal } from '../../types';
-
+import 'react-native-get-random-values';
+import {v4 as uuidv4} from 'uuid';
 
 
 export function SubTasksNote({
@@ -34,7 +35,7 @@ export function SubTasksNote({
 
   const handleAddSubtask = () => {
     const newSubTask: ISubNote = {
-      id: subNotes.length === 0 ? 1 : subNotes[subNotes.length - 1].id + 1,
+      id: uuidv4(),
       checked: false,
       text: '',
     };

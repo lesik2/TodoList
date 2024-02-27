@@ -1,5 +1,5 @@
 export interface ISubNote {
-  id: number;
+  id: string;
   text: string;
   checked: boolean;
 }

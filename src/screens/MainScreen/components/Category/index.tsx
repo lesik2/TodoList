@@ -7,11 +7,13 @@ import {
   CategoryView,
   AddButton,
   StyledIcon,
+  DeleteIconWrapper,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CategoriesDispatchContext } from '@context/contextProvider';
 import { actionDeleteCategory } from '@context/actionCreatorsCategories';
+import { ModalPermission } from '@ui/ModalPermission';
 
 export interface ICategoryComponent {
   id: string;
@@ -30,8 +32,22 @@ export function Category({
   handleOpenModal,
 }: ICategoryComponent) {
 
+  const [showDeleteIcon, setShowDeleteIcon] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const dispatch = useContext(CategoriesDispatchContext);
 
+  const handleShowDeleteIcon = ()=> {
+    const defaultCategoryIds = ['1','2','3','4','5'];
+    if(dispatch){
+      if(!defaultCategoryIds.includes(id)){
+        setShowDeleteIcon(!showDeleteIcon)
+      }
+    }
+  }
+
+  const handleOpenPermissionModal = () => {
+    setShowModal(true);
+  }
   const handleDeleteCategory = ()=> {
     if(dispatch){
       dispatch(actionDeleteCategory(id));
@@ -45,7 +61,7 @@ export function Category({
         <CategoryView style={styles.boxShadow}>
           <StyledButton
             $background={backgroundColor}
-            onLongPress={handleDeleteCategory}
+            onLongPress={handleShowDeleteIcon}
             onPress={()=>console.log('hi!')}
             underlayColor="#DBDFFD"
             activeOpacity={1}>
@@ -55,12 +71,24 @@ export function Category({
             </ContentWrapper>
           </StyledButton>
           <NumberOfNotesText>{numberOfNotes}</NumberOfNotesText>
+          {showDeleteIcon &&
+            <DeleteIconWrapper onPress={handleOpenPermissionModal}>
+              <Icon name="times" size={25} color="#888888" />
+            </DeleteIconWrapper>
+          }
         </CategoryView>
       ) : (
         <AddButton onPress={handleOpenModal} underlayColor={'#f4d7eb'}>
           <StyledIcon />
         </AddButton>
       )}
+      <ModalPermission 
+        title={`Are you sure you want to delete category?`}
+        modalVisible={showModal}
+        setModalVisible={setShowModal}
+        onHandleSuccess={handleDeleteCategory}
+      />
+
     </>
   );
 }
