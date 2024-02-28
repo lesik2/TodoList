@@ -3,6 +3,9 @@ import {useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
 import {StyleSheet, View} from 'react-native';
 import {CustomInput} from '@ui/CustomInput/styled';
+import { categorySchema } from '@validate/category';
+import { ErrorMessage } from '@ui/ErrorMessage/styled';
+
 export interface IAddCategory {
   addNewCategory: (nameOfCategory: string) => void;
   modalVisible: boolean;
@@ -13,17 +16,28 @@ export function AddCategory({
   modalVisible,
   setModalVisible,
 }: IAddCategory) {
+
   const [input, setInput] = useState('');
+  const [error, setError] = useState(false);
 
   const handleTextInput = (text: string) => {
     setInput(text);
+    setError(false);
   };
 
   const handleCloseModal = () => {
     setModalVisible(false);
   };
 
-  const handleSuccessCloseModal = () => {
+  const handleSuccessCloseModal = async () => {
+    const newCategory = { name: input };
+  
+    try {
+      await categorySchema.validate(newCategory);
+    } catch (error) {
+      setError(true);
+      return;
+    }
     addNewCategory(input);
     handleCloseModal();
     setInput('');
@@ -39,12 +53,17 @@ export function AddCategory({
       rightOnHandleClick={handleSuccessCloseModal}>
       <ContentView>
         <Title>Add new category</Title>
-        <CustomInput
-          style={styles.boxShadow}
-          placeholder="New category"
-          value={input}
-          onChangeText={handleTextInput}
-        />
+        <WrapperInput>
+          <CustomInput
+            style={styles.boxShadow}
+            placeholder="New category"
+            value={input}
+            onChangeText={handleTextInput}
+          />
+          {error && <ErrorMessage>
+            Please, fill in category name
+          </ErrorMessage>}
+        </WrapperInput>
       </ContentView>
     </CustomModal>
   );

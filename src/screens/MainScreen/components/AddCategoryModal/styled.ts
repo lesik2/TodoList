@@ -12,10 +12,10 @@ export const ContentView = styled.View`
 `;
 
 export const WrapperInput = styled.View`
-  width: 90%;
-  height: 7%;
-  border-radius: 20px;
-`;
+  position: relative;
+  width: 95%;
+`
+
 
 export const Title = styled.Text`
   ${({theme}) => css`

@@ -101,8 +101,8 @@ export function CreateNoteModal({visible, setVisible, idNote}: ICreateNoteModal)
       setNewNote={setNewNote}
     />,
     <SubTasksNote
-    newNote={newNote}
-    setNewNote={setNewNote}
+      newNote={newNote}
+      setNewNote={setNewNote}
     />,
     <DateNote
       newNote={newNote}

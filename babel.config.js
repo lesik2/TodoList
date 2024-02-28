@@ -16,6 +16,7 @@ module.exports = {
           '@utils': './src/utils',
           '@api': './src/api',
           '@context': './src/context',
+          '@validate': './src/validate',
         },
       },
     ],

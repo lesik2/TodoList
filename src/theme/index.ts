@@ -13,6 +13,7 @@ export const theme: ITheme = {
     drawerBack: '#F6F6F6',
     iconColor: '#888888',
     purple: '#D25EB0',
+    error: '#ff0000',
   },
   fonts: {
     Roboto: 'Roboto-Regular',

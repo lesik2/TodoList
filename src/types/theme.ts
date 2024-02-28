@@ -11,6 +11,7 @@ export interface ITheme {
     iconColor: string;
     purple: string;
     border: string;
+    error: string;
   };
   fonts: {
     Roboto: string;

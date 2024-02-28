@@ -14,7 +14,8 @@
       "@screens/*": ["src/screens/*"],
       "@ui/*": ["src/ui/*"],
       "@api/*": ["src/api/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@validate/*": ["src/validate/*"],
     }
   },
   "include": ["src/**/*"]
