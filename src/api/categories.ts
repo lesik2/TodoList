@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ICategory } from '../types/category';
-
+import {ICategory} from '../types/category';
 
 const KEY_CATEGORIES = 'categories';
 
@@ -17,7 +16,7 @@ export const getCategoryById = async (id: string = KEY_CATEGORIES) => {
   try {
     const savedCategory = await AsyncStorage.getItem(id);
     if (savedCategory) {
-      currentCategories= JSON.parse(savedCategory) as ICategory[];
+      currentCategories = JSON.parse(savedCategory) as ICategory[];
     }
   } catch (error) {
     console.log(error);

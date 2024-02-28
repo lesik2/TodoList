@@ -19,7 +19,6 @@ export function SubTask({
   handleUpdate,
   mode = 'default',
 }: ISubTask) {
-  
   const [input, setInput] = useState(name);
   const handleChangeInput = (text: string) => {
     const updatedSubtask: ISubNote = {

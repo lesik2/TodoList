@@ -10,27 +10,23 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {ISubNote} from '@customTypes/note';
 import {AddNoteButton} from '@ui/AddNoteButton';
 import {SubTask} from '@ui/SubTask';
-import { INoteModal } from '../../types';
+import {INoteModal} from '../../types';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 
-
-export function SubTasksNote({
-  newNote,
-  setNewNote
-}: INoteModal) {
-
+export function SubTasksNote({newNote, setNewNote}: INoteModal) {
   const {title, text, subNotes} = newNote;
 
   const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
-
-    setNewNote({...newNote,
+    setNewNote({
+      ...newNote,
       subNotes: subNotes.map(subtask => {
-      if (subtask.id === updatedSubtask.id) {
-        return updatedSubtask;
-      }
-      return subtask;
-    })});
+        if (subtask.id === updatedSubtask.id) {
+          return updatedSubtask;
+        }
+        return subtask;
+      }),
+    });
   };
 
   const handleAddSubtask = () => {
@@ -39,7 +35,7 @@ export function SubTasksNote({
       checked: false,
       text: '',
     };
-    setNewNote({...newNote, subNotes: [...subNotes,  newSubTask]});
+    setNewNote({...newNote, subNotes: [...subNotes, newSubTask]});
   };
 
   return (
@@ -81,5 +77,3 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
-
-

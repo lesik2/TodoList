@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {INote} from '@customTypes/note';
 
-
 const KEY_NOTES = 'notes';
 
 export const saveNote = async (note: INote[]) => {
@@ -24,7 +23,6 @@ export const getNoteById = async (id: string = KEY_NOTES) => {
   }
   return currentNotes;
 };
-
 
 export const removeData = async () => {
   try {

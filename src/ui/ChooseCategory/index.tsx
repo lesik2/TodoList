@@ -20,18 +20,24 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import SvgArrow from '@assets/icons/arrow-option.svg';
-import { CategoriesContext } from '@context/contextProvider';
-import { INote } from '@customTypes/note';
-
+import {CategoriesContext} from '@context/contextProvider';
+import {INote} from '@customTypes/note';
 
 export interface IChooseCategory {
   newNote: INote;
-  setNewNote: React.Dispatch<React.SetStateAction<INote>>
+  setNewNote: React.Dispatch<React.SetStateAction<INote>>;
+  setError: React.Dispatch<React.SetStateAction<string>> | undefined;
 }
 
-export function ChooseCategory({newNote, setNewNote}:IChooseCategory) {
-  const categories = useContext(CategoriesContext)
-  const [chooseCategory, setChooseCategory] = useState('Choose category');
+export function ChooseCategory({
+  newNote,
+  setNewNote,
+  setError,
+}: IChooseCategory) {
+  const categories = useContext(CategoriesContext);
+  const [chooseCategory, setChooseCategory] = useState(
+    newNote.category || 'Choose category',
+  );
   const [visibleList, setVisibleList] = useState(false);
 
   const handleVisibleList = () => {
@@ -42,6 +48,9 @@ export function ChooseCategory({newNote, setNewNote}:IChooseCategory) {
     setChooseCategory(category);
     setNewNote({...newNote, category: category});
     setVisibleList(false);
+    if (setError) {
+      setError('');
+    }
   };
 
   const pressed = useSharedValue(false);
@@ -76,14 +85,14 @@ export function ChooseCategory({newNote, setNewNote}:IChooseCategory) {
             contentContainerStyle={{flexGrow: 1}}>
             {categories.map((category, index) => {
               const {name} = category;
-              if(name){
+              if (name) {
                 return (
                   <CategoryItem
                     key={index}
                     onPress={handleChooseCategory(name)}>
                     <CategoryText>{name}</CategoryText>
                   </CategoryItem>
-                )
+                );
               }
             })}
           </ScrollView>

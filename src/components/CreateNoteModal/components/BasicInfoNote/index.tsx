@@ -5,46 +5,76 @@ import {
   InputTitle,
   InputsWrapper,
   Title,
+  WrapperInput,
 } from './styled';
 import {StyleSheet} from 'react-native';
 
 import {ChooseCategory} from '@ui/ChooseCategory';
-import { INoteModal } from '../../types';
-
+import {INoteModal} from '../../types';
+import {ErrorMessage} from '@ui/ErrorMessage/styled';
 
 export function BasicInfoNote({
   newNote,
-  setNewNote
+  setNewNote,
+  error,
+  setError,
 }: INoteModal) {
-
   const {title, text} = newNote;
   const handleInputTitle = (text: string) => {
     setNewNote({...newNote, title: text});
+    if (setError) {
+      setError('');
+    }
   };
 
   const handleInputTextArea = (text: string) => {
     setNewNote({...newNote, text: text});
+    if (setError) {
+      setError('');
+    }
   };
+
+  const nameOfInputError = error ? error.split(' ')[0] : '';
+  const errorMessage = error ? error : '';
 
   return (
     <ContentView>
       <Title>Create new note</Title>
       <InputsWrapper>
-        <InputTitle
-          style={styles.boxShadow}
-          placeholder="Title"
-          value={title}
-          onChangeText={handleInputTitle}
-        />
-        <InputText
-          style={styles.boxShadow}
-          placeholder="Text"
-          multiline
-          numberOfLines={2}
-          value={text}
-          onChangeText={handleInputTextArea}
-        />
-        <ChooseCategory newNote={newNote} setNewNote={setNewNote}/>
+        <WrapperInput>
+          <InputTitle
+            style={styles.boxShadow}
+            placeholder="Title"
+            value={title}
+            onChangeText={handleInputTitle}
+          />
+          {nameOfInputError === 'title' && (
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+          )}
+        </WrapperInput>
+        <WrapperInput>
+          <InputText
+            style={styles.boxShadow}
+            placeholder="Text"
+            multiline
+            numberOfLines={2}
+            value={text}
+            onChangeText={handleInputTextArea}
+          />
+          {nameOfInputError === 'text' && (
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+          )}
+        </WrapperInput>
+        <WrapperInput>
+          <ChooseCategory
+            newNote={newNote}
+            setNewNote={setNewNote}
+            setError={setError}
+          />
+          {nameOfInputError === 'category' && (
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+          )}
+        </WrapperInput>
       </InputsWrapper>
     </ContentView>
   );

@@ -25,7 +25,6 @@ export function CustomModal({
     <Modal
       animationType={animationType}
       transparent={true}
- 
       visible={modalVisible}
       onRequestClose={onRequestClose}>
       <CenteredView>

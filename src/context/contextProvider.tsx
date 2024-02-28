@@ -1,11 +1,11 @@
 import {createContext, useReducer} from 'react';
 import {INote} from '../types/note';
-import {INoteAction,} from '../types/actionsNotes';
-import { notesReducer } from './notesReducer';
-import { ICategory } from '../types/category';
-import { defaultCategories } from '../constants/defaultCategories';
-import { categoriesReducer } from './categoriesReducer';
-import { ICategoryAction } from '../types/actionsCategory';
+import {INoteAction} from '../types/actionsNotes';
+import {notesReducer} from './notesReducer';
+import {ICategory} from '../types/category';
+import {defaultCategories} from '../constants/defaultCategories';
+import {categoriesReducer} from './categoriesReducer';
+import {ICategoryAction} from '../types/actionsCategory';
 
 const initialNotes: INote[] = [];
 const initialCategories: ICategory[] = defaultCategories;
@@ -24,13 +24,16 @@ export interface INotesProvider {
 
 export function NotesProvider({children}: INotesProvider) {
   const [notes, dispatch] = useReducer(notesReducer, initialNotes);
-  const [categories, dispatchCategory] = useReducer(categoriesReducer, initialCategories);
+  const [categories, dispatchCategory] = useReducer(
+    categoriesReducer,
+    initialCategories,
+  );
 
   return (
     <NotesContext.Provider value={notes}>
       <NotesDispatchContext.Provider value={dispatch}>
         <CategoriesContext.Provider value={categories}>
-          <CategoriesDispatchContext.Provider value = {dispatchCategory}>
+          <CategoriesDispatchContext.Provider value={dispatchCategory}>
             {children}
           </CategoriesDispatchContext.Provider>
         </CategoriesContext.Provider>
@@ -38,5 +41,3 @@ export function NotesProvider({children}: INotesProvider) {
     </NotesContext.Provider>
   );
 }
-
-

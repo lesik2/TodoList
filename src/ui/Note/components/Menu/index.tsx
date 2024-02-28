@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
+import {useContext, useState} from 'react';
 import {MenuItemText, MenuItems, MenuOption} from './styled';
 import {Pressable, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import { NotesDispatchContext } from '@context/contextProvider';
-import { actionDeleteNote } from '@context/actionCreatorsNotes';
-import { CreateNoteModal } from '@components/CreateNoteModal';
+import {NotesDispatchContext} from '@context/contextProvider';
+import {actionDeleteNote} from '@context/actionCreatorsNotes';
+import {CreateNoteModal} from '@components/CreateNoteModal';
 
 export interface IMenu {
   idNote: string;
@@ -15,18 +15,16 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
   const [visibleModal, setVisibleModal] = useState(false);
   const dispatch = useContext(NotesDispatchContext);
 
-
-    const handleDeleteNote = () => {
-      if(dispatch){
-        dispatch(actionDeleteNote(idNote))
-        handleCloseMenu();
-      }
-    }
-    const handleUpdateNote = () => {
-      setVisibleModal(true);
+  const handleDeleteNote = () => {
+    if (dispatch) {
+      dispatch(actionDeleteNote(idNote));
       handleCloseMenu();
     }
-
+  };
+  const handleUpdateNote = () => {
+    setVisibleModal(true);
+    handleCloseMenu();
+  };
 
   return (
     <>
@@ -56,7 +54,11 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
           </TouchableWithoutFeedback>
         </MenuOption>
       )}
-      <CreateNoteModal visible={visibleModal} setVisible={setVisibleModal} idNote={idNote}/>
+      <CreateNoteModal
+        visible={visibleModal}
+        setVisible={setVisibleModal}
+        idNote={idNote}
+      />
     </>
   );
 }

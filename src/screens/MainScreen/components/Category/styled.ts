@@ -71,4 +71,4 @@ export const DeleteIconWrapper = styled.TouchableOpacity`
   top: 0px;
   width: 30px;
   height: 30px;
-`
+`;

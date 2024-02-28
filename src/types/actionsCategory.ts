@@ -1,4 +1,4 @@
-import { ICategory } from './category';
+import {ICategory} from './category';
 
 export enum CategoriesActionTypes {
   ADD_CATEGORY = 'ADD_CATEGORY',
@@ -13,7 +13,4 @@ export interface deleteCategoryAction {
   payload: string;
 }
 
-
-export type ICategoryAction =
-  addCategoryAction |
-  deleteCategoryAction ;
+export type ICategoryAction = addCategoryAction | deleteCategoryAction;

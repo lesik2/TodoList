@@ -7,7 +7,6 @@ export const ContentView = styled.View`
   justify-content: center;
 `;
 
-
 export const Title = styled.Text`
   ${({theme}) => css`
     font-size: 22px;

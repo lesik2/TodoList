@@ -2,14 +2,12 @@ import {Title, ContentView} from './styled';
 import {CustomModal} from '@ui/CustomModal';
 import {StyleSheet} from 'react-native';
 
-
 export interface IModalPermission {
   title: string;
-  onHandleSuccess: ()=>void;
+  onHandleSuccess: () => void;
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 
 export function ModalPermission({
   title,
@@ -17,8 +15,6 @@ export function ModalPermission({
   modalVisible,
   setModalVisible,
 }: IModalPermission) {
-
-
   const handleCloseModal = () => {
     setModalVisible(false);
   };
@@ -26,7 +22,6 @@ export function ModalPermission({
   const handleSuccessCloseModal = () => {
     onHandleSuccess();
     handleCloseModal();
- 
   };
 
   return (

@@ -23,7 +23,6 @@ export const actionUpdateStatusNote = (id: string): updateStatusNoteAction => {
   };
 };
 
-
 export const actionDeleteNote = (id: string): deleteNoteAction => {
   return {
     type: NotesActionTypes.DELETE_NOTE,
@@ -38,20 +37,24 @@ export const actionUpdateNote = (note: INote): updateNoteAction => {
   };
 };
 
-export const actionSetNotes = (notes: INote[]): setNotesAction=> {
+export const actionSetNotes = (notes: INote[]): setNotesAction => {
   return {
     type: NotesActionTypes.SET_NOTES,
     payload: notes,
   };
 };
-export const actionUpdateStatusSubnoteNote = ({idNote, subnote}:{idNote: string, subnote: ISubNote}): updateStatusSubnoteAction => {
+export const actionUpdateStatusSubnoteNote = ({
+  idNote,
+  subnote,
+}: {
+  idNote: string;
+  subnote: ISubNote;
+}): updateStatusSubnoteAction => {
   return {
     type: NotesActionTypes.UPDATE_STATUS_SUBNOTE,
     payload: {
       idNote,
-      subnote
+      subnote,
     },
   };
 };
-
-

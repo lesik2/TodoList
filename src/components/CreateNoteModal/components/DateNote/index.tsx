@@ -1,4 +1,3 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   ChooseDateWrapper,
   ContentView,
@@ -11,12 +10,9 @@ import {
 import {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 import {Pressable, StyleSheet} from 'react-native';
-import { INoteModal } from '../../types';
-
-
+import {INoteModal} from '../../types';
 
 export function DateNote({newNote, setNewNote}: INoteModal) {
-
   const {title, text, date} = newNote;
   const dateObj = new Date(date);
   const [open, setOpen] = useState(false);
@@ -59,6 +55,7 @@ export function DateNote({newNote, setNewNote}: INoteModal) {
         date={dateObj}
         confirmText="Ok"
         onConfirm={handleChooseDate}
+        minimumDate={new Date()}
         onCancel={handleCloseModal}
       />
     </ContentView>

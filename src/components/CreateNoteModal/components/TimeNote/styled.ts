@@ -39,6 +39,7 @@ export const TimeWrapper = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   gap: 25px;
+  position: relative;
 `;
 export const StyledButton = styled.Pressable`
   position: absolute;

@@ -3,8 +3,8 @@ import {useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
 import {StyleSheet, View} from 'react-native';
 import {CustomInput} from '@ui/CustomInput/styled';
-import { categorySchema } from '@validate/category';
-import { ErrorMessage } from '@ui/ErrorMessage/styled';
+import {categorySchema} from '@validate/category';
+import {ErrorMessage} from '@ui/ErrorMessage/styled';
 
 export interface IAddCategory {
   addNewCategory: (nameOfCategory: string) => void;
@@ -16,7 +16,6 @@ export function AddCategory({
   modalVisible,
   setModalVisible,
 }: IAddCategory) {
-
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
 
@@ -30,15 +29,15 @@ export function AddCategory({
   };
 
   const handleSuccessCloseModal = async () => {
-    const newCategory = { name: input };
-  
+    const newCategory = {name: input};
+
     try {
       await categorySchema.validate(newCategory);
     } catch (error) {
       setError(true);
       return;
     }
-    addNewCategory(input);
+    addNewCategory(input.trim());
     handleCloseModal();
     setInput('');
   };
@@ -60,9 +59,7 @@ export function AddCategory({
             value={input}
             onChangeText={handleTextInput}
           />
-          {error && <ErrorMessage>
-            Please, fill in category name
-          </ErrorMessage>}
+          {error && <ErrorMessage>Please, fill in category name</ErrorMessage>}
         </WrapperInput>
       </ContentView>
     </CustomModal>

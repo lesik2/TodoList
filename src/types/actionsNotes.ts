@@ -6,7 +6,7 @@ export enum NotesActionTypes {
   DELETE_NOTE = 'DELETE_NOTE',
   SET_NOTES = 'SET_NOTES',
   UPDATE_STATUS_NOTE = 'UPDATE_STATUS_NOTE',
-  UPDATE_STATUS_SUBNOTE = 'UPDATE_STATUS_SUBNOTE'
+  UPDATE_STATUS_SUBNOTE = 'UPDATE_STATUS_SUBNOTE',
 }
 export interface addNoteAction {
   type: NotesActionTypes.ADD_NOTE;
@@ -26,7 +26,7 @@ export interface setNotesAction {
 }
 export interface updateStatusSubnoteAction {
   type: NotesActionTypes.UPDATE_STATUS_SUBNOTE;
-  payload:  {
+  payload: {
     idNote: string;
     subnote: ISubNote;
   };
@@ -37,12 +37,10 @@ export interface updateStatusNoteAction {
   payload: string;
 }
 
-
 export type INoteAction =
-  addNoteAction |
-  deleteNoteAction |
-  updateNoteAction |
-  setNotesAction |
-  updateStatusNoteAction |
-  updateStatusSubnoteAction
-;
+  | addNoteAction
+  | deleteNoteAction
+  | updateNoteAction
+  | setNotesAction
+  | updateStatusNoteAction
+  | updateStatusSubnoteAction;

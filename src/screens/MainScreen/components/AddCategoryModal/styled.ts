@@ -14,8 +14,7 @@ export const ContentView = styled.View`
 export const WrapperInput = styled.View`
   position: relative;
   width: 95%;
-`
-
+`;
 
 export const Title = styled.Text`
   ${({theme}) => css`

@@ -1,4 +1,3 @@
-
 import {
   AllNotesView,
   CheckBox,
@@ -19,9 +18,12 @@ import {Menu} from './components/Menu';
 import {Pressable, StyleSheet} from 'react-native';
 import {INote, ISubNote} from '@customTypes/note';
 import {getTime} from '@utils/getTime';
-import { SubTask } from '../SubTask';
-import { NotesDispatchContext } from '@context/contextProvider';
-import { actionUpdateStatusNote, actionUpdateStatusSubnoteNote } from '@context/actionCreatorsNotes';
+import {SubTask} from '../SubTask';
+import {NotesDispatchContext} from '@context/contextProvider';
+import {
+  actionUpdateStatusNote,
+  actionUpdateStatusSubnoteNote,
+} from '@context/actionCreatorsNotes';
 
 export function Note({
   id,
@@ -37,8 +39,8 @@ export function Note({
   const [showSubTasks, setShowSubTasks] = useState(false);
 
   const handleCheck = () => {
-    if(dispatch){
-      dispatch(actionUpdateStatusNote(id))
+    if (dispatch) {
+      dispatch(actionUpdateStatusNote(id));
     }
   };
 
@@ -53,16 +55,15 @@ export function Note({
     setShowSubTasks(!showSubTasks);
   };
 
-
   const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
-
-    if(dispatch){
-      dispatch(actionUpdateStatusSubnoteNote({
+    if (dispatch) {
+      dispatch(
+        actionUpdateStatusSubnoteNote({
           idNote: id,
-          subnote: updatedSubtask
-      }))
+          subnote: updatedSubtask,
+        }),
+      );
     }
-
   };
 
   return (
@@ -76,9 +77,7 @@ export function Note({
             </TimeWrapper>
             <MainWrapper>
               <CheckBox onPress={handleCheck} activeOpacity={1}>
-                {checked && (
-                  <Icon name="check" size={27} color="#8785F6" />
-                )}
+                {checked && <Icon name="check" size={27} color="#8785F6" />}
               </CheckBox>
               <InfoWrapper>
                 <Title>{title}</Title>
@@ -89,13 +88,17 @@ export function Note({
           <OptionButton onPress={handleOpenMenu}>
             <Icon name="ellipsis-v" size={26} color="#CCCCCC" />
           </OptionButton>
-          <Menu visible={visible} handleCloseMenu={handleCloseMenu} idNote={id} />
+          <Menu
+            visible={visible}
+            handleCloseMenu={handleCloseMenu}
+            idNote={id}
+          />
         </NoteView>
       </Pressable>
       {showSubTasks && subNotes.length > 0 && (
         <SubTaskWrapper>
           {subNotes.map(subtask => (
-            <SubTask 
+            <SubTask
               name={subtask.text}
               id={subtask.id}
               key={subtask.id}
@@ -116,5 +119,4 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
   },
-
 });

@@ -1,4 +1,3 @@
-
 import {LayoutView, MainView} from './styled';
 import {Header} from './components/Header';
 import {BackStyle} from '@ui/BackStyle';
@@ -6,11 +5,14 @@ import {CurrentDay} from './components/CurrentDay';
 import {SearchInput} from './components/SearchInput';
 import {Filter} from './components/Filter';
 import {Categories} from './components/Categories';
-import {NotesContext, NotesDispatchContext, NotesProvider} from '@context/contextProvider';
+import {
+  NotesContext,
+  NotesDispatchContext,
+  NotesProvider,
+} from '@context/contextProvider';
 import {useContext, useEffect, useState} from 'react';
 import {getNoteById, removeData, saveNote} from '../../api/notes';
-import { actionSetNotes } from '@context/actionCreatorsNotes';
-
+import {actionSetNotes} from '@context/actionCreatorsNotes';
 
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
@@ -30,7 +32,6 @@ export function MainScreen() {
   useEffect(() => {
     const saveNotes = async () => {
       try {
-
         await saveNote(notes);
       } catch (error) {
         console.log(error);
@@ -46,8 +47,11 @@ export function MainScreen() {
         <Header />
         <CurrentDay />
         <SearchInput />
-        <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
-        <Categories  selectedFilter={selectedFilter}/>
+        <Filter
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
+        />
+        <Categories selectedFilter={selectedFilter} />
       </LayoutView>
     </MainView>
   );

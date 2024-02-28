@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 
 export const Wrapper = styled.View`
   position: relative;
-  width: 95%;
+  width: 100%;
 `;
 
 export const WrapperButton = styled.View`

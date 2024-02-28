@@ -3,15 +3,12 @@ import {filters} from './config';
 import {useState} from 'react';
 import {StyleSheet} from 'react-native';
 
-
-export interface IFilter{
+export interface IFilter {
   selectedFilter: string;
   setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function Filter({selectedFilter, setSelectedFilter}:IFilter) {
-
-
+export function Filter({selectedFilter, setSelectedFilter}: IFilter) {
   const handlePressSelectedFilter = (filter: string) => () => {
     setSelectedFilter(selectedFilter === filter ? '' : filter);
   };

@@ -1,5 +1,5 @@
-import { INoteAction, NotesActionTypes } from "../types/actionsNotes";
-import { INote } from "../types/note";
+import {INoteAction, NotesActionTypes} from '../types/actionsNotes';
+import {INote} from '../types/note';
 
 export function notesReducer(notes: INote[], action: INoteAction) {
   switch (action.type) {
@@ -11,8 +11,7 @@ export function notesReducer(notes: INote[], action: INoteAction) {
         if (note.id === action.payload.id) {
           return action.payload;
         }
-          return note;
-
+        return note;
       });
     }
     case NotesActionTypes.DELETE_NOTE: {
@@ -36,14 +35,13 @@ export function notesReducer(notes: INote[], action: INoteAction) {
       });
     }
     case NotesActionTypes.UPDATE_STATUS_SUBNOTE: {
-
       const {idNote, subnote} = action.payload;
-      const newNotes =  notes.map(note => {
+      const newNotes = notes.map(note => {
         if (note.id === idNote) {
           return {
             ...note,
             subNotes: note.subNotes.map(item => {
-              if(item.id === subnote.id){
+              if (item.id === subnote.id) {
                 return subnote;
               }
               return item;
@@ -52,13 +50,16 @@ export function notesReducer(notes: INote[], action: INoteAction) {
         }
         return note;
       });
-      const isChecked = newNotes.find((note)=>note.id === idNote)?.subNotes.every((item)=>item.checked)?? false;
-      return newNotes.map((note)=>{
+      const isChecked =
+        newNotes
+          .find(note => note.id === idNote)
+          ?.subNotes.every(item => item.checked) ?? false;
+      return newNotes.map(note => {
         if (note.id === idNote) {
           return {...note, checked: isChecked};
         }
         return note;
-      })
+      });
     }
     default: {
       throw Error('Unknown action');

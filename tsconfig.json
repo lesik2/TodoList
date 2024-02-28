@@ -15,7 +15,7 @@
       "@ui/*": ["src/ui/*"],
       "@api/*": ["src/api/*"],
       "@context/*": ["src/context/*"],
-      "@validate/*": ["src/validate/*"],
+      "@validate/*": ["src/validate/*"]
     }
   },
   "include": ["src/**/*"]

@@ -20,6 +20,12 @@ export const InputsWrapper = styled.View`
   gap: 20px;
   width: 100%;
 `;
+
+export const WrapperInput = styled.View`
+  position: relative;
+  width: 95%;
+`;
+
 export const InputTitle = styled(CustomInput)`
   ${({theme}) => css``}
 `;
