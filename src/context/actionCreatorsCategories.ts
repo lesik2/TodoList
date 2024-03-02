@@ -6,11 +6,11 @@ import {
 import {ICategory} from '../types/category';
 
 export const actionAddCategory = (
-  newCategory: ICategory,
+  newCategories: ICategory[],
 ): addCategoryAction => {
   return {
     type: CategoriesActionTypes.ADD_CATEGORY,
-    payload: newCategory,
+    payload: newCategories,
   };
 };
 

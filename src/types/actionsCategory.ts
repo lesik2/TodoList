@@ -6,7 +6,7 @@ export enum CategoriesActionTypes {
 }
 export interface addCategoryAction {
   type: CategoriesActionTypes.ADD_CATEGORY;
-  payload: ICategory;
+  payload: ICategory[];
 }
 export interface deleteCategoryAction {
   type: CategoriesActionTypes.DELETE_CATEGORY;

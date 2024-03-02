@@ -11,13 +11,19 @@ export const MainView = styled.View`
 `;
 export const LayoutView = styled.View`
   ${({theme}) => css`
-    width: 100%;
-    height: 100%;
     padding: 0px 16px 0px 16px;
+    height: 100%;
+    width: 100%;
     z-index: 3;
     flex-direction: column;
     align-items: center;
   `}
+`;
+export const TouchableWrapper = styled.TouchableOpacity`
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 export const WrapperNotes = styled.View`
   height: 54%;

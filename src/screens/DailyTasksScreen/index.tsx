@@ -1,4 +1,10 @@
-import {LayoutView, MainView, WrapperButton, WrapperNotes} from './styled';
+import {
+  LayoutView,
+  MainView,
+  TouchableWrapper,
+  WrapperButton,
+  WrapperNotes,
+} from './styled';
 import {BackStyle} from '@ui/BackStyle';
 import {Header} from '@components/Header';
 import {AddNoteButton} from '@ui/AddNoteButton';
@@ -12,7 +18,6 @@ import {StyleSheet} from 'react-native';
 
 export function DailyTasksScreen() {
   const [visible, setVisible] = useState(false);
-
   const today = new Date().toISOString().split('T')[0];
 
   const notes = useContext(NotesContext);
@@ -26,7 +31,7 @@ export function DailyTasksScreen() {
     <MainView>
       <BackStyle type="apple" />
       <LayoutView>
-        <Header title="Today’s task" />
+        <Header title="Today’s tasks" />
         <WrapperNotes>
           <ScrollView contentContainerStyle={styles.scrollStyle}>
             {dailyNotes.length > 0 &&

@@ -11,29 +11,39 @@ import {
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useContext, useState} from 'react';
-import {CategoriesDispatchContext} from '@context/contextProvider';
+import {
+  CategoriesContext,
+  CategoriesDispatchContext,
+} from '@context/contextProvider';
 import {actionDeleteCategory} from '@context/actionCreatorsCategories';
 import {ModalPermission} from '@ui/ModalPermission';
+import {INote} from '@customTypes/note';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '@customTypes/navigation';
+import {saveCategory} from '@api/categories';
 
 export interface ICategoryComponent {
   id: string;
   iconName: string;
   name?: string;
-  numberOfNotes?: number;
   backgroundColor?: string;
   handleOpenModal: () => void;
+  notes: INote[];
 }
 export function Category({
   id,
   iconName,
   name,
-  numberOfNotes,
+  notes,
   backgroundColor,
   handleOpenModal,
 }: ICategoryComponent) {
   const [showDeleteIcon, setShowDeleteIcon] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useContext(CategoriesDispatchContext);
+  const navigation = useNavigation<NavigationProps>();
+
+  const categories = useContext(CategoriesContext);
 
   const handleShowDeleteIcon = () => {
     const defaultCategoryIds = ['1', '2', '3', '4', '5'];
@@ -47,10 +57,17 @@ export function Category({
   const handleOpenPermissionModal = () => {
     setShowModal(true);
   };
-  const handleDeleteCategory = () => {
+  const handleDeleteCategory = async () => {
     if (dispatch) {
+      if (categories.length === 7) {
+        await saveCategory([]);
+      }
       dispatch(actionDeleteCategory(id));
     }
+  };
+
+  const handleNavigateToCategoryPage = () => {
+    navigation.navigate('CategoryScreen', {title: name!, notes: notes});
   };
 
   return (
@@ -60,7 +77,7 @@ export function Category({
           <StyledButton
             $background={backgroundColor}
             onLongPress={handleShowDeleteIcon}
-            onPress={() => console.log('hi!')}
+            onPress={handleNavigateToCategoryPage}
             underlayColor="#DBDFFD"
             activeOpacity={1}>
             <ContentWrapper>
@@ -68,7 +85,7 @@ export function Category({
               <Title>{name}</Title>
             </ContentWrapper>
           </StyledButton>
-          <NumberOfNotesText>{numberOfNotes}</NumberOfNotesText>
+          <NumberOfNotesText>{notes.length}</NumberOfNotesText>
           {showDeleteIcon && (
             <DeleteIconWrapper onPress={handleOpenPermissionModal}>
               <Icon name="times" size={25} color="#888888" />

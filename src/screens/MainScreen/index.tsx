@@ -6,24 +6,31 @@ import {SearchInput} from './components/SearchInput';
 import {Filter} from './components/Filter';
 import {Categories} from './components/Categories';
 import {
+  CategoriesContext,
+  CategoriesDispatchContext,
   NotesContext,
   NotesDispatchContext,
-  NotesProvider,
 } from '@context/contextProvider';
 import {useContext, useEffect, useState} from 'react';
-import {getNoteById, removeData, saveNote} from '../../api/notes';
+import {getNoteById, saveNote} from '../../api/notes';
 import {actionSetNotes} from '@context/actionCreatorsNotes';
+import {getCategoryById, saveCategory} from '@api/categories';
+import {actionAddCategory} from '@context/actionCreatorsCategories';
 
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
+  const dispatchCategory = useContext(CategoriesDispatchContext);
   const notes = useContext(NotesContext);
+  const categories = useContext(CategoriesContext);
   const [selectedFilter, setSelectedFilter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const fetchedNotes = await getNoteById();
-      if (dispatch) {
+      const fetchedCategories = await getCategoryById();
+      if (dispatch && dispatchCategory) {
         dispatch(actionSetNotes(fetchedNotes));
+        dispatchCategory(actionAddCategory(fetchedCategories));
       }
     };
     fetchData();
@@ -32,6 +39,7 @@ export function MainScreen() {
   useEffect(() => {
     const saveNotes = async () => {
       try {
+        console.log(notes);
         await saveNote(notes);
       } catch (error) {
         console.log(error);
@@ -39,6 +47,19 @@ export function MainScreen() {
     };
     saveNotes();
   }, [notes]);
+
+  useEffect(() => {
+    const saveCategories = async () => {
+      try {
+        await saveCategory(categories.slice(5, categories.length - 1));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (categories.length > 6) {
+      saveCategories();
+    }
+  }, [categories]);
 
   return (
     <MainView>

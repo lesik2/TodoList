@@ -1,10 +1,11 @@
 import {Title, ContentView, WrapperInput} from './styled';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
 import {StyleSheet, View} from 'react-native';
 import {CustomInput} from '@ui/CustomInput/styled';
 import {categorySchema} from '@validate/category';
 import {ErrorMessage} from '@ui/ErrorMessage/styled';
+import {CategoriesContext} from '@context/contextProvider';
 
 export interface IAddCategory {
   addNewCategory: (nameOfCategory: string) => void;
@@ -17,11 +18,11 @@ export function AddCategory({
   setModalVisible,
 }: IAddCategory) {
   const [input, setInput] = useState('');
-  const [error, setError] = useState(false);
-
+  const [error, setError] = useState('');
+  const categories = useContext(CategoriesContext);
   const handleTextInput = (text: string) => {
     setInput(text);
-    setError(false);
+    setError('');
   };
 
   const handleCloseModal = () => {
@@ -29,12 +30,21 @@ export function AddCategory({
   };
 
   const handleSuccessCloseModal = async () => {
-    const newCategory = {name: input};
+    const newCategory = {name: input.trim()};
 
     try {
       await categorySchema.validate(newCategory);
+      if (
+        categories
+          .map(category => category.name?.toLowerCase())
+          .includes(newCategory.name.toLowerCase())
+      ) {
+        throw new Error('Category should be unique');
+      }
     } catch (error) {
-      setError(true);
+      if (error instanceof Error) {
+        setError(error.message);
+      }
       return;
     }
     addNewCategory(input.trim());
@@ -59,7 +69,7 @@ export function AddCategory({
             value={input}
             onChangeText={handleTextInput}
           />
-          {error && <ErrorMessage>Please, fill in category name</ErrorMessage>}
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </WrapperInput>
       </ContentView>
     </CustomModal>

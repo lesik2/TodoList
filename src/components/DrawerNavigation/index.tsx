@@ -6,8 +6,10 @@ import {ImportantTasksScreen} from '@screens/ImportantTasksScreen';
 import {DrawerMenu} from '../DrawerMenu';
 
 import {NotesProvider} from '@context/contextProvider';
+import {CategoryScreen} from '@screens/CategoryScreen';
+import {RootStackParamList} from '@customTypes/navigation';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RootStackParamList>();
 
 export function DrawerNavigation() {
   return (
@@ -23,6 +25,7 @@ export function DrawerNavigation() {
         <Drawer.Screen name="DoneTasksScreen" component={DoneTasksScreen} />
         <Drawer.Screen name="DailyTasksScreen" component={DailyTasksScreen} />
         <Drawer.Screen name="MainScreen" component={MainScreen} />
+        <Drawer.Screen name="CategoryScreen" component={CategoryScreen} />
       </Drawer.Navigator>
     </NotesProvider>
   );

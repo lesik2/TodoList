@@ -43,7 +43,7 @@ export function Categories({selectedFilter}: ICategories) {
       backgroundColor: generateRandomColor(),
     };
     if (dispatch) {
-      dispatch(actionAddCategory(newCategory));
+      dispatch(actionAddCategory([newCategory]));
     }
   };
 
@@ -57,8 +57,10 @@ export function Categories({selectedFilter}: ICategories) {
         );
 
       case 'Week':
+        const currentDayOfWeek = currentDate.getDay();
+        const daysUntilEndOfWeek = 6 - currentDayOfWeek;
         const weekEndDate = new Date(
-          currentDate.getTime() + 7 * 24 * 60 * 60 * 1000,
+          currentDate.getTime() + daysUntilEndOfWeek * 24 * 60 * 60 * 1000,
         );
         return notes.filter(note => {
           const noteDate = new Date(note.date);
@@ -68,11 +70,12 @@ export function Categories({selectedFilter}: ICategories) {
         const monthEndDate = new Date(
           currentDate.getFullYear(),
           currentDate.getMonth() + 1,
-          0,
+          1,
         );
         return notes.filter(note => {
           const noteDate = new Date(note.date);
-          return noteDate >= currentDate && noteDate <= monthEndDate;
+          console.log(noteDate.getTime());
+          return noteDate >= currentDate && noteDate < monthEndDate;
         });
       default:
         return notes;
@@ -121,9 +124,7 @@ export function Categories({selectedFilter}: ICategories) {
             key={item.id}
             {...item}
             handleOpenModal={handleOpenModal}
-            numberOfNotes={
-              filteredNotes.filter(note => note.category === item.name).length
-            }
+            notes={filteredNotes.filter(note => note.category === item.name)}
           />
         )}
         contentContainerStyle={{gap: 16}}

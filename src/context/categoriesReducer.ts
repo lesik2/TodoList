@@ -10,7 +10,7 @@ export function categoriesReducer(
     case CategoriesActionTypes.ADD_CATEGORY: {
       return [
         ...categories.slice(0, categories.length - 1),
-        action.payload,
+        ...action.payload,
         categories[categories.length - 1],
       ];
     }
