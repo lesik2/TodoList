@@ -15,6 +15,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {Note} from '@ui/Note';
 import {NotesContext} from '@context/contextProvider';
 import {StyleSheet} from 'react-native';
+import { CompletedNotes } from '@components/CompletedNotes';
 
 export function DailyTasksScreen() {
   const [visible, setVisible] = useState(false);
@@ -35,13 +36,14 @@ export function DailyTasksScreen() {
         <WrapperNotes>
           <ScrollView contentContainerStyle={styles.scrollStyle}>
             {dailyNotes.length > 0 &&
-              dailyNotes.map(note => <Note key={note.id} {...note} />)}
+              dailyNotes.map(note => <Note key={note.id} {...note} />)
+            }
           </ScrollView>
         </WrapperNotes>
         <WrapperButton>
           <AddNoteButton handlePress={handleOpenModal} />
         </WrapperButton>
-
+        <CompletedNotes completedNotes={notes.filter((note)=>note.checked)}/>
         <CreateNoteModal visible={visible} setVisible={setVisible} />
       </LayoutView>
     </MainView>
