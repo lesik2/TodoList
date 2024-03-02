@@ -21,6 +21,7 @@ export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
   const dispatchCategory = useContext(CategoriesDispatchContext);
   const notes = useContext(NotesContext);
+  const [filteredNotes, setFilteredNotes] = useState(notes);
   const categories = useContext(CategoriesContext);
   const [selectedFilter, setSelectedFilter] = useState('');
 
@@ -67,12 +68,16 @@ export function MainScreen() {
       <LayoutView>
         <Header />
         <CurrentDay />
-        <SearchInput />
+        <SearchInput filteredNotes={filteredNotes} />
         <Filter
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
         />
-        <Categories selectedFilter={selectedFilter} />
+        <Categories
+          selectedFilter={selectedFilter}
+          filteredNotes={filteredNotes}
+          setFilteredNotes={setFilteredNotes}
+        />
       </LayoutView>
     </MainView>
   );

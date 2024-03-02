@@ -17,16 +17,20 @@ import {v4 as uuidv4} from 'uuid';
 
 export interface ICategories {
   selectedFilter: string;
+  filteredNotes: INote[];
+  setFilteredNotes: React.Dispatch<React.SetStateAction<INote[]>>;
 }
 
-export function Categories({selectedFilter}: ICategories) {
+export function Categories({
+  selectedFilter,
+  filteredNotes,
+  setFilteredNotes,
+}: ICategories) {
   const categories = useContext(CategoriesContext);
   const notes = useContext(NotesContext);
   const dispatch = useContext(CategoriesDispatchContext);
 
   const [filteredCategories, setFilteredCategories] = useState(categories);
-
-  const [filteredNotes, setFilteredNotes] = useState(notes);
 
   const [modalVisible, setModalVisible] = useState(false);
 

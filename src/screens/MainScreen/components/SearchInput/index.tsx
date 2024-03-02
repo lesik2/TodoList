@@ -2,17 +2,41 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {InputView, StyledButton, StyledInput} from './styled';
 import {useState} from 'react';
 import {StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '@customTypes/navigation';
+import {INote} from '@customTypes/note';
 
-export function SearchInput() {
+export interface ISearchInput {
+  filteredNotes: INote[];
+}
+
+export function SearchInput({filteredNotes}: ISearchInput) {
   const [searchValue, setSearchValue] = useState('');
+  const navigation = useNavigation<NavigationProps>();
 
   const handleSearchText = (text: string) => {
     setSearchValue(text);
   };
 
+  const handleSearch = () => {
+    if (searchValue === '') return;
+    const noteNoteFind = filteredNotes.find(note =>
+      note.title.toLowerCase().startsWith(searchValue.toLowerCase()),
+    );
+    if (noteNoteFind) {
+      navigation.navigate('CategoryScreen', {
+        title: noteNoteFind.category,
+        notes: filteredNotes.filter(
+          note => note.category === noteNoteFind.category,
+        ),
+      });
+    }
+    setSearchValue('');
+  };
+
   return (
     <InputView style={styles.boxShadow}>
-      <StyledButton>
+      <StyledButton onPress={handleSearch}>
         <Icon name="search" size={28} />
       </StyledButton>
       <StyledInput
