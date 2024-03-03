@@ -1,10 +1,11 @@
+import {memo} from 'react';
 import {LargeCircle, SmallCircle, WrapperCircles, WrapperView} from './styled';
 
 export interface IBackStyle {
   type: 'circle' | 'apple';
 }
 
-export function BackStyle({type}: IBackStyle) {
+export function BackStyleComponent({type}: IBackStyle) {
   return (
     <WrapperView>
       <WrapperCircles>
@@ -26,3 +27,5 @@ export function BackStyle({type}: IBackStyle) {
     </WrapperView>
   );
 }
+
+export const BackStyle = memo(BackStyleComponent);

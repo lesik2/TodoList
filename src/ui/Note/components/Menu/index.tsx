@@ -4,7 +4,7 @@ import {Pressable, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {NotesDispatchContext} from '@context/contextProvider';
 import {actionDeleteNote} from '@context/actionCreatorsNotes';
 import {CreateNoteModal} from '@components/CreateNoteModal';
-import { ModalPermission } from '@ui/ModalPermission';
+import {ModalPermission} from '@ui/ModalPermission';
 
 export interface IMenu {
   idNote: string;
@@ -23,10 +23,10 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
     }
   };
 
-  const handleOpenPermissionModal = ()=>{
+  const handleOpenPermissionModal = () => {
     setShowModalPermission(true);
     handleCloseMenu();
-  }
+  };
   const handleUpdateNote = () => {
     setVisibleModal(true);
     handleCloseMenu();
@@ -57,7 +57,7 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
       <ModalPermission
         modalVisible={showModalPermission}
         setModalVisible={setShowModalPermission}
-        title='Are you sure that you want to delete note?'
+        title="Are you sure that you want to delete note?"
         onHandleSuccess={handleDeleteNote}
       />
       <CreateNoteModal

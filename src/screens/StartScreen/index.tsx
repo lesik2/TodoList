@@ -16,7 +16,7 @@ export interface IStartScreen {
 export function StartScreen({navigation}: IStartScreen) {
   const {title, subtitle, button} = config;
 
-  const handlePress = async() => {
+  const handlePress = async () => {
     navigation.navigate('DrawerNavigation');
   };
 

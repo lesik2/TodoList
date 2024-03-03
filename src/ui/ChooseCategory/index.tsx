@@ -8,7 +8,7 @@ import {
   Wrapper,
   WrapperButton,
 } from './styled';
-import {useContext, useState} from 'react';
+import {memo, useContext, useState} from 'react';
 import {
   Gesture,
   GestureDetector,
@@ -29,7 +29,7 @@ export interface IChooseCategory {
   setError: React.Dispatch<React.SetStateAction<string>> | undefined;
 }
 
-export function ChooseCategory({
+function ChooseCategoryComponent({
   newNote,
   setNewNote,
   setError,
@@ -114,3 +114,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 });
+
+export const ChooseCategory = memo(ChooseCategoryComponent);

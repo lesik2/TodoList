@@ -1,4 +1,3 @@
-import {CustomModal} from '@ui/CustomModal';
 import {
   ContentView,
   InputText,

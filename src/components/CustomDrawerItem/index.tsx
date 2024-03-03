@@ -2,6 +2,7 @@ import {RootStackParamList} from '@customTypes/navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {MenuItemButton, StyledText, WrapperView} from './styled';
 import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
+import {memo} from 'react';
 
 export interface IDrawerItem {
   iconName: string;
@@ -10,7 +11,7 @@ export interface IDrawerItem {
   navigation: DrawerNavigationHelpers;
 }
 
-export const CustomDrawerItem = ({
+const CustomDrawerItemComponent = ({
   navigation,
   iconName,
   name,
@@ -32,3 +33,5 @@ export const CustomDrawerItem = ({
     </MenuItemButton>
   );
 };
+
+export const CustomDrawerItem = memo(CustomDrawerItemComponent);

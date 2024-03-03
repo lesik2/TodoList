@@ -1,5 +1,4 @@
-import React from 'react';
-import {SvgProps} from 'react-native-svg';
+import React, {memo} from 'react';
 import {StyledButton} from './styled';
 
 export interface IIConButton {
@@ -7,7 +6,7 @@ export interface IIConButton {
   handlePress: () => void;
   children: React.ReactNode;
 }
-export function IconButton({
+function IconButtonComponent({
   handlePress,
   children,
   hoverColor = '#DBDFFD',
@@ -21,3 +20,5 @@ export function IconButton({
     </StyledButton>
   );
 }
+
+export const IconButton = memo(IconButtonComponent);

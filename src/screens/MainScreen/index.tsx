@@ -16,11 +16,9 @@ import {getNoteById, saveNote} from '../../api/notes';
 import {actionSetNotes} from '@context/actionCreatorsNotes';
 import {getCategoryById, saveCategory} from '@api/categories';
 import {actionAddCategory} from '@context/actionCreatorsCategories';
-import notifee, { EventType } from '@notifee/react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationProps } from '@customTypes/navigation';
-
-
+import notifee, {EventType} from '@notifee/react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from '@customTypes/navigation';
 
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
@@ -46,7 +44,6 @@ export function MainScreen() {
   useEffect(() => {
     const saveNotes = async () => {
       try {
-        console.log(notes);
         await saveNote(notes);
       } catch (error) {
         console.log(error);
@@ -68,9 +65,8 @@ export function MainScreen() {
     }
   }, [categories]);
 
-
   useEffect(() => {
-    return notifee.onForegroundEvent(({ type, detail }) => {
+    return notifee.onForegroundEvent(({type, detail}) => {
       switch (type) {
         case EventType.DISMISSED:
           console.log('User dismissed notification', detail.notification);
@@ -82,7 +78,6 @@ export function MainScreen() {
       }
     });
   }, []);
-
 
   return (
     <MainView>

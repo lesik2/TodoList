@@ -2,7 +2,7 @@ import {LayoutView, MainView, WrapperButton, WrapperNotes} from './styled';
 import {BackStyle} from '@ui/BackStyle';
 import {Header} from '@components/Header';
 import {AddNoteButton} from '@ui/AddNoteButton';
-import {useContext, useState} from 'react';
+import {useCallback, useContext, useMemo, useState} from 'react';
 import {CreateNoteModal} from '@components/CreateNoteModal';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -14,11 +14,11 @@ export function DoneTasksScreen() {
   const [visible, setVisible] = useState(false);
 
   const notes = useContext(NotesContext);
-  const doneNotes = notes.filter(note => note.checked);
+  const doneNotes = useMemo(() => notes.filter(note => note.checked), [notes]);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setVisible(true);
-  };
+  }, []);
 
   return (
     <MainView>

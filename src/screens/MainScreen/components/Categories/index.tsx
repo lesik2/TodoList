@@ -2,8 +2,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import {Category} from '../Category';
 import {Wrapper} from './styled';
 import {AddCategory} from '../AddCategoryModal';
-import {useContext, useEffect, useState} from 'react';
-import {generateRandomColor} from '../../../../utils/generateRandomColor';
+import {useCallback, useContext, useEffect, useState} from 'react';
+import {generateRandomColor} from '@utils/generateRandomColor';
 import {
   CategoriesContext,
   CategoriesDispatchContext,
@@ -34,9 +34,9 @@ export function Categories({
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setModalVisible(true);
-  };
+  }, []);
 
   const addNewCategory = (nameOfCategory: string) => {
     const newCategory: ICategory = {

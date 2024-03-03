@@ -1,32 +1,29 @@
-import {
-  LayoutView,
-  MainView,
-  TouchableWrapper,
-  WrapperButton,
-  WrapperNotes,
-} from './styled';
+import {LayoutView, MainView, WrapperButton, WrapperNotes} from './styled';
 import {BackStyle} from '@ui/BackStyle';
 import {Header} from '@components/Header';
 import {AddNoteButton} from '@ui/AddNoteButton';
-import {useContext, useState} from 'react';
+import {useCallback, useContext, useMemo, useState} from 'react';
 import {CreateNoteModal} from '@components/CreateNoteModal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {Note} from '@ui/Note';
 import {NotesContext} from '@context/contextProvider';
 import {StyleSheet} from 'react-native';
-import { CompletedNotes } from '@components/CompletedNotes';
+import {CompletedNotes} from '@components/CompletedNotes';
 
 export function DailyTasksScreen() {
   const [visible, setVisible] = useState(false);
   const today = new Date().toISOString().split('T')[0];
 
   const notes = useContext(NotesContext);
-  const dailyNotes = notes.filter(note => note.date.split('T')[0] === today);
+  const dailyNotes = useMemo(
+    () => notes.filter(note => note.date.split('T')[0] === today),
+    [notes, today],
+  );
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setVisible(true);
-  };
+  }, []);
 
   return (
     <MainView>
@@ -36,14 +33,15 @@ export function DailyTasksScreen() {
         <WrapperNotes>
           <ScrollView contentContainerStyle={styles.scrollStyle}>
             {dailyNotes.length > 0 &&
-              dailyNotes.map(note => <Note key={note.id} {...note} />)
-            }
+              dailyNotes.map(note => <Note key={note.id} {...note} />)}
           </ScrollView>
         </WrapperNotes>
         <WrapperButton>
           <AddNoteButton handlePress={handleOpenModal} />
         </WrapperButton>
-        <CompletedNotes completedNotes={dailyNotes.filter((note)=>note.checked)}/>
+        <CompletedNotes
+          completedNotes={dailyNotes.filter(note => note.checked)}
+        />
         <CreateNoteModal visible={visible} setVisible={setVisible} />
       </LayoutView>
     </MainView>

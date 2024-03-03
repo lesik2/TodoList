@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   NumberOfNotesText,
   Title,
@@ -10,7 +10,7 @@ import {
   DeleteIconWrapper,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useContext, useState} from 'react';
+import {memo, useContext, useState} from 'react';
 import {
   CategoriesContext,
   CategoriesDispatchContext,
@@ -30,7 +30,7 @@ export interface ICategoryComponent {
   handleOpenModal: () => void;
   notes: INote[];
 }
-export function Category({
+function CategoryComponent({
   id,
   iconName,
   name,
@@ -119,3 +119,5 @@ const styles = StyleSheet.create({
     },
   },
 });
+
+export const Category = memo(CategoryComponent);

@@ -1,7 +1,7 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CheckBox, Title} from '../Note/styled';
 import {StyledInput, SubTaskInfoWrapper} from './styled';
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {ISubNote} from '@customTypes/note';
 
 export interface ISubTask {
@@ -12,7 +12,7 @@ export interface ISubTask {
   mode?: 'edit' | 'default';
 }
 
-export function SubTask({
+function SubTaskComponent({
   id,
   name,
   checked,
@@ -56,3 +56,5 @@ export function SubTask({
     </SubTaskInfoWrapper>
   );
 }
+
+export const SubTask = memo(SubTaskComponent);

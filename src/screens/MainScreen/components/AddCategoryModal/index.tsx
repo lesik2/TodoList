@@ -1,5 +1,5 @@
 import {Title, ContentView, WrapperInput} from './styled';
-import {useContext, useState} from 'react';
+import {memo, useContext, useState} from 'react';
 import {CustomModal} from '@ui/CustomModal';
 import {StyleSheet, View} from 'react-native';
 import {CustomInput} from '@ui/CustomInput/styled';
@@ -12,7 +12,7 @@ export interface IAddCategory {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export function AddCategory({
+function AddCategoryComponent({
   addNewCategory,
   modalVisible,
   setModalVisible,
@@ -85,3 +85,5 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 });
+
+export const AddCategory = memo(AddCategoryComponent);

@@ -4,15 +4,16 @@ import {CustomDrawerItem} from '../CustomDrawerItem';
 import {DrawerMenuView, StyledImage} from './styled';
 import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
 import {IconButton} from '@ui/IconButton';
+import {useCallback} from 'react';
 
 export interface IDrawerMenu {
   navigation: DrawerNavigationHelpers;
 }
 export function DrawerMenu({navigation}: IDrawerMenu) {
-  const handlePress = () => {
+  const handlePress = useCallback(() => {
     Vibration.vibrate(70);
     navigation.closeDrawer();
-  };
+  }, []);
 
   return (
     <DrawerMenuView>

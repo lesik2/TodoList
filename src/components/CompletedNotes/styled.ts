@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import {css} from 'styled-components';
 
-
 export const Wrapper = styled.View<{$isOpen?: boolean}>`
   ${({theme, $isOpen}) => css`
     background-color: ${theme.colors.white};
@@ -15,10 +14,9 @@ export const Wrapper = styled.View<{$isOpen?: boolean}>`
     position: absolute;
     left: 16px;
     bottom: 15%;
-    height: ${$isOpen?'75%' : 'auto'};
-
+    height: ${$isOpen ? '75%' : 'auto'};
   `}
-`
+`;
 
 export const Line = styled.View`
   ${({theme}) => css`
@@ -27,14 +25,14 @@ export const Line = styled.View`
     background-color: ${theme.colors.black};
     margin-bottom: 8px;
   `}
-`
+`;
 
 export const WrapperButton = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-`
+`;
 export const Title = styled.Text`
   ${({theme}) => css`
     font-size: 22px;

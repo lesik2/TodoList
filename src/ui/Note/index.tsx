@@ -13,7 +13,7 @@ import {
   Wrapper,
 } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useContext, useState} from 'react';
+import {memo, useCallback, useContext, useState} from 'react';
 import {Menu} from './components/Menu';
 import {Pressable, StyleSheet} from 'react-native';
 import {INote, ISubNote} from '@customTypes/note';
@@ -25,7 +25,7 @@ import {
   actionUpdateStatusSubnoteNote,
 } from '@context/actionCreatorsNotes';
 
-export function Note({
+function NoteComponent({
   id,
   startTime,
   endTime,
@@ -55,7 +55,7 @@ export function Note({
     setShowSubTasks(!showSubTasks);
   };
 
-  const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
+  const handleChangeSubtasks = useCallback((updatedSubtask: ISubNote) => {
     if (dispatch) {
       dispatch(
         actionUpdateStatusSubnoteNote({
@@ -64,7 +64,7 @@ export function Note({
         }),
       );
     }
-  };
+  }, []);
 
   return (
     <AllNotesView style={styles.boxShadow}>
@@ -120,3 +120,5 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
 });
+
+export const Note = memo(NoteComponent);
