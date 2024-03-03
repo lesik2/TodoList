@@ -10,6 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 import {NotesContext, NotesDispatchContext} from '@context/contextProvider';
 import {actionAddNote, actionUpdateNote} from '@context/actionCreatorsNotes';
 import {basicInfoNoteSchema} from '@validate/note';
+import { onCreateTriggerNotification } from '@api/pushNotifications';
 
 export interface ICreateNoteModal {
   visible: boolean;
@@ -98,6 +99,9 @@ export function CreateNoteModal({
         dispatch(actionAddNote(validNote));
       }
 
+      await onCreateTriggerNotification(validNote.title, validNote.date, validNote.startTime, true);
+      await onCreateTriggerNotification(validNote.title, validNote.date, validNote.endTime, false);
+
       setNewNote(emptyNote);
       setError('');
     } else {
@@ -122,11 +126,6 @@ export function CreateNoteModal({
   const handleValidateTime = () => {
     const startDate = new Date(newNote.startTime);
     const endDate = new Date(newNote.endTime);
-    console.log('xnj ,kznm');
-    console.log(endDate);
-    console.log(startDate);
-    console.log(endDate.getTime());
-    console.log(startDate.getTime());
     return endDate <= startDate;
   };
 

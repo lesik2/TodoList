@@ -16,6 +16,11 @@ import {getNoteById, saveNote} from '../../api/notes';
 import {actionSetNotes} from '@context/actionCreatorsNotes';
 import {getCategoryById, saveCategory} from '@api/categories';
 import {actionAddCategory} from '@context/actionCreatorsCategories';
+import notifee, { EventType } from '@notifee/react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@customTypes/navigation';
+
+
 
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
@@ -24,6 +29,7 @@ export function MainScreen() {
   const [filteredNotes, setFilteredNotes] = useState(notes);
   const categories = useContext(CategoriesContext);
   const [selectedFilter, setSelectedFilter] = useState('');
+  const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +67,22 @@ export function MainScreen() {
       saveCategories();
     }
   }, [categories]);
+
+
+  useEffect(() => {
+    return notifee.onForegroundEvent(({ type, detail }) => {
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log('User dismissed notification', detail.notification);
+          break;
+        case EventType.PRESS:
+          console.log('User pressed notification', detail.notification);
+          navigation.navigate('DailyTasksScreen');
+          break;
+      }
+    });
+  }, []);
+
 
   return (
     <MainView>
