@@ -39,12 +39,6 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
           <TouchableWithoutFeedback>
             <MenuItems>
               <Pressable
-                onPress={handleCloseMenu}
-                children={({pressed}) => (
-                  <MenuItemText $pressed={pressed}>add subtasks</MenuItemText>
-                )}
-              />
-              <Pressable
                 onPress={handleUpdateNote}
                 children={({pressed}) => (
                   <MenuItemText $pressed={pressed}>edit tasks</MenuItemText>

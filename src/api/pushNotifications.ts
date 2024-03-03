@@ -17,7 +17,7 @@ export async function setUpNotification() {
 
 
 export async function onCreateTriggerNotification(
-  body: string, date: string, time: string, start: boolean
+ id: string, body: string, date: string, time: string, start: boolean
   ) {
   const startTime = new Date(date);
 
@@ -32,21 +32,33 @@ export async function onCreateTriggerNotification(
 
   const titleNotifee =start?`Task has been started!(${body})`: `The task's time has finished (${body})`;
   const bodyNotifee = start?  `You should hurry to start doing it`:  `Did you manage to finish it?`
+  try{
 
-  await notifee.createTriggerNotification(
-    {
-      title: titleNotifee,
-      body: bodyNotifee,
-      android: {
-        channelId: CHANNEL_ID,
-        smallIcon: 'launch_screen',
-        pressAction: {
-          id: 'default',
+    await notifee.createTriggerNotification(
+      {
+        id: id,
+        title: titleNotifee,
+        body: bodyNotifee,
+        android: {
+          channelId: CHANNEL_ID,
+          smallIcon: 'launch_screen',
+          pressAction: {
+            id: 'default',
+          },
+          timestamp: startTime.getTime(),
+          showTimestamp: true,
         },
-        timestamp: startTime.getTime(),
-        showTimestamp: true,
       },
-    },
-    trigger,
-  );
+      trigger,
+    );
+
+  }catch(error){
+    if(error instanceof Error){
+      console.error(error);
+    }
+  }
+
+}
+export async function cancel(notificationId: string) {
+  await notifee.cancelNotification(notificationId);
 }

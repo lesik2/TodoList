@@ -3,7 +3,7 @@ import {css} from 'styled-components';
 
 export const MenuOption = styled.View`
   ${({theme}) => css`
-    top: 0px;
+    top: 13px;
     right: 11px;
     position: absolute;
     border-radius: 15px;

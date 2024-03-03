@@ -10,7 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 import {NotesContext, NotesDispatchContext} from '@context/contextProvider';
 import {actionAddNote, actionUpdateNote} from '@context/actionCreatorsNotes';
 import {basicInfoNoteSchema} from '@validate/note';
-import { onCreateTriggerNotification } from '@api/pushNotifications';
+import { cancel, onCreateTriggerNotification } from '@api/pushNotifications';
 
 export interface ICreateNoteModal {
   visible: boolean;
@@ -77,7 +77,7 @@ export function CreateNoteModal({
         return;
       }
 
-      const validNote = {
+      let validNote = {
         ...newNote,
         title: newNote.title.trim(),
         text: newNote.text.trim(),
@@ -87,6 +87,8 @@ export function CreateNoteModal({
             return {...subNote, text: subNote.text.trim()};
           }),
       };
+      validNote = {...validNote, checked: validNote.subNotes.every((note)=>note.checked)};
+
 
       handleCloseModal();
       setCurrentModal(0);
@@ -95,12 +97,16 @@ export function CreateNoteModal({
 
       if (idNote !== undefined) {
         dispatch(actionUpdateNote(validNote));
+        await cancel(`${validNote.id}-start`)
+        await cancel(`${validNote.id}-end`)
       } else {
         dispatch(actionAddNote(validNote));
       }
+      if(new Date(validNote.startTime)> new Date()){
+        await onCreateTriggerNotification(`${validNote.id}-start`,validNote.title, validNote.date, validNote.startTime, true);
+        await onCreateTriggerNotification(`${validNote.id}-end`,validNote.title, validNote.date, validNote.endTime, false);
+      }
 
-      await onCreateTriggerNotification(validNote.title, validNote.date, validNote.startTime, true);
-      await onCreateTriggerNotification(validNote.title, validNote.date, validNote.endTime, false);
 
       setNewNote(emptyNote);
       setError('');
