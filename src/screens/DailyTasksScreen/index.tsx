@@ -43,7 +43,7 @@ export function DailyTasksScreen() {
         <WrapperButton>
           <AddNoteButton handlePress={handleOpenModal} />
         </WrapperButton>
-        <CompletedNotes completedNotes={notes.filter((note)=>note.checked)}/>
+        <CompletedNotes completedNotes={dailyNotes.filter((note)=>note.checked)}/>
         <CreateNoteModal visible={visible} setVisible={setVisible} />
       </LayoutView>
     </MainView>

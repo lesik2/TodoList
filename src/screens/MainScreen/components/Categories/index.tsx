@@ -110,6 +110,7 @@ export function Categories({
       setFilteredCategories(categories);
     }
   }, [selectedFilter]);
+
   useEffect(() => {
     setFilteredNotes(notes);
   }, [notes]);

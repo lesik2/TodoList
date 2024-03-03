@@ -4,6 +4,7 @@ import {Pressable, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {NotesDispatchContext} from '@context/contextProvider';
 import {actionDeleteNote} from '@context/actionCreatorsNotes';
 import {CreateNoteModal} from '@components/CreateNoteModal';
+import { ModalPermission } from '@ui/ModalPermission';
 
 export interface IMenu {
   idNote: string;
@@ -13,14 +14,19 @@ export interface IMenu {
 
 export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
   const [visibleModal, setVisibleModal] = useState(false);
+  const [showModalPermission, setShowModalPermission] = useState(false);
   const dispatch = useContext(NotesDispatchContext);
 
   const handleDeleteNote = () => {
     if (dispatch) {
       dispatch(actionDeleteNote(idNote));
-      handleCloseMenu();
     }
   };
+
+  const handleOpenPermissionModal = ()=>{
+    setShowModalPermission(true);
+    handleCloseMenu();
+  }
   const handleUpdateNote = () => {
     setVisibleModal(true);
     handleCloseMenu();
@@ -45,7 +51,7 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
                 )}
               />
               <Pressable
-                onPress={handleDeleteNote}
+                onPress={handleOpenPermissionModal}
                 children={({pressed}) => (
                   <MenuItemText $pressed={pressed}>delete tasks</MenuItemText>
                 )}
@@ -54,6 +60,12 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
           </TouchableWithoutFeedback>
         </MenuOption>
       )}
+      <ModalPermission
+        modalVisible={showModalPermission}
+        setModalVisible={setShowModalPermission}
+        title='Are you sure that you want to delete note?'
+        onHandleSuccess={handleDeleteNote}
+      />
       <CreateNoteModal
         visible={visibleModal}
         setVisible={setVisibleModal}

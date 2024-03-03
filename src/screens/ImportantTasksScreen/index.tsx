@@ -9,6 +9,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {Note} from '@ui/Note';
 import {NotesContext} from '@context/contextProvider';
 import {StyleSheet} from 'react-native';
+import { CompletedNotes } from '@components/CompletedNotes';
 
 export function ImportantTasksScreen() {
   const [visible, setVisible] = useState(false);
@@ -34,7 +35,7 @@ export function ImportantTasksScreen() {
         <WrapperButton>
           <AddNoteButton handlePress={handleOpenModal} />
         </WrapperButton>
-
+        <CompletedNotes completedNotes={importantNotes.filter((note)=>note.checked)}/>
         <CreateNoteModal visible={visible} setVisible={setVisible} />
       </LayoutView>
     </MainView>
