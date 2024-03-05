@@ -1,21 +1,20 @@
 import { BackStyle } from '@ui/BackStyle';
 import { Header } from '@components/Header';
 import { AddNoteButton } from '@ui/AddNoteButton';
-import { useCallback, useContext, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { CreateNoteModal } from '@components/CreateNoteModal';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Note } from '@ui/Note';
-import { NotesContext } from '@context/contextProvider';
 import { StyleSheet } from 'react-native';
 import { CompletedNotes } from '@components/CompletedNotes';
+import { NoteState } from '@constants/noteState';
+import { useGetSelectedNotes } from '@hooks/getSelectedNotes';
 
 import { LayoutView, MainView, WrapperButton, WrapperNotes } from './styled';
-
 export function ImportantTasksScreen() {
   const [visible, setVisible] = useState(false);
 
-  const notes = useContext(NotesContext);
-  const importantNotes = useMemo(() => notes.filter((note) => note.importance), [notes]);
+  const importantNotes = useGetSelectedNotes(NoteState.DONE);
 
   const handleOpenModal = useCallback(() => {
     setVisible(true);

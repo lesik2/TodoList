@@ -6,6 +6,7 @@ import { ImportantTasksScreen } from '@screens/ImportantTasksScreen';
 import { NotesProvider } from '@context/contextProvider';
 import { CategoryScreen } from '@screens/CategoryScreen';
 import { type RootStackParamList } from '@customTypes/navigation';
+import { NavigationScreens } from '@constants/navigation';
 
 import { DrawerMenu } from '../DrawerMenu';
 
@@ -19,11 +20,11 @@ export function DrawerNavigation() {
         screenOptions={{ headerShown: false }}
         drawerContent={(props) => <DrawerMenu {...props} />}
       >
-        <Drawer.Screen name='ImportantTasksScreen' component={ImportantTasksScreen} />
-        <Drawer.Screen name='DoneTasksScreen' component={DoneTasksScreen} />
-        <Drawer.Screen name='DailyTasksScreen' component={DailyTasksScreen} />
-        <Drawer.Screen name='MainScreen' component={MainScreen} />
-        <Drawer.Screen name='CategoryScreen' component={CategoryScreen} />
+        <Drawer.Screen name={NavigationScreens.ImportantTasksScreen} component={ImportantTasksScreen} />
+        <Drawer.Screen name={NavigationScreens.DoneTasksScreen} component={DoneTasksScreen} />
+        <Drawer.Screen name={NavigationScreens.DailyTasksScreen} component={DailyTasksScreen} />
+        <Drawer.Screen name={NavigationScreens.MainScreen} component={MainScreen} />
+        <Drawer.Screen name={NavigationScreens.CategoryScreen} component={CategoryScreen} />
       </Drawer.Navigator>
     </NotesProvider>
   );

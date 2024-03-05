@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { type DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 import { Vibration } from 'react-native';
 import { memo } from 'react';
+import { NavigationScreens } from '@constants/navigation';
 
 import { HeaderView, StyledImage, Title, StyledButton } from './styled';
 
@@ -14,7 +15,7 @@ function HeaderComponent({ title }: IHeader) {
 
   const handlePress = () => {
     Vibration.vibrate(70);
-    navigation.navigate('MainScreen');
+    navigation.navigate(NavigationScreens.MainScreen);
   };
 
   return (

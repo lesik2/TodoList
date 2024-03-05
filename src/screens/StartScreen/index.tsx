@@ -1,5 +1,6 @@
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { type RootStackParamList } from '@customTypes/navigation';
+import { NavigationScreens } from '@constants/navigation';
 
 import { ButtonText, StartScreenView, StyleButton, StyledImage, Subtitle, Title } from './styled';
 import { config } from './config';
@@ -11,7 +12,7 @@ export function StartScreen({ navigation }: IStartScreen) {
   const { title, subtitle, button } = config;
 
   const handlePress = async () => {
-    navigation.navigate('DrawerNavigation');
+    navigation.navigate(NavigationScreens.DrawerNavigation);
   };
 
   return (

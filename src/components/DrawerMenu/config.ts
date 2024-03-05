@@ -1,5 +1,5 @@
 import { type RootStackParamList } from '@customTypes/navigation';
-
+import { NavigationScreens } from '@constants/navigation';
 export interface IMenuData {
   icon: string;
   name: string;
@@ -11,19 +11,19 @@ export const menuData: IMenuData[] = [
   {
     icon: 'calendar',
     name: 'Daily tasks',
-    screenName: 'DailyTasksScreen',
+    screenName: NavigationScreens.DailyTasksScreen,
     id: 1,
   },
   {
     icon: 'star',
     name: 'Important tasks',
-    screenName: 'ImportantTasksScreen',
+    screenName: NavigationScreens.ImportantTasksScreen,
     id: 2,
   },
   {
     icon: 'check',
     name: 'Done tasks',
-    screenName: 'DoneTasksScreen',
+    screenName: NavigationScreens.DoneTasksScreen,
     id: 3,
   },
 ];

@@ -1,18 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { ApiKeys } from '../constants/api';
 import { type ICategory } from '../types/category';
-
-const KEY_CATEGORIES = 'categories';
 
 export const saveCategory = async (categories: ICategory[]) => {
   try {
-    await AsyncStorage.setItem(KEY_CATEGORIES, JSON.stringify(categories));
+    await AsyncStorage.setItem(ApiKeys.KEY_CATEGORIES, JSON.stringify(categories));
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getCategoryById = async (id: string = KEY_CATEGORIES) => {
+export const getCategoryById = async (id: string = ApiKeys.KEY_CATEGORIES) => {
   let currentCategories: ICategory[] = [];
 
   try {

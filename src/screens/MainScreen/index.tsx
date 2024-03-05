@@ -12,7 +12,7 @@ import { actionAddCategory } from '@context/actionCreatorsCategories';
 import notifee, { EventType } from '@notifee/react-native';
 import { useNavigation } from '@react-navigation/native';
 import { type NavigationProps } from '@customTypes/navigation';
-
+import { NavigationScreens } from '@constants/navigation';
 import { CurrentDay } from './components/CurrentDay';
 import { Categories } from './components/Categories';
 import { Filter } from './components/Filter';
@@ -85,7 +85,7 @@ export function MainScreen() {
             break;
           case EventType.PRESS:
             console.info('User pressed notification', detail.notification);
-            navigation.navigate('DailyTasksScreen');
+            navigation.navigate(NavigationScreens.DailyTasksScreen);
             break;
         }
       }),

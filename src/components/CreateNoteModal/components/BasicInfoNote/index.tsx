@@ -8,15 +8,9 @@ import { type INoteModal } from '../../types';
 
 export function BasicInfoNote({ newNote, setNewNote, error, setError }: INoteModal) {
   const { title, text } = newNote;
-  const handleInputTitle = (textInput: string) => {
-    setNewNote({ ...newNote, title: textInput });
-    if (setError) {
-      setError('');
-    }
-  };
 
-  const handleInputTextArea = (textInput: string) => {
-    setNewNote({ ...newNote, text: textInput });
+  const handleInputChange = (field: string) => (textInput: string) => {
+    setNewNote({ ...newNote, [field]: textInput });
     if (setError) {
       setError('');
     }
@@ -34,7 +28,7 @@ export function BasicInfoNote({ newNote, setNewNote, error, setError }: INoteMod
             style={styles.boxShadow}
             placeholder='Title'
             value={title}
-            onChangeText={handleInputTitle}
+            onChangeText={handleInputChange('title')}
           />
           {nameOfInputError === 'title' && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </WrapperInput>
@@ -45,7 +39,7 @@ export function BasicInfoNote({ newNote, setNewNote, error, setError }: INoteMod
             multiline
             numberOfLines={2}
             value={text}
-            onChangeText={handleInputTextArea}
+            onChangeText={handleInputChange('text')}
           />
           {nameOfInputError === 'text' && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </WrapperInput>

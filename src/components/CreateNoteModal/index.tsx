@@ -12,6 +12,7 @@ import { DateNote } from './components/DateNote';
 import { TimeNote } from './components/TimeNote';
 import { SubTasksNote } from './components/SubTasksNote';
 import { BasicInfoNote } from './components/BasicInfoNote';
+import { AMOUNT_OF_MODALS } from './constants';
 
 export interface ICreateNoteModal {
   visible: boolean;
@@ -40,20 +41,18 @@ export function CreateNoteModal({ visible, setVisible, idNote }: ICreateNoteModa
 
   const notes = useContext(NotesContext);
 
-  const AMOUNT_OF_MODALS = 4;
-
   const [newNote, setNewNote] = useState<INote>(emptyNote);
   const [currentModal, setCurrentModal] = useState(0);
   const [error, setError] = useState('');
 
   useEffect(() => {
     if (!visible) return;
-    if (idNote === undefined) {
+    if (!idNote) {
       const id = uuidv4();
       setNewNote({ ...emptyNote, id });
     }
 
-    if (idNote !== undefined) {
+    if (typeof idNote === 'string') {
       const note = notes.find((item) => item.id === idNote);
       setNewNote(note!);
     }

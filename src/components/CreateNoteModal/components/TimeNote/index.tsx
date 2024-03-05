@@ -25,7 +25,7 @@ export function TimeNote({ newNote, setNewNote, error, setError }: INoteModal) {
       <TimeWrapper>
         <TimePicker title='from' newNote={newNote} setNewNote={setNewNote} setError={setError} />
         <TimePicker title='till' newNote={newNote} setNewNote={setNewNote} setError={setError} />
-        {error !== undefined && <ErrorMessage>{error}</ErrorMessage>}
+        {typeof error === 'string' && <ErrorMessage>{error}</ErrorMessage>}
       </TimeWrapper>
       <StyledButton onPress={handleCheckedPress}>
         <Icon name={iconName} size={45} color={iconColor} />

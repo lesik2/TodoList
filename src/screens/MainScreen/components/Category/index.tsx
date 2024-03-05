@@ -8,6 +8,7 @@ import { type INote } from '@customTypes/note';
 import { useNavigation } from '@react-navigation/native';
 import { type NavigationProps } from '@customTypes/navigation';
 import { saveCategory } from '@api/categories';
+import { NavigationScreens } from '@constants/navigation';
 
 import {
   NumberOfNotesText,
@@ -19,6 +20,7 @@ import {
   StyledIcon,
   DeleteIconWrapper,
 } from './styled';
+import { LAST_USER_CATEGORY } from './constants';
 
 export interface ICategoryComponent {
   id: string;
@@ -58,7 +60,7 @@ function CategoryComponent({
 
   const handleDeleteCategory = async () => {
     if (dispatch) {
-      if (categories.length === 7) {
+      if (categories.length === LAST_USER_CATEGORY) {
         await saveCategory([]);
       }
 
@@ -67,7 +69,7 @@ function CategoryComponent({
   };
 
   const handleNavigateToCategoryPage = () => {
-    navigation.navigate('CategoryScreen', { title: name!, notes });
+    navigation.navigate(NavigationScreens.CategoryScreen, { title: name!, notes });
   };
 
   return (

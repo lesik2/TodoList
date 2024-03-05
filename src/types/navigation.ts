@@ -10,6 +10,7 @@ export interface RootStackParamList {
   ImportantTasksScreen: undefined;
   DrawerNavigation: undefined;
   CategoryScreen: { title: string; notes: INote[] };
+  [key: string]: undefined | { title: string; notes: INote[] };
 }
 
 export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;

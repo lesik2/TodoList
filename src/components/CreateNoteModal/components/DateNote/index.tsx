@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import DatePicker from 'react-native-date-picker';
 import { Pressable, StyleSheet } from 'react-native';
+import moment from 'moment';
+import { LongMonthDateFormat } from '@constants/dateFormat';
 
 import {
   ChooseDateWrapper,
@@ -42,11 +44,7 @@ export function DateNote({ newNote, setNewNote }: INoteModal) {
         <DateTitle>date</DateTitle>
         <Pressable onPress={handleOpenModal}>
           <ChooseDateWrapper style={styles.boxShadow}>
-            <DateTitle>
-              {`${dateObj.toLocaleDateString('en-US', {
-                month: 'long',
-              })}/${dateObj.getDate()}/${dateObj.getFullYear()}`}
-            </DateTitle>
+            <DateTitle>{moment(dateObj).format(LongMonthDateFormat)}</DateTitle>
           </ChooseDateWrapper>
         </Pressable>
       </DateWrapper>
