@@ -1,6 +1,4 @@
-import {DefaultTheme} from 'styled-components/native';
-
-import {ITheme} from './src/types/theme';
+import { type ITheme } from './types/theme';
 
 type CustomTheme = ITheme;
 

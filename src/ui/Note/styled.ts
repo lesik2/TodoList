@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const AllNotesView = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     flex-direction: column;
     align-items: flex-start;
     background-color: ${theme.colors.white};
@@ -12,15 +12,13 @@ export const AllNotesView = styled.View`
 `;
 
 export const NoteView = styled.View`
-  ${({theme}) => css`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    position: relative;
-    min-height: 90px;
-    width: 100%;
-  `}
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  position: relative;
+  min-height: 90px;
+  width: 100%;
 `;
 
 export const TimeWrapper = styled.View`
@@ -31,7 +29,7 @@ export const TimeWrapper = styled.View`
 `;
 
 export const TimeText = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.iconColor};
     font-size: 11px;
     font-family: ${theme.fonts.Signika};
@@ -55,8 +53,8 @@ export const InfoWrapper = styled.View`
   justify-content: center;
   max-width: 180px;
 `;
-export const Title = styled.Text<{$subTask?: boolean}>`
-  ${({theme, $subTask}) => css`
+export const Title = styled.Text<{ $subTask?: boolean }>`
+  ${({ theme, $subTask }) => css`
     color: ${theme.colors.black};
     font-size: ${$subTask ? '14px' : '16px'};
     font-family: ${theme.fonts.Signika};
@@ -64,7 +62,7 @@ export const Title = styled.Text<{$subTask?: boolean}>`
   `}
 `;
 export const SubTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.iconColor};
     font-size: 12px;
     font-family: ${theme.fonts.Signika};
@@ -72,8 +70,8 @@ export const SubTitle = styled.Text`
   `}
 `;
 
-export const CheckBox = styled.TouchableOpacity<{$subTask?: boolean}>`
-  ${({theme, $subTask}) => css`
+export const CheckBox = styled.TouchableOpacity<{ $subTask?: boolean }>`
+  ${({ theme, $subTask }) => css`
     flex-direction: row;
     align-items: center;
     justify-content: center;

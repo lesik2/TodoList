@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const WrapperView = styled.View`
@@ -13,8 +13,8 @@ export const WrapperCircles = styled.View`
   width: 100%;
   height: 100%;
 `;
-export const SmallCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
-  ${({$isCircle}) => css`
+export const SmallCircle = styled(LinearGradient)<{ $isCircle?: boolean }>`
+  ${({ $isCircle }) => css`
     width: 85%;
     height: 40%;
     border-radius: 200px;
@@ -25,8 +25,8 @@ export const SmallCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
     opacity: ${$isCircle ? 1 : 0.9};
   `}
 `;
-export const LargeCircle = styled(LinearGradient)<{$isCircle?: boolean}>`
-  ${({$isCircle}) => css`
+export const LargeCircle = styled(LinearGradient)<{ $isCircle?: boolean }>`
+  ${({ $isCircle }) => css`
     position: absolute;
     right: -20%;
     top: ${$isCircle ? '-5%' : '-10%'};

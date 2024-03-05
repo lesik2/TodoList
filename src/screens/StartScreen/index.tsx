@@ -1,20 +1,14 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '@customTypes/navigation';
-import {
-  ButtonText,
-  StartScreenView,
-  StyleButton,
-  StyledImage,
-  Subtitle,
-  Title,
-} from './styled';
-import {config} from './config';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { type RootStackParamList } from '@customTypes/navigation';
+
+import { ButtonText, StartScreenView, StyleButton, StyledImage, Subtitle, Title } from './styled';
+import { config } from './config';
 export interface IStartScreen {
   navigation: NativeStackNavigationProp<RootStackParamList, 'StartScreen'>;
 }
 
-export function StartScreen({navigation}: IStartScreen) {
-  const {title, subtitle, button} = config;
+export function StartScreen({ navigation }: IStartScreen) {
+  const { title, subtitle, button } = config;
 
   const handlePress = async () => {
     navigation.navigate('DrawerNavigation');
@@ -25,10 +19,7 @@ export function StartScreen({navigation}: IStartScreen) {
       <StyledImage source={require('@assets/images/startScreenImage.png')} />
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
-      <StyleButton
-        onPress={handlePress}
-        underlayColor={'#646FD4'}
-        activeOpacity={1}>
+      <StyleButton onPress={handlePress} underlayColor={'#646FD4'} activeOpacity={1}>
         <ButtonText>{button}</ButtonText>
       </StyleButton>
     </StartScreenView>

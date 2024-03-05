@@ -1,4 +1,4 @@
-import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
+import notifee, { type TimestampTrigger, TriggerType } from '@notifee/react-native';
 
 export const CHANNEL_ID = 'notes';
 
@@ -29,16 +29,13 @@ export async function onCreateTriggerNotification(
     timestamp: startTime.getTime(),
   };
 
-  const titleNotifee = start
-    ? `Task has been started!(${body})`
-    : `The task's time has finished (${body})`;
-  const bodyNotifee = start
-    ? `You should hurry to start doing it`
-    : `Did you manage to finish it?`;
+  const titleNotifee = start ? `Task has been started!(${body})` : `The task's time has finished (${body})`;
+  const bodyNotifee = start ? `You should hurry to start doing it` : `Did you manage to finish it?`;
+
   try {
     await notifee.createTriggerNotification(
       {
-        id: id,
+        id,
         title: titleNotifee,
         body: bodyNotifee,
         android: {
@@ -59,6 +56,7 @@ export async function onCreateTriggerNotification(
     }
   }
 }
+
 export async function cancel(notificationId: string) {
   await notifee.cancelNotification(notificationId);
 }

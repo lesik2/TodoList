@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
-import {CustomInput} from '@ui/CustomInput/styled';
+import { css } from 'styled-components';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -26,7 +25,7 @@ export const SubTasksWrapper = styled.View`
 `;
 
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 20px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};
@@ -35,7 +34,7 @@ export const Title = styled.Text`
 `;
 
 export const SubTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 15px;
     color: ${theme.colors.iconColor};
     font-family: ${theme.fonts.Signika};

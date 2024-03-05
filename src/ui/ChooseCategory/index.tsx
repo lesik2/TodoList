@@ -1,4 +1,11 @@
-import {Pressable, ScrollView, StyleSheet} from 'react-native';
+import { Pressable, ScrollView, StyleSheet } from 'react-native';
+import { memo, useContext, useState } from 'react';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import SvgArrow from '@assets/icons/arrow-option.svg';
+import { CategoriesContext } from '@context/contextProvider';
+import { type INote } from '@customTypes/note';
+
 import {
   CategoriesWrapper,
   CategoryItem,
@@ -8,20 +15,6 @@ import {
   Wrapper,
   WrapperButton,
 } from './styled';
-import {memo, useContext, useState} from 'react';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-import SvgArrow from '@assets/icons/arrow-option.svg';
-import {CategoriesContext} from '@context/contextProvider';
-import {INote} from '@customTypes/note';
 
 export interface IChooseCategory {
   newNote: INote;
@@ -29,15 +22,9 @@ export interface IChooseCategory {
   setError: React.Dispatch<React.SetStateAction<string>> | undefined;
 }
 
-function ChooseCategoryComponent({
-  newNote,
-  setNewNote,
-  setError,
-}: IChooseCategory) {
+function ChooseCategoryComponent({ newNote, setNewNote, setError }: IChooseCategory) {
   const categories = useContext(CategoriesContext);
-  const [chooseCategory, setChooseCategory] = useState(
-    newNote.category || 'Choose category',
-  );
+  const [chooseCategory, setChooseCategory] = useState(newNote.category || 'Choose category');
   const [visibleList, setVisibleList] = useState(false);
 
   const handleVisibleList = () => {
@@ -46,7 +33,7 @@ function ChooseCategoryComponent({
 
   const handleChooseCategory = (category: string) => () => {
     setChooseCategory(category);
-    setNewNote({...newNote, category: category});
+    setNewNote({ ...newNote, category });
     setVisibleList(false);
     if (setError) {
       setError('');
@@ -60,7 +47,7 @@ function ChooseCategoryComponent({
   });
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{rotate: withTiming(pressed.value ? '180deg' : '0deg')}],
+    transform: [{ rotate: withTiming(pressed.value ? '180deg' : '0deg') }],
   }));
 
   return (
@@ -80,20 +67,18 @@ function ChooseCategoryComponent({
 
       {visibleList && (
         <CategoriesWrapper style={styles.boxShadow}>
-          <ScrollView
-            style={styles.scroll}
-            contentContainerStyle={{flexGrow: 1}}>
+          <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
             {categories.map((category, index) => {
-              const {name} = category;
+              const { name } = category;
               if (name) {
                 return (
-                  <CategoryItem
-                    key={index}
-                    onPress={handleChooseCategory(name)}>
+                  <CategoryItem key={index} onPress={handleChooseCategory(name)}>
                     <CategoryText>{name}</CategoryText>
                   </CategoryItem>
                 );
               }
+
+              return null;
             })}
           </ScrollView>
         </CategoriesWrapper>
@@ -105,13 +90,16 @@ function ChooseCategoryComponent({
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 3},
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 6,
   },
   scroll: {
     marginHorizontal: 10,
+  },
+  container: {
+    flexGrow: 1,
   },
 });
 

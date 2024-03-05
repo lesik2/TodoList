@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -9,7 +9,7 @@ export const ContentView = styled.View`
 `;
 
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 21px;
     text-align: center;
     width: 100%;

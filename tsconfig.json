@@ -18,5 +18,7 @@
       "@validate/*": ["src/validate/*"]
     }
   },
-  "include": ["src/**/*"]
+
+  "include": ["**/*.ts", "**/*.tsx", "typings/*.d.ts"],
+  "exclude": ["node_modules", ".vscode"]
 }

@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const MenuOption = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     top: 13px;
     right: 11px;
     position: absolute;
@@ -19,8 +19,8 @@ export const MenuItems = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export const MenuItemText = styled.Text<{$pressed?: boolean}>`
-  ${({theme, $pressed}) => css`
+export const MenuItemText = styled.Text<{ $pressed?: boolean }>`
+  ${({ theme, $pressed }) => css`
     color: ${$pressed ? theme.colors.white : theme.colors.black};
     padding: 2px 6px 3px 4px;
     border-radius: 10px;

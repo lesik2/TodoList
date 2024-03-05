@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -17,7 +17,7 @@ export const WrapperInput = styled.View`
 `;
 
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 22px;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.Signika};

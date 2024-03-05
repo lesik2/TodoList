@@ -1,29 +1,25 @@
-import {
-  ContentView,
-  InfoWrapper,
-  SubTasksWrapper,
-  SubTitle,
-  Title,
-} from './styled';
-import {ScrollView, StyleSheet} from 'react-native';
-
-import {ISubNote} from '@customTypes/note';
-import {AddNoteButton} from '@ui/AddNoteButton';
-import {SubTask} from '@ui/SubTask';
-import {INoteModal} from '../../types';
+import { ScrollView, StyleSheet } from 'react-native';
+import { type ISubNote } from '@customTypes/note';
+import { AddNoteButton } from '@ui/AddNoteButton';
+import { SubTask } from '@ui/SubTask';
 import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
-export function SubTasksNote({newNote, setNewNote}: INoteModal) {
-  const {title, text, subNotes} = newNote;
+import { ContentView, InfoWrapper, SubTasksWrapper, SubTitle, Title } from './styled';
+
+import { type INoteModal } from '../../types';
+
+export function SubTasksNote({ newNote, setNewNote }: INoteModal) {
+  const { title, text, subNotes } = newNote;
 
   const handleChangeSubtasks = (updatedSubtask: ISubNote) => {
     setNewNote({
       ...newNote,
-      subNotes: subNotes.map(subtask => {
+      subNotes: subNotes.map((subtask) => {
         if (subtask.id === updatedSubtask.id) {
           return updatedSubtask;
         }
+
         return subtask;
       }),
     });
@@ -35,7 +31,8 @@ export function SubTasksNote({newNote, setNewNote}: INoteModal) {
       checked: false,
       text: '',
     };
-    setNewNote({...newNote, subNotes: [...subNotes, newSubTask]});
+
+    setNewNote({ ...newNote, subNotes: [...subNotes, newSubTask] });
   };
 
   return (
@@ -47,9 +44,9 @@ export function SubTasksNote({newNote, setNewNote}: INoteModal) {
       <SubTasksWrapper>
         <ScrollView contentContainerStyle={styles.scrollStyle}>
           {subNotes.length > 0 &&
-            subNotes.map(subtask => (
+            subNotes.map((subtask) => (
               <SubTask
-                mode="edit"
+                mode='edit'
                 id={subtask.id}
                 key={subtask.id}
                 name={subtask.text}
@@ -59,7 +56,7 @@ export function SubTasksNote({newNote, setNewNote}: INoteModal) {
             ))}
         </ScrollView>
       </SubTasksWrapper>
-      <AddNoteButton handlePress={handleAddSubtask} size="small" />
+      <AddNoteButton handlePress={handleAddSubtask} size='small' />
     </ContentView>
   );
 }
@@ -67,7 +64,7 @@ export function SubTasksNote({newNote, setNewNote}: INoteModal) {
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 3},
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 6,

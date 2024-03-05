@@ -1,11 +1,7 @@
-import {CategoriesActionTypes, ICategoryAction} from '../types/actionsCategory';
+import { CategoriesActionTypes, type ICategoryAction } from '../types/actionsCategory';
+import { type ICategory } from '../types/category';
 
-import {ICategory} from '../types/category';
-
-export function categoriesReducer(
-  categories: ICategory[],
-  action: ICategoryAction,
-) {
+export function categoriesReducer(categories: ICategory[], action: ICategoryAction) {
   switch (action.type) {
     case CategoriesActionTypes.ADD_CATEGORY: {
       return [
@@ -14,9 +10,11 @@ export function categoriesReducer(
         categories[categories.length - 1],
       ];
     }
+
     case CategoriesActionTypes.DELETE_CATEGORY: {
-      return categories.filter(category => category.id !== action.payload);
+      return categories.filter((category) => category.id !== action.payload);
     }
+
     default: {
       throw Error('Unknown action');
     }

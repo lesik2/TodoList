@@ -1,24 +1,26 @@
-import {LayoutView, MainView} from './styled';
-import {Header} from './components/Header';
-import {BackStyle} from '@ui/BackStyle';
-import {CurrentDay} from './components/CurrentDay';
-import {SearchInput} from './components/SearchInput';
-import {Filter} from './components/Filter';
-import {Categories} from './components/Categories';
+import { BackStyle } from '@ui/BackStyle';
 import {
   CategoriesContext,
   CategoriesDispatchContext,
   NotesContext,
   NotesDispatchContext,
 } from '@context/contextProvider';
-import {useContext, useEffect, useState} from 'react';
-import {getNoteById, saveNote} from '../../api/notes';
-import {actionSetNotes} from '@context/actionCreatorsNotes';
-import {getCategoryById, saveCategory} from '@api/categories';
-import {actionAddCategory} from '@context/actionCreatorsCategories';
-import notifee, {EventType} from '@notifee/react-native';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '@customTypes/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { actionSetNotes } from '@context/actionCreatorsNotes';
+import { getCategoryById, saveCategory } from '@api/categories';
+import { actionAddCategory } from '@context/actionCreatorsCategories';
+import notifee, { EventType } from '@notifee/react-native';
+import { useNavigation } from '@react-navigation/native';
+import { type NavigationProps } from '@customTypes/navigation';
+
+import { CurrentDay } from './components/CurrentDay';
+import { Categories } from './components/Categories';
+import { Filter } from './components/Filter';
+import { SearchInput } from './components/SearchInput';
+import { Header } from './components/Header';
+import { LayoutView, MainView } from './styled';
+
+import { getNoteById, saveNote } from '../../api/notes';
 
 export function MainScreen() {
   const dispatch = useContext(NotesDispatchContext);
@@ -38,18 +40,24 @@ export function MainScreen() {
         dispatchCategory(actionAddCategory(fetchedCategories));
       }
     };
-    fetchData();
-  }, []);
+
+    fetchData().catch((error) => {
+      console.error(error);
+    });
+  }, [dispatch, dispatchCategory]);
 
   useEffect(() => {
     const saveNotes = async () => {
       try {
         await saveNote(notes);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
-    saveNotes();
+
+    saveNotes().catch((error) => {
+      console.error(error);
+    });
   }, [notes]);
 
   useEffect(() => {
@@ -57,39 +65,41 @@ export function MainScreen() {
       try {
         await saveCategory(categories.slice(5, categories.length - 1));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
+
     if (categories.length > 6) {
-      saveCategories();
+      saveCategories().catch((error) => {
+        console.error(error);
+      });
     }
   }, [categories]);
 
-  useEffect(() => {
-    return notifee.onForegroundEvent(({type, detail}) => {
-      switch (type) {
-        case EventType.DISMISSED:
-          console.log('User dismissed notification', detail.notification);
-          break;
-        case EventType.PRESS:
-          console.log('User pressed notification', detail.notification);
-          navigation.navigate('DailyTasksScreen');
-          break;
-      }
-    });
-  }, []);
+  useEffect(
+    () =>
+      notifee.onForegroundEvent(({ type, detail }) => {
+        switch (type) {
+          case EventType.DISMISSED:
+            console.info('User dismissed notification', detail.notification);
+            break;
+          case EventType.PRESS:
+            console.info('User pressed notification', detail.notification);
+            navigation.navigate('DailyTasksScreen');
+            break;
+        }
+      }),
+    [navigation],
+  );
 
   return (
     <MainView>
-      <BackStyle type="circle" />
+      <BackStyle type='circle' />
       <LayoutView>
         <Header />
         <CurrentDay />
         <SearchInput filteredNotes={filteredNotes} />
-        <Filter
-          selectedFilter={selectedFilter}
-          setSelectedFilter={setSelectedFilter}
-        />
+        <Filter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
         <Categories
           selectedFilter={selectedFilter}
           filteredNotes={filteredNotes}

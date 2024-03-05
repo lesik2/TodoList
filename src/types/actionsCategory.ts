@@ -1,4 +1,4 @@
-import {ICategory} from './category';
+import { type ICategory } from './category';
 
 export enum CategoriesActionTypes {
   ADD_CATEGORY = 'ADD_CATEGORY',

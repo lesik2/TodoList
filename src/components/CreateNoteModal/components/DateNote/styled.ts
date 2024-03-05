@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -12,7 +12,7 @@ export const ContentView = styled.View`
   margin-bottom: 20%;
 `;
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 20px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};
@@ -21,7 +21,7 @@ export const Title = styled.Text`
 `;
 
 export const SubTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 15px;
     color: ${theme.colors.iconColor};
     font-family: ${theme.fonts.Signika};
@@ -42,7 +42,7 @@ export const DateWrapper = styled.View`
 `;
 
 export const ChooseDateWrapper = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     padding: 0px 17px 0px 17px;
     flex-direction: row;
     align-items: center;
@@ -53,7 +53,7 @@ export const ChooseDateWrapper = styled.View`
   `}
 `;
 export const DateTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 18px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};

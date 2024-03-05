@@ -1,8 +1,9 @@
-import {RootStackParamList} from '@customTypes/navigation';
+import { type RootStackParamList } from '@customTypes/navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {MenuItemButton, StyledText, WrapperView} from './styled';
-import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
-import {memo} from 'react';
+import { type DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
+import { memo } from 'react';
+
+import { MenuItemButton, StyledText, WrapperView } from './styled';
 
 export interface IDrawerItem {
   iconName: string;
@@ -11,21 +12,13 @@ export interface IDrawerItem {
   navigation: DrawerNavigationHelpers;
 }
 
-const CustomDrawerItemComponent = ({
-  navigation,
-  iconName,
-  name,
-  screenName,
-}: IDrawerItem) => {
+const CustomDrawerItemComponent = ({ navigation, iconName, name, screenName }: IDrawerItem) => {
   const handlePress = () => {
     navigation.navigate(`${screenName}`);
   };
 
   return (
-    <MenuItemButton
-      onPress={handlePress}
-      underlayColor={'#DBDFFD'}
-      activeOpacity={1}>
+    <MenuItemButton onPress={handlePress} underlayColor={'#DBDFFD'} activeOpacity={1}>
       <WrapperView>
         <Icon name={iconName} size={25} />
         <StyledText>{name}</StyledText>

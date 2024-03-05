@@ -1,9 +1,10 @@
-import {useNavigation} from '@react-navigation/native';
-import {HeaderView, Title} from './styled';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Vibration} from 'react-native';
+import { type DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Vibration } from 'react-native';
+
+import { HeaderView, Title } from './styled';
 
 export function Header() {
   const navigation = useNavigation<DrawerNavigationHelpers>();
@@ -16,7 +17,7 @@ export function Header() {
   return (
     <HeaderView>
       <TouchableOpacity onPress={handlePress}>
-        <Icon name="bars" size={30} />
+        <Icon name='bars' size={30} />
       </TouchableOpacity>
       <Title>Modsen Todo list</Title>
     </HeaderView>

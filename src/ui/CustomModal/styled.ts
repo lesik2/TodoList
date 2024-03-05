@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const CenteredView = styled.View`
   flex-direction: row;
@@ -8,7 +8,7 @@ export const CenteredView = styled.View`
   background-color: rgba(0, 0, 0, 0.6);
 `;
 export const ModalView = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     background-color: ${theme.colors.white};
     border-radius: 20px;
     padding: 20px;
@@ -30,7 +30,7 @@ export const DecisionWrapper = styled.View`
   bottom: 16px;
 `;
 export const DecisionText = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 18px;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.Roboto};

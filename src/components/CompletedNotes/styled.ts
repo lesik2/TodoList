@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
-export const Wrapper = styled.View<{$isOpen?: boolean}>`
-  ${({theme, $isOpen}) => css`
+export const Wrapper = styled.View<{ $isOpen?: boolean }>`
+  ${({ theme, $isOpen }) => css`
     background-color: ${theme.colors.white};
     flex-direction: column;
     justify-content: flex-start;
@@ -19,7 +19,7 @@ export const Wrapper = styled.View<{$isOpen?: boolean}>`
 `;
 
 export const Line = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     width: 100%;
     height: 1px;
     background-color: ${theme.colors.black};
@@ -34,7 +34,7 @@ export const WrapperButton = styled.View`
   width: 100%;
 `;
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 22px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};

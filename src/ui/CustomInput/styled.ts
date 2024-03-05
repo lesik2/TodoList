@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const CustomInput = styled.TextInput`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.black};
     padding: 0px 10px 0px 10px;
     width: 100%;

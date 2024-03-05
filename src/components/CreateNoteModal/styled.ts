@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -11,14 +11,14 @@ export const ContentView = styled.View`
 `;
 
 export const StyledInput = styled.TextInput`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.black};
     width: 90%;
     padding: 0px;
     margin: 0px;
     font-size: 21px;
     border-bottom-width: 2px;
-    border-bottom-color: ${({theme}) => theme.colors.black};
+    border-bottom-color: ${theme.colors.black};
     font-family: ${theme.fonts.Jost};
     font-weight: ${theme.fontWeight.default};
     &::placeholder {
@@ -27,7 +27,7 @@ export const StyledInput = styled.TextInput`
   `}
 `;
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 25px;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.Signika};

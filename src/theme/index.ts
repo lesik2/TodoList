@@ -1,4 +1,4 @@
-import {ITheme} from '../types/theme';
+import { type ITheme } from '../types/theme';
 
 export const theme: ITheme = {
   colors: {
@@ -26,5 +26,4 @@ export const theme: ITheme = {
     easy: 600,
     medium: 700,
   },
-  zIndex: {},
 };

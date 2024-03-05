@@ -1,8 +1,10 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {CheckBox, Title} from '../Note/styled';
-import {StyledInput, SubTaskInfoWrapper} from './styled';
-import {memo, useState} from 'react';
-import {ISubNote} from '@customTypes/note';
+import { memo, useState } from 'react';
+import { type ISubNote } from '@customTypes/note';
+
+import { StyledInput, SubTaskInfoWrapper } from './styled';
+
+import { CheckBox, Title } from '../Note/styled';
 
 export interface ISubTask {
   id: string;
@@ -12,46 +14,38 @@ export interface ISubTask {
   mode?: 'edit' | 'default';
 }
 
-function SubTaskComponent({
-  id,
-  name,
-  checked,
-  handleUpdate,
-  mode = 'default',
-}: ISubTask) {
+function SubTaskComponent({ id, name, checked, handleUpdate, mode = 'default' }: ISubTask) {
   const [input, setInput] = useState(name);
   const handleChangeInput = (text: string) => {
     const updatedSubtask: ISubNote = {
-      id: id,
+      id,
       text: input,
-      checked: checked,
+      checked,
     };
+
     handleUpdate(updatedSubtask);
     setInput(text);
   };
+
   const handleCheck = () => {
     const updatedSubtask: ISubNote = {
-      id: id,
+      id,
       text: name,
       checked: !checked,
     };
+
     handleUpdate(updatedSubtask);
   };
 
   return (
     <SubTaskInfoWrapper>
       <CheckBox onPress={handleCheck} activeOpacity={1} $subTask={true}>
-        {checked && <Icon name="check" size={23} color="#8785F6" />}
+        {checked && <Icon name='check' size={23} color='#8785F6' />}
       </CheckBox>
       {mode === 'default' ? (
         <Title $subTask={true}>{name}</Title>
       ) : (
-        <StyledInput
-          multiline
-          value={input}
-          onChangeText={handleChangeInput}
-          placeholder="New subtask"
-        />
+        <StyledInput multiline value={input} onChangeText={handleChangeInput} placeholder='New subtask' />
       )}
     </SubTaskInfoWrapper>
   );

@@ -1,4 +1,4 @@
-import {ICategory} from '../types/category';
+import { type ICategory } from '../types/category';
 
 export const defaultCategories: ICategory[] = [
   {

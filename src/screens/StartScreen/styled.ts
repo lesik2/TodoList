@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const StartScreenView = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -16,7 +16,7 @@ export const StyledImage = styled.Image`
 `;
 
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 24px;
     font-family: ${theme.fonts.Jost};
     font-weight: ${theme.fontWeight.bold};
@@ -26,7 +26,7 @@ export const Title = styled.Text`
   `}
 `;
 export const StyleButton = styled.TouchableHighlight`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -38,7 +38,7 @@ export const StyleButton = styled.TouchableHighlight`
   `}
 `;
 export const ButtonText = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     text-align: center;
     color: ${theme.colors.white};
     font-weight: ${theme.fontWeight.medium};
@@ -46,7 +46,7 @@ export const ButtonText = styled.Text`
   `}
 `;
 export const Subtitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 15px;
     font-family: ${theme.fonts.Jost};
     font-weight: ${theme.fontWeight.default};

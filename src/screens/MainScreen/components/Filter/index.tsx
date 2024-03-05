@@ -1,34 +1,35 @@
-import {Wrapper, StyledButton, StyledText} from './styled';
-import {filters} from './config';
-import {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { Wrapper, StyledButton, StyledText } from './styled';
+import { filters } from './config';
 
 export interface IFilter {
   selectedFilter: string;
   setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function Filter({selectedFilter, setSelectedFilter}: IFilter) {
+export function Filter({ selectedFilter, setSelectedFilter }: IFilter) {
   const handlePressSelectedFilter = (filter: string) => () => {
     setSelectedFilter(selectedFilter === filter ? '' : filter);
   };
+
   return (
     <Wrapper>
-      {filters.map(filter => (
+      {filters.map((filter) => (
         <StyledButton
           style={styles.boxShadow}
           key={filter}
           activeOpacity={1}
           onPress={handlePressSelectedFilter(filter)}
-          $selected={selectedFilter === filter}>
-          <StyledText $selected={selectedFilter === filter}>
-            {filter}
-          </StyledText>
+          $selected={selectedFilter === filter}
+        >
+          <StyledText $selected={selectedFilter === filter}>{filter}</StyledText>
         </StyledButton>
       ))}
     </Wrapper>
   );
 }
+
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#242F9B',

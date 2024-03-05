@@ -1,5 +1,6 @@
-import {Modal, StyleSheet, TouchableOpacity} from 'react-native';
-import {CenteredView, DecisionText, DecisionWrapper, ModalView} from './styled';
+import { Modal, StyleSheet, TouchableOpacity } from 'react-native';
+
+import { CenteredView, DecisionText, DecisionWrapper, ModalView } from './styled';
 
 export interface ICustomModal {
   modalVisible: boolean;
@@ -26,7 +27,8 @@ export function CustomModal({
       animationType={animationType}
       transparent={true}
       visible={modalVisible}
-      onRequestClose={onRequestClose}>
+      onRequestClose={onRequestClose}
+    >
       <CenteredView>
         <ModalView style={styles.boxShadow}>
           {children}
@@ -43,6 +45,7 @@ export function CustomModal({
     </Modal>
   );
 }
+
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#000',

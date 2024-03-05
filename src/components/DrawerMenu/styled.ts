@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
-
+import { css } from 'styled-components';
 import SVGImg from '@assets/icons/arrow-left.svg';
 export const DrawerMenuView = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     display: flex;
     height: 100%;
     width: 100%;
@@ -13,7 +12,7 @@ export const DrawerMenuView = styled.View`
 `;
 
 export const StyledImage = styled(SVGImg)`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.secondary};
     width: 100%;
     height: 25px;

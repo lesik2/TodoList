@@ -1,4 +1,14 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { memo, useContext, useState } from 'react';
+import { CategoriesContext, CategoriesDispatchContext } from '@context/contextProvider';
+import { actionDeleteCategory } from '@context/actionCreatorsCategories';
+import { ModalPermission } from '@ui/ModalPermission';
+import { type INote } from '@customTypes/note';
+import { useNavigation } from '@react-navigation/native';
+import { type NavigationProps } from '@customTypes/navigation';
+import { saveCategory } from '@api/categories';
+
 import {
   NumberOfNotesText,
   Title,
@@ -9,18 +19,6 @@ import {
   StyledIcon,
   DeleteIconWrapper,
 } from './styled';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {memo, useContext, useState} from 'react';
-import {
-  CategoriesContext,
-  CategoriesDispatchContext,
-} from '@context/contextProvider';
-import {actionDeleteCategory} from '@context/actionCreatorsCategories';
-import {ModalPermission} from '@ui/ModalPermission';
-import {INote} from '@customTypes/note';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '@customTypes/navigation';
-import {saveCategory} from '@api/categories';
 
 export interface ICategoryComponent {
   id: string;
@@ -57,17 +55,19 @@ function CategoryComponent({
   const handleOpenPermissionModal = () => {
     setShowModal(true);
   };
+
   const handleDeleteCategory = async () => {
     if (dispatch) {
       if (categories.length === 7) {
         await saveCategory([]);
       }
+
       dispatch(actionDeleteCategory(id));
     }
   };
 
   const handleNavigateToCategoryPage = () => {
-    navigation.navigate('CategoryScreen', {title: name!, notes: notes});
+    navigation.navigate('CategoryScreen', { title: name!, notes });
   };
 
   return (
@@ -78,17 +78,18 @@ function CategoryComponent({
             $background={backgroundColor}
             onLongPress={handleShowDeleteIcon}
             onPress={handleNavigateToCategoryPage}
-            underlayColor="#DBDFFD"
-            activeOpacity={1}>
+            underlayColor='#DBDFFD'
+            activeOpacity={1}
+          >
             <ContentWrapper>
-              <Icon name={iconName} size={35} color="#ffffff" />
+              <Icon name={iconName} size={35} color='#ffffff' />
               <Title>{name}</Title>
             </ContentWrapper>
           </StyledButton>
           <NumberOfNotesText>{notes.length}</NumberOfNotesText>
           {showDeleteIcon && (
             <DeleteIconWrapper onPress={handleOpenPermissionModal}>
-              <Icon name="times" size={25} color="#888888" />
+              <Icon name='times' size={25} color='#888888' />
             </DeleteIconWrapper>
           )}
         </CategoryView>

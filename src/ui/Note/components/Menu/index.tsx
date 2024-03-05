@@ -1,10 +1,11 @@
-import {useContext, useState} from 'react';
-import {MenuItemText, MenuItems, MenuOption} from './styled';
-import {Pressable, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import {NotesDispatchContext} from '@context/contextProvider';
-import {actionDeleteNote} from '@context/actionCreatorsNotes';
-import {CreateNoteModal} from '@components/CreateNoteModal';
-import {ModalPermission} from '@ui/ModalPermission';
+import { useContext, useState } from 'react';
+import { Pressable, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { NotesDispatchContext } from '@context/contextProvider';
+import { actionDeleteNote } from '@context/actionCreatorsNotes';
+import { CreateNoteModal } from '@components/CreateNoteModal';
+import { ModalPermission } from '@ui/ModalPermission';
+
+import { MenuItemText, MenuItems, MenuOption } from './styled';
 
 export interface IMenu {
   idNote: string;
@@ -12,7 +13,7 @@ export interface IMenu {
   handleCloseMenu: () => void;
 }
 
-export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
+export function Menu({ visible, handleCloseMenu, idNote }: IMenu) {
   const [visibleModal, setVisibleModal] = useState(false);
   const [showModalPermission, setShowModalPermission] = useState(false);
   const dispatch = useContext(NotesDispatchContext);
@@ -27,6 +28,7 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
     setShowModalPermission(true);
     handleCloseMenu();
   };
+
   const handleUpdateNote = () => {
     setVisibleModal(true);
     handleCloseMenu();
@@ -40,15 +42,11 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
             <MenuItems>
               <Pressable
                 onPress={handleUpdateNote}
-                children={({pressed}) => (
-                  <MenuItemText $pressed={pressed}>edit tasks</MenuItemText>
-                )}
+                children={({ pressed }) => <MenuItemText $pressed={pressed}>edit tasks</MenuItemText>}
               />
               <Pressable
                 onPress={handleOpenPermissionModal}
-                children={({pressed}) => (
-                  <MenuItemText $pressed={pressed}>delete tasks</MenuItemText>
-                )}
+                children={({ pressed }) => <MenuItemText $pressed={pressed}>delete tasks</MenuItemText>}
               />
             </MenuItems>
           </TouchableWithoutFeedback>
@@ -57,14 +55,10 @@ export function Menu({visible, handleCloseMenu, idNote}: IMenu) {
       <ModalPermission
         modalVisible={showModalPermission}
         setModalVisible={setShowModalPermission}
-        title="Are you sure that you want to delete note?"
+        title='Are you sure that you want to delete note?'
         onHandleSuccess={handleDeleteNote}
       />
-      <CreateNoteModal
-        visible={visibleModal}
-        setVisible={setVisibleModal}
-        idNote={idNote}
-      />
+      <CreateNoteModal visible={visibleModal} setVisible={setVisibleModal} idNote={idNote} />
     </>
   );
 }

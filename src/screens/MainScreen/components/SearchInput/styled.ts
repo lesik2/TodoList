@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const InputView = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     margin-top: 12%;
     flex-direction: row;
     align-items: center;
@@ -18,7 +18,7 @@ export const StyledButton = styled.TouchableOpacity`
   width: 10%;
 `;
 export const StyledInput = styled.TextInput`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     color: ${theme.colors.black};
     width: 90%;
     padding: 0px;

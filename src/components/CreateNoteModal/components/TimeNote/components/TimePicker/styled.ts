@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const ChooseTimeWrapper = styled.View`
   flex-direction: row;
@@ -8,7 +8,7 @@ export const ChooseTimeWrapper = styled.View`
   width: 70%;
 `;
 export const TimeTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 18px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Signika};
@@ -16,7 +16,7 @@ export const TimeTitle = styled.Text`
   `}
 `;
 export const ChooseTime = styled.View`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     width: 72%;
     flex-direction: row;
     align-items: center;
@@ -28,7 +28,7 @@ export const ChooseTime = styled.View`
   `}
 `;
 export const Divider = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 20px;
     color: ${theme.colors.iconColor};
     font-family: ${theme.fonts.Signika};

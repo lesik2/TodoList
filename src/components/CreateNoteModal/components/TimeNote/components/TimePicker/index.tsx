@@ -1,40 +1,31 @@
 import DatePicker from 'react-native-date-picker';
 import SvgArrowUp from '@assets/icons/arrowUp.svg';
 import SvgArrowDown from '@assets/icons/arrowDown.svg';
-import {Pressable, StyleSheet} from 'react-native';
-import {
-  ChooseTime,
-  ChooseTimeWrapper,
-  Divider,
-  SelectTime,
-  TimeTitle,
-} from './styled';
-import {useState} from 'react';
-import {ITimePicker} from '@components/CreateNoteModal/types';
+import { Pressable, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { type ITimePicker } from '@components/CreateNoteModal/types';
 
-export function TimePicker({
-  title,
-  newNote,
-  setNewNote,
-  setError,
-}: ITimePicker) {
+import { ChooseTime, ChooseTimeWrapper, Divider, SelectTime, TimeTitle } from './styled';
+
+export function TimePicker({ title, newNote, setNewNote, setError }: ITimePicker) {
   const [open, setOpen] = useState(false);
-  const time =
-    title === 'from' ? new Date(newNote.startTime) : new Date(newNote.endTime);
+  const time = title === 'from' ? new Date(newNote.startTime) : new Date(newNote.endTime);
 
   const handleCloseModal = () => {
     setOpen(false);
   };
+
   const handleOpenModal = () => {
     setOpen(true);
   };
 
   const handleChooseTime = (date: Date) => {
     const property = title === 'from' ? 'startTime' : 'endTime';
-    setNewNote({...newNote, [property]: date.toISOString()});
+    setNewNote({ ...newNote, [property]: date.toISOString() });
     if (setError) {
       setError('');
     }
+
     handleCloseModal();
   };
 
@@ -60,21 +51,22 @@ export function TimePicker({
       </Pressable>
 
       <DatePicker
-        mode="time"
+        mode='time'
         modal
         open={open}
         date={time}
-        confirmText="Ok"
+        confirmText='Ok'
         onConfirm={handleChooseTime}
         onCancel={handleCloseModal}
       />
     </>
   );
 }
+
 const styles = StyleSheet.create({
   boxShadow: {
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 3},
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 6,

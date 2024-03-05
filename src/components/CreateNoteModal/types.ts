@@ -1,4 +1,4 @@
-import {INote} from '@customTypes/note';
+import { type INote } from '@customTypes/note';
 
 export interface INoteModal {
   newNote: INote;

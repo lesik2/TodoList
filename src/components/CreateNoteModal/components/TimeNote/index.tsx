@@ -1,22 +1,16 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {
-  ContentView,
-  InfoWrapper,
-  StyledButton,
-  SubTitle,
-  TimeWrapper,
-  Title,
-} from './styled';
+import { ErrorMessage } from '@ui/ErrorMessage/styled';
 
-import {TimePicker} from './components/TimePicker';
-import {INoteModal} from '../../types';
-import {ErrorMessage} from '@ui/ErrorMessage/styled';
+import { ContentView, InfoWrapper, StyledButton, SubTitle, TimeWrapper, Title } from './styled';
+import { TimePicker } from './components/TimePicker';
 
-export function TimeNote({newNote, setNewNote, error, setError}: INoteModal) {
-  const {title, text, importance} = newNote;
+import { type INoteModal } from '../../types';
+
+export function TimeNote({ newNote, setNewNote, error, setError }: INoteModal) {
+  const { title, text, importance } = newNote;
 
   const handleCheckedPress = () => {
-    setNewNote({...newNote, importance: !importance});
+    setNewNote({ ...newNote, importance: !importance });
   };
 
   const iconName = importance ? 'star' : 'star-o';
@@ -29,18 +23,8 @@ export function TimeNote({newNote, setNewNote, error, setError}: INoteModal) {
         <SubTitle>{text}</SubTitle>
       </InfoWrapper>
       <TimeWrapper>
-        <TimePicker
-          title="from"
-          newNote={newNote}
-          setNewNote={setNewNote}
-          setError={setError}
-        />
-        <TimePicker
-          title="till"
-          newNote={newNote}
-          setNewNote={setNewNote}
-          setError={setError}
-        />
+        <TimePicker title='from' newNote={newNote} setNewNote={setNewNote} setError={setError} />
+        <TimePicker title='till' newNote={newNote} setNewNote={setNewNote} setError={setError} />
         {error !== undefined && <ErrorMessage>{error}</ErrorMessage>}
       </TimeWrapper>
       <StyledButton onPress={handleCheckedPress}>

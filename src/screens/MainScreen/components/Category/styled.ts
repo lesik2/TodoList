@@ -1,16 +1,13 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 import SVGImg from '@assets/icons/plus.svg';
 
 export const CategoryView = styled.View`
-  ${({theme}) => css`
-    width: 31%;
-    position: relative;
-    border-radius: 16px;
-  `}
+  width: 31%;
+  position: relative;
 `;
-export const StyledButton = styled.TouchableHighlight<{$background?: string}>`
-  ${({$background}) => css`
+export const StyledButton = styled.TouchableHighlight<{ $background?: string }>`
+  ${({ $background }) => css`
     background-color: ${$background};
     border-radius: 16px;
     padding: 20px 0px 20px 0px;
@@ -23,7 +20,7 @@ export const ContentWrapper = styled.View`
   gap: 8px;
 `;
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 17px;
     color: ${theme.colors.white};
     font-family: ${theme.fonts.Jost};
@@ -31,7 +28,7 @@ export const Title = styled.Text`
   `}
 `;
 export const NumberOfNotesText = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     position: absolute;
     top: 8px;
     right: 8px;
@@ -43,7 +40,7 @@ export const NumberOfNotesText = styled.Text`
 `;
 
 export const AddButton = styled.TouchableHighlight`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     align-items: center;
     justify-content: center;
     background-color: ${theme.colors.white};
@@ -55,7 +52,7 @@ export const AddButton = styled.TouchableHighlight`
   `}
 `;
 export const StyledIcon = styled(SVGImg)`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     width: 36px;
     height: 36px;
     color: ${theme.colors.purple};

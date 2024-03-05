@@ -1,17 +1,15 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
 
 export const StyledView = styled.View`
-  ${({}) => css`
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15%;
-  `}
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
 `;
 
 export const DailyTasks = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 28px;
     color: ${theme.colors.white};
     font-family: ${theme.fonts.Jost};
@@ -19,7 +17,7 @@ export const DailyTasks = styled.Text`
   `}
 `;
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 25px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Jost};
@@ -27,7 +25,7 @@ export const Title = styled.Text`
   `}
 `;
 export const SubTitle = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 17px;
     color: ${theme.colors.black};
     font-family: ${theme.fonts.Jost};

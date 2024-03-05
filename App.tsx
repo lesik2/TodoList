@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react';
-import {ThemeProvider} from 'styled-components/native';
-import {theme} from './src/theme/index';
-import {Navigation} from './src/components/Navigation';
-import {StatusBar} from 'react-native';
-import {setUpNotification} from './src/api/pushNotifications';
-import {ErrorBoundary} from './src/components/ErrorBoundary';
+import React, { useEffect } from 'react';
+import { ThemeProvider } from 'styled-components/native';
+import { StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+
+import { theme } from './src/theme/index';
+import { Navigation } from './src/components/Navigation';
+import { setUpNotification } from './src/api/pushNotifications';
+import { ErrorBoundary } from './src/components/ErrorBoundary';
 
 function App(): React.JSX.Element {
   useEffect(() => {
     SplashScreen.hide();
-    setUpNotification();
+    setUpNotification().catch((error) => {
+      console.error(error);
+    });
   }, []);
 
   return (

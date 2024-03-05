@@ -24,5 +24,4 @@ export interface ITheme {
     easy: number;
     medium: number;
   };
-  zIndex: {};
 }

@@ -1,4 +1,4 @@
-import {RootStackParamList} from '@customTypes/navigation';
+import { type RootStackParamList } from '@customTypes/navigation';
 
 export interface IMenuData {
   icon: string;

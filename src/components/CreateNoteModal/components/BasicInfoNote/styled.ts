@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import {css} from 'styled-components';
-import {CustomInput} from '@ui/CustomInput/styled';
+import { css } from 'styled-components';
+import { CustomInput } from '@ui/CustomInput/styled';
 
 export const ContentView = styled.View`
   flex-direction: column;
@@ -26,12 +26,10 @@ export const WrapperInput = styled.View`
   width: 95%;
 `;
 
-export const InputTitle = styled(CustomInput)`
-  ${({theme}) => css``}
-`;
+export const InputTitle = styled(CustomInput)``;
 
 export const InputText = styled(CustomInput)`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     height: 80px;
     color: ${theme.colors.iconColor};
     font-size: 16px;
@@ -39,7 +37,7 @@ export const InputText = styled(CustomInput)`
 `;
 
 export const Title = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     font-size: 22px;
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.Signika};

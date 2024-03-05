@@ -1,16 +1,17 @@
-import {useContext, useEffect, useState} from 'react';
-import {INote} from '@customTypes/note';
-import {BasicInfoNote} from './components/BasicInfoNote';
-import {SubTasksNote} from './components/SubTasksNote';
-import {CustomModal} from '@ui/CustomModal';
-import {TimeNote} from './components/TimeNote';
-import {DateNote} from './components/DateNote';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { type INote } from '@customTypes/note';
+import { CustomModal } from '@ui/CustomModal';
 import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
-import {NotesContext, NotesDispatchContext} from '@context/contextProvider';
-import {actionAddNote, actionUpdateNote} from '@context/actionCreatorsNotes';
-import {basicInfoNoteSchema} from '@validate/note';
-import {cancel, onCreateTriggerNotification} from '@api/pushNotifications';
+import { v4 as uuidv4 } from 'uuid';
+import { NotesContext, NotesDispatchContext } from '@context/contextProvider';
+import { actionAddNote, actionUpdateNote } from '@context/actionCreatorsNotes';
+import { basicInfoNoteSchema } from '@validate/note';
+import { cancel, onCreateTriggerNotification } from '@api/pushNotifications';
+
+import { DateNote } from './components/DateNote';
+import { TimeNote } from './components/TimeNote';
+import { SubTasksNote } from './components/SubTasksNote';
+import { BasicInfoNote } from './components/BasicInfoNote';
 
 export interface ICreateNoteModal {
   visible: boolean;
@@ -18,23 +19,23 @@ export interface ICreateNoteModal {
   idNote?: string;
 }
 
-export function CreateNoteModal({
-  visible,
-  setVisible,
-  idNote,
-}: ICreateNoteModal) {
-  const emptyNote: INote = {
-    id: '',
-    title: '',
-    text: '',
-    subNotes: [],
-    importance: false,
-    startTime: new Date().toISOString(),
-    endTime: new Date().toISOString(),
-    date: new Date().toISOString(),
-    checked: false,
-    category: '',
-  };
+export function CreateNoteModal({ visible, setVisible, idNote }: ICreateNoteModal) {
+  const emptyNote: INote = useMemo(
+    () => ({
+      id: '',
+      title: '',
+      text: '',
+      subNotes: [],
+      importance: false,
+      startTime: new Date().toISOString(),
+      endTime: new Date().toISOString(),
+      date: new Date().toISOString(),
+      checked: false,
+      category: '',
+    }),
+    [],
+  );
+
   const dispatch = useContext(NotesDispatchContext);
 
   const notes = useContext(NotesContext);
@@ -49,13 +50,14 @@ export function CreateNoteModal({
     if (!visible) return;
     if (idNote === undefined) {
       const id = uuidv4();
-      setNewNote({...emptyNote, id: id});
+      setNewNote({ ...emptyNote, id });
     }
+
     if (idNote !== undefined) {
-      const note = notes.find(note => note.id === idNote);
+      const note = notes.find((item) => item.id === idNote);
       setNewNote(note!);
     }
-  }, [visible, idNote]);
+  }, [visible, idNote, notes, emptyNote]);
 
   const leftButtonText = currentModal === 0 ? 'Cancel' : 'Back';
   const rightButtonText = currentModal === AMOUNT_OF_MODALS - 1 ? 'Ok' : 'Next';
@@ -74,6 +76,7 @@ export function CreateNoteModal({
     if (currentModal === AMOUNT_OF_MODALS - 1) {
       if (handleValidateTime()) {
         setError('Till time should be larger than before time');
+
         return;
       }
 
@@ -82,14 +85,13 @@ export function CreateNoteModal({
         title: newNote.title.trim(),
         text: newNote.text.trim(),
         subNotes: newNote.subNotes
-          .filter(subNote => subNote.text)
-          .map(subNote => {
-            return {...subNote, text: subNote.text.trim()};
-          }),
+          .filter((subNote) => subNote.text)
+          .map((subNote) => ({ ...subNote, text: subNote.text.trim() })),
       };
+
       validNote = {
         ...validNote,
-        checked: validNote.subNotes.every(note => note.checked),
+        checked: validNote.subNotes.every((note) => note.checked),
       };
 
       handleCloseModal();
@@ -104,6 +106,7 @@ export function CreateNoteModal({
       } else {
         dispatch(actionAddNote(validNote));
       }
+
       if (new Date(validNote.startTime) > new Date()) {
         await onCreateTriggerNotification(
           `${validNote.id}-start`,
@@ -133,18 +136,21 @@ export function CreateNoteModal({
   const handleValidateBasicInfo = async () => {
     try {
       await basicInfoNoteSchema.validate(newNote);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
+    } catch (errorObj) {
+      if (errorObj instanceof Error) {
+        setError(errorObj.message);
       }
+
       return false;
     }
+
     return true;
   };
 
   const handleValidateTime = () => {
     const startDate = new Date(newNote.startTime);
     const endDate = new Date(newNote.endTime);
+
     return endDate <= startDate;
   };
 
@@ -153,20 +159,10 @@ export function CreateNoteModal({
   };
 
   const modals = [
-    <BasicInfoNote
-      newNote={newNote}
-      setNewNote={setNewNote}
-      error={error}
-      setError={setError}
-    />,
-    <SubTasksNote newNote={newNote} setNewNote={setNewNote} />,
-    <DateNote newNote={newNote} setNewNote={setNewNote} />,
-    <TimeNote
-      newNote={newNote}
-      setNewNote={setNewNote}
-      error={error}
-      setError={setError}
-    />,
+    <BasicInfoNote key={1} newNote={newNote} setNewNote={setNewNote} error={error} setError={setError} />,
+    <SubTasksNote key={2} newNote={newNote} setNewNote={setNewNote} />,
+    <DateNote key={3} newNote={newNote} setNewNote={setNewNote} />,
+    <TimeNote key={4} newNote={newNote} setNewNote={setNewNote} error={error} setError={setError} />,
   ];
 
   return (
@@ -176,7 +172,8 @@ export function CreateNoteModal({
       leftButtonText={leftButtonText}
       rightButtonText={rightButtonText}
       leftOnHandleClick={handleLeftPressModal}
-      rightOnHandleClick={handleRightPressModal}>
+      rightOnHandleClick={handleRightPressModal}
+    >
       {modals[currentModal]}
     </CustomModal>
   );

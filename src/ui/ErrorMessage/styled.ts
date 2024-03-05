@@ -1,7 +1,7 @@
-import styled, {css} from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const ErrorMessage = styled.Text`
-  ${({theme}) => css`
+  ${({ theme }) => css`
     position: absolute;
     left: 10px;
     bottom: -18px;

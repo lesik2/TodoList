@@ -1,4 +1,4 @@
-import {INote, ISubNote} from './note';
+import { type INote, type ISubNote } from './note';
 
 export enum NotesActionTypes {
   ADD_NOTE = 'ADD_NOTE',

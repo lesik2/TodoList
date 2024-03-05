@@ -1,15 +1,15 @@
 declare module '*.scss' {
-  const content: {[className: string]: string};
+  const content: Record<string, string>;
   export default content;
 }
 
 declare module '*.css' {
-  const content: {[className: string]: string};
+  const content: Record<string, string>;
   export default content;
 }
 
 declare module '*.svg' {
-  import {SvgProps} from 'react-native-svg';
+  import { type SvgProps } from 'react-native-svg';
   const content: React.FC<SvgProps>;
   export default content;
 }
