@@ -1,3 +1,24 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@assets/*": ["src/assets/*"],
+      "@constants/*": ["src/constants/*"],
+      "@components/*": ["src/components/*"],
+      "@customTypes/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
+      "@screens/*": ["src/screens/*"],
+      "@ui/*": ["src/ui/*"],
+      "@api/*": ["src/api/*"],
+      "@context/*": ["src/context/*"],
+      "@validate/*": ["src/validate/*"]
+    }
+  },
+
+  "include": ["**/*.ts", "**/*.tsx", "typings/*.d.ts"],
+  "exclude": ["node_modules", ".vscode"]
 }
